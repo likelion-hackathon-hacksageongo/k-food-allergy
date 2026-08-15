@@ -1,0 +1,45 @@
+# =========================
+# Root .gitignore
+# =========================
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# ----- Frontend (React + Vite) -----
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# ----- Backend (Django) -----
+backend/.venv/
+backend/__pycache__/
+backend/**/__pycache__/
+backend/**/*.pyc
+backend/db.sqlite3
+backend/media/
+backend/staticfiles/
+backend/.env
+
+# ----- AI -----
+AI/.venv/
+AI/__pycache__/
+AI/**/__pycache__/
+AI/**/*.pyc
+AI/models/
+AI/data/raw/
+AI/*.h5
+AI/*.pt
+AI/*.pkl
