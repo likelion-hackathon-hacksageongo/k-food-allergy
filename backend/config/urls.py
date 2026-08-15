@@ -4,9 +4,16 @@ URL configuration for K-Food Allergy Map project.
 
 from django.contrib import admin
 from django.urls import path, include
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # API docs
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+
+    # App endpoints
     path('api/accounts/', include('accounts.urls')),
     path('api/profiles/', include('profiles.urls')),
     path('api/restaurants/', include('restaurants.urls')),

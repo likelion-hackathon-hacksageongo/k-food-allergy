@@ -80,4 +80,5 @@ python manage.py runserver       # runs on http://localhost:8000
 - Frontend communicates with backend via `http://localhost:8000/api/`
 - CORS is pre-configured to allow `http://localhost:5173`
 - Admin panel: `http://localhost:8000/admin/`
+- Swagger UI: `http://localhost:8000/swagger/`
 - Analysis results are based on public info and general Korean cooking patterns — never guarantees safety
