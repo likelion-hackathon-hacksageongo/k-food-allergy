@@ -43,11 +43,13 @@ data/.env
 
 # ----- AI -----
 AI/.venv/
+AI/.env
 AI/__pycache__/
 AI/**/__pycache__/
 AI/**/*.pyc
 AI/models/
 AI/data/raw/
+AI/data/scores/
 AI/*.h5
 AI/*.pt
 AI/*.pkl
