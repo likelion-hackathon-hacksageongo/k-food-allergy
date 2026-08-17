@@ -13,8 +13,12 @@ dev/
 │   ├── profiles/      # Allergy profile (CRUD)
 │   ├── restaurants/   # Restaurant data (list, detail)
 │   ├── menus/         # Menu items + allergen mapping
-│   └── feedback/      # Post-visit feedback
-└── AI/                # AI architecture & training
+│   ├── feedback/      # Post-visit feedback
+│   └── analysis/      # AI 분석 API (Django ↔ AI 모듈 브릿지)
+└── AI/                # AI 모듈 (OpenAI 기반 분석/문장 생성)
+    ├── prompts/       # 시스템 프롬프트
+    ├── schemas/       # Pydantic 입출력 스키마
+    └── services/      # 분석기, 문장 생성기
 ```
 
 ## Tech Stack
@@ -24,7 +28,7 @@ dev/
 | Frontend | React + Vite, React Router, Axios, plain CSS  |
 | Backend  | Django 5.1, DRF, SimpleJWT, django-cors-headers |
 | Database | SQLite (dev) → PostgreSQL (prod)              |
-| AI       | TBD                                           |
+| AI       | OpenAI GPT-4o-mini, Pydantic, python-dotenv   |
 
 ## Getting Started
 
@@ -63,6 +67,9 @@ python manage.py runserver       # runs on http://localhost:8000
 | GET    | /api/menus/:id/           | Menu item detail             | Required |
 | GET    | /api/feedback/            | List my feedbacks            | Required |
 | POST   | /api/feedback/create/     | Submit visit feedback        | Required |
+| POST   | /api/analysis/restaurant/ | AI 식당 전체 분석            | Required |
+| POST   | /api/analysis/query/      | 현장 문의 한국어 문장 생성    | Required |
+| POST   | /api/analysis/batch/      | 지도 다중 식당 요약 분석      | Required |
 
 ## Team Roles
 
