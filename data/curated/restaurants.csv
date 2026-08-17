@@ -1,0 +1,11 @@
+key,name,name_ko,address,latitude,longitude,category,description,source_status,source_url,collected_at,collected_by,is_active
+jokbal_yasijang,Jokbal Yasijang & Mucheong Gamjatang,족발야시장&무청감자탕 홍대점,"서울특별시 마포구 잔다리로 14, 2층 (서교동)",37.551059,126.921647,Korean - Jokbal & Bossam,,public_data,https://www.localdata.go.kr/,2026-08-17,hanjoon,true
+hallyu_samgyetang,Hallyu Samgyetang,한류삼계탕,"서울특별시 마포구 와우산로 151, 지1층 (서교동)",37.554673,126.929751,Korean - Samgyetang,,public_data,https://www.localdata.go.kr/,2026-08-17,hanjoon,true
+yukjeon_gukbap_seogyo,Yukjeon Gukbap (Seogyo),육전국밥 서교점,"서울특별시 마포구 월드컵북로 9-1, 1층 (서교동)",37.55578,126.9204,Korean - Soup & Rice,,public_data,https://www.localdata.go.kr/,2026-08-17,hanjoon,true
+gamnamujip_gisa_sikdang,Gamnamujip Gisa Sikdang,감나무집기사식당,"서울특별시 마포구 연남로 23, 1층 (연남동)",37.561733,126.922075,Korean - Home cooking,,public_data,https://www.localdata.go.kr/,2026-08-17,hanjoon,true
+jeju_eunhuine_haejangguk,Jeju Eunhuine Haejangguk (Hongdae),제주은희네해장국홍대점,"서울특별시 마포구 월드컵북로 43, 1층 (서교동)",37.558053,126.917836,Korean - Haejangguk,,public_data,https://www.localdata.go.kr/,2026-08-17,hanjoon,true
+hongdae_dakgalbi,Hongdae Dakgalbi,홍대 닭갈비,"서울특별시 마포구 와우산로21길 31-10 (서교동,1층)",37.552094,126.921836,Korean - Dakgalbi,,public_data,https://www.localdata.go.kr/,2026-08-17,hanjoon,true
+jomadam_kalguksu,Jomadam Kalguksu (Hongdae),조마담칼국수 홍대직영점,"서울특별시 마포구 서강로9길 56, 송우빌딩 1층 102호 (창전동)",37.554541,126.93076,Korean - Noodles,,public_data,https://www.localdata.go.kr/,2026-08-17,hanjoon,true
+hongdae_budae_jjigae,Hongdae Budae Jjigae,홍대 부대찌개,"서울특별시 마포구 홍익로5안길 34, 1층 전체호 (서교동)",37.553365,126.921039,Korean - Stew,,public_data,https://www.localdata.go.kr/,2026-08-17,hanjoon,true
+boss_gimbap,Boss Gimbap (Yeontral Park),보스김밥 연트럴파크점,"서울특별시 마포구 성미산로 138, 1층 (연남동)",37.563483,126.922002,Korean - Gimbap & Snacks,,public_data,https://www.localdata.go.kr/,2026-08-17,hanjoon,true
+nokwon_ssambap,Nokwon Ssambap,녹원쌈밥,"서울특별시 마포구 동교로27길 102, 1층 (연남동)",37.561962,126.91967,Korean - Ssambap,,public_data,https://www.localdata.go.kr/,2026-08-17,hanjoon,true

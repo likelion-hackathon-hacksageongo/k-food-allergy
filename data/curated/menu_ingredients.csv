@@ -1,0 +1,10 @@
+restaurant_key,menu_key,ingredient_key,presence,role,action,source_status,notes
+jokbal_yasijang,jokbal_medium,garlic,always,sauce,add,unverified,마늘소스
+jokbal_yasijang,jokbal_medium,mayonnaise,sometimes,sauce,add,unverified,마늘소스가 마요네즈 베이스인 경우 — 현장 확인 필요
+jokbal_yasijang,bul_jokbal,gochujang,always,sauce,add,unverified,매운 양념
+jokbal_yasijang,bul_jokbal,gochugaru,always,sauce,add,unverified,매운 양념
+jokbal_yasijang,ppyeo_haejangguk,potato,sometimes,main,add,unverified,1인분에는 감자를 넣지 않는 경우가 많음
+jokbal_yasijang,gyeranjjim,egg,always,main,add,unverified,
+jokbal_yasijang,gyeranjjim,green_onion,usually,garnish,add,unverified,
+jokbal_yasijang,gyeranjjim,anchovy_broth,usually,broth,add,unverified,육수 종류 확인 필요
+jokbal_yasijang,gyeranjjim,salt,always,sauce,add,unverified,
