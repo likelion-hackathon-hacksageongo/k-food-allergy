@@ -1,5 +1,7 @@
 from .types import (
     AllergenKey,
+    SupportedLanguage,
+    LANGUAGE_NAMES,
     UserAllergyProfile,
     MenuItemInput,
     RestaurantInput,

@@ -19,6 +19,7 @@ from schemas.types import (
     UserAllergyProfile,
     RestaurantInput,
     RestaurantAnalysisResult,
+    LANGUAGE_NAMES,
 )
 
 
@@ -107,6 +108,7 @@ _RESPONSE_SCHEMA = {
 def _build_user_message(
     profile: UserAllergyProfile,
     restaurant: RestaurantInput,
+    language: str = "ko",
 ) -> str:
     """사용자 메시지 구성"""
     allergen_list = ", ".join(a.value for a in profile.allergens)
@@ -122,6 +124,19 @@ def _build_user_message(
 
     menus_text = "\n".join(menu_lines)
 
+    # 언어 지시
+    if language == "ko":
+        lang_instruction = ""
+    else:
+        lang_name = LANGUAGE_NAMES.get(language, "English")
+        lang_instruction = (
+            f"\n\n## 출력 언어\n"
+            f"모든 텍스트 필드(summary, risk_summary, cross_contamination_notes, "
+            f"source, hidden_risk, check_items)를 {lang_name}로 작성하세요. "
+            f"메뉴명(menu_name)은 원래 한국어 이름을 유지하되, 괄호 안에 {lang_name} 번역을 추가하세요. "
+            f"예: \"된장찌개 (Soybean Paste Stew)\""
+        )
+
     return (
         f"## 사용자 알레르기 프로필\n"
         f"알레르겐: {allergen_list}\n\n"
@@ -132,12 +147,14 @@ def _build_user_message(
         f"## 메뉴 목록 (총 {len(restaurant.menu_items)}개)\n"
         f"{menus_text}\n\n"
         f"위 정보를 바탕으로 각 메뉴별 알레르겐 분석과 식당 전체 적합도 점수를 산출하세요."
+        f"{lang_instruction}"
     )
 
 
 def analyze_restaurant(
     profile: UserAllergyProfile,
     restaurant: RestaurantInput,
+    language: str = "ko",
 ) -> RestaurantAnalysisResult:
     """
     식당 전체 메뉴를 사용자 알레르기 프로필 기준으로 분석합니다.
@@ -145,6 +162,7 @@ def analyze_restaurant(
     Args:
         profile: 사용자 알레르기 프로필
         restaurant: 식당 정보 (메뉴 포함)
+        language: 응답 언어 코드 (ko, en, ja, zh, vi, th, es, fr)
 
     Returns:
         RestaurantAnalysisResult: 식당 전체 분석 결과
@@ -161,11 +179,12 @@ def analyze_restaurant(
             f"({len(restaurant.menu_items)}개) 분할 요청이 필요합니다."
         )
 
-    # 캐시 확인
+    # 캐시 확인 (언어별 캐시 분리)
     cache_data = {
         "allergens": sorted(a.value for a in profile.allergens),
         "restaurant_id": restaurant.id,
         "menu_ids": sorted(m.id for m in restaurant.menu_items),
+        "language": language,
     }
     cached = analysis_cache.get("analyze", cache_data)
     if cached:
@@ -173,7 +192,7 @@ def analyze_restaurant(
 
     client = OpenAI(api_key=OPENAI_API_KEY)
 
-    user_message = _build_user_message(profile, restaurant)
+    user_message = _build_user_message(profile, restaurant, language)
 
     response = client.chat.completions.create(
         model=OPENAI_MODEL,

@@ -56,6 +56,31 @@ class SuitabilityLevel(str, Enum):
     UNKNOWN = "unknown"          # 판단 불가 (정보 부족)
 
 
+class SupportedLanguage(str, Enum):
+    """지원 언어 목록"""
+    KO = "ko"    # 한국어
+    EN = "en"    # English
+    JA = "ja"    # 日本語
+    ZH = "zh"    # 中文
+    VI = "vi"    # Tiếng Việt
+    TH = "th"    # ภาษาไทย
+    ES = "es"    # Español
+    FR = "fr"    # Français
+
+
+# 언어 코드 → 자연어 이름 매핑 (프롬프트용)
+LANGUAGE_NAMES = {
+    "ko": "한국어",
+    "en": "English",
+    "ja": "日本語 (Japanese)",
+    "zh": "中文 (Chinese)",
+    "vi": "Tiếng Việt (Vietnamese)",
+    "th": "ภาษาไทย (Thai)",
+    "es": "Español (Spanish)",
+    "fr": "Français (French)",
+}
+
+
 # ============================================================
 # 분석기 (Analyzer) 입력
 # ============================================================

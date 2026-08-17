@@ -23,6 +23,7 @@ from schemas.types import (
     RestaurantAnalysisResult,
     QueryContext,
     QueryGeneratorResult,
+    SupportedLanguage,
 )
 from services.analyzer import analyze_restaurant
 from services.query_generator import generate_queries
@@ -50,17 +51,24 @@ app.add_middleware(
 # ============================================================
 
 class AnalyzeRequest(UserAllergyProfile):
-    """식당 분석 요청: 사용자 알레르겐 + 식당 정보"""
+    """식당 분석 요청: 사용자 알레르겐 + 식당 정보 + 언어"""
     restaurant: RestaurantInput
+    language: SupportedLanguage = Field(
+        default=SupportedLanguage.KO,
+        description="응답 언어 (ko, en, ja, zh, vi, th, es, fr)",
+    )
 
 
 class QueryRequest(QueryContext):
-    """문의 문장 생성 요청: 알레르겐 + 상황 + 식당/메뉴"""
-    pass
+    """문의 문장 생성 요청: 알레르겐 + 상황 + 식당/메뉴 + 언어"""
+    language: SupportedLanguage = Field(
+        default=SupportedLanguage.KO,
+        description="인터페이스 언어 (korean_text는 항상 한국어 유지)",
+    )
 
 
 class BatchAnalyzeRequest(BaseModel):
-    """지도 일괄 분석 요청: 사용자 알레르겐 + 여러 식당"""
+    """지도 일괄 분석 요청: 사용자 알레르겐 + 여러 식당 + 언어"""
     allergens: list[AllergenKey] = Field(
         ...,
         description="사용자가 등록한 알레르겐 목록",
@@ -70,6 +78,10 @@ class BatchAnalyzeRequest(BaseModel):
         ...,
         description="분석할 식당 목록 (최대 20개)",
         max_length=20,
+    )
+    language: SupportedLanguage = Field(
+        default=SupportedLanguage.KO,
+        description="응답 언어 (ko, en, ja, zh, vi, th, es, fr)",
     )
 
 
@@ -118,7 +130,7 @@ def analyze_restaurant_endpoint(request: AnalyzeRequest):
         raise HTTPException(status_code=400, detail="메뉴가 비어있습니다.")
 
     try:
-        result = analyze_restaurant(profile, restaurant)
+        result = analyze_restaurant(profile, restaurant, language=request.language.value)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
@@ -146,7 +158,7 @@ def generate_query_endpoint(request: QueryRequest):
     )
 
     try:
-        result = generate_queries(context)
+        result = generate_queries(context, language=request.language.value)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"문장 생성 중 오류 발생: {str(e)}")
 
@@ -165,6 +177,7 @@ def batch_analyze_endpoint(request: BatchAnalyzeRequest):
     import concurrent.futures
 
     profile = UserAllergyProfile(allergens=request.allergens)
+    language = request.language.value
     results = []
     cached_count = 0
     to_analyze = []
@@ -178,6 +191,7 @@ def batch_analyze_endpoint(request: BatchAnalyzeRequest):
             "allergens": sorted(a.value for a in profile.allergens),
             "restaurant_id": restaurant.id,
             "menu_ids": sorted(m.id for m in restaurant.menu_items),
+            "language": language,
         }
         cached = analysis_cache.get("analyze", cache_data)
 
@@ -199,7 +213,7 @@ def batch_analyze_endpoint(request: BatchAnalyzeRequest):
     # 2단계: 미캐시 식당 병렬 분석
     def _analyze_one(restaurant: RestaurantInput) -> RestaurantSummary | None:
         try:
-            result = analyze_restaurant(profile, restaurant)
+            result = analyze_restaurant(profile, restaurant, language=language)
             return RestaurantSummary(
                 restaurant_id=result.restaurant_id,
                 restaurant_name=result.restaurant_name,

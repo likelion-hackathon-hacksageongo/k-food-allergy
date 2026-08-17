@@ -17,6 +17,7 @@ from config import (
 from schemas.types import (
     QueryContext,
     QueryGeneratorResult,
+    LANGUAGE_NAMES,
 )
 
 
@@ -64,7 +65,7 @@ _SITUATION_DESCRIPTIONS = {
 }
 
 
-def _build_user_message(context: QueryContext) -> str:
+def _build_user_message(context: QueryContext, language: str = "ko") -> str:
     """사용자 메시지 구성"""
     allergen_list = ", ".join(a.value for a in context.allergens)
 
@@ -93,15 +94,28 @@ def _build_user_message(context: QueryContext) -> str:
         f"\n위 정보를 바탕으로 각 상황에 맞는 한국어 문의 문장을 생성하세요."
     )
 
+    # 언어 지시: korean_text는 항상 한국어, 나머지 필드는 사용자 언어
+    if language != "ko":
+        lang_name = LANGUAGE_NAMES.get(language, "English")
+        parts.append(
+            f"\n## 출력 언어 안내\n"
+            f"- korean_text: 반드시 한국어로 작성 (식당 직원에게 보여줄 문장)\n"
+            f"- english_note: {lang_name}로 작성 (사용자가 문장의 의미를 이해할 수 있도록)\n"
+            f"- situation_label: {lang_name}로 작성\n"
+            f"- intro_text: 한국어로 작성 (직원에게 보여주는 소개 문장)\n"
+            f"- disclaimer: {lang_name}로 작성"
+        )
+
     return "\n".join(parts)
 
 
-def generate_queries(context: QueryContext) -> QueryGeneratorResult:
+def generate_queries(context: QueryContext, language: str = "ko") -> QueryGeneratorResult:
     """
     사용자의 알레르기 정보와 상황에 맞는 한국어 문의 문장을 생성합니다.
 
     Args:
         context: 문의 문장 생성 요청 컨텍스트 (알레르겐, 상황, 식당/메뉴명)
+        language: 사용자 인터페이스 언어 코드 (korean_text는 항상 한국어)
 
     Returns:
         QueryGeneratorResult: 생성된 문의 문장 목록
@@ -111,12 +125,13 @@ def generate_queries(context: QueryContext) -> QueryGeneratorResult:
     """
     from cache import query_cache
 
-    # 캐시 확인
+    # 캐시 확인 (언어별 분리)
     cache_data = {
         "allergens": sorted(a.value for a in context.allergens),
         "situations": sorted(context.situations),
         "restaurant_name": context.restaurant_name,
         "menu_name": context.menu_name,
+        "language": language,
     }
     cached = query_cache.get("query", cache_data)
     if cached:
@@ -124,7 +139,7 @@ def generate_queries(context: QueryContext) -> QueryGeneratorResult:
 
     client = OpenAI(api_key=OPENAI_API_KEY)
 
-    user_message = _build_user_message(context)
+    user_message = _build_user_message(context, language)
 
     response = client.chat.completions.create(
         model=OPENAI_MODEL,
