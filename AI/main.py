@@ -265,3 +265,130 @@ def cache_clear():
     analysis_cache.clear()
     query_cache.clear()
     return {"status": "cleared"}
+
+
+# ============================================================
+# 사전 분석 (Pre-computed) 엔드포인트
+# ============================================================
+
+
+class PrecomputeRequest(BaseModel):
+    """사전 분석 트리거 요청"""
+    user_id: str = Field(..., description="사용자 식별자")
+    allergens: list[AllergenKey] = Field(..., description="사용자 알레르겐 목록", min_length=1)
+    restaurants: list[RestaurantInput] = Field(..., description="분석할 식당 목록")
+    language: SupportedLanguage = Field(default=SupportedLanguage.KO, description="응답 언어")
+
+
+class PrecomputeSingleRequest(BaseModel):
+    """단일 식당 재분석 요청 (메뉴 변경 시)"""
+    user_id: str = Field(..., description="사용자 식별자")
+    allergens: list[AllergenKey] = Field(..., description="사용자 알레르겐 목록", min_length=1)
+    restaurant: RestaurantInput = Field(..., description="재분석할 식당")
+    language: SupportedLanguage = Field(default=SupportedLanguage.KO, description="응답 언어")
+
+
+class ScoresResponse(BaseModel):
+    """지도 뷰용 즉시 응답"""
+    user_id: str
+    computed_at: str | None = None
+    restaurants: dict[str, RestaurantSummary] = Field(default_factory=dict)
+
+
+@app.get("/scores/{user_id}", response_model=ScoresResponse)
+def get_scores(user_id: str):
+    """
+    사전 분석된 식당 점수를 즉시 반환합니다 (지도 뷰용).
+
+    - 응답 시간: <10ms (파일에서 읽기만)
+    - 사전 분석이 안 되어 있으면 빈 결과 반환
+    - FE는 이 엔드포인트로 지도 핀에 점수를 표시
+    """
+    from store import get_user_scores
+
+    data = get_user_scores(user_id)
+
+    if not data:
+        return ScoresResponse(user_id=user_id, computed_at=None, restaurants={})
+
+    # dict → RestaurantSummary 변환
+    restaurants = {}
+    for rid, summary in data.get("restaurants", {}).items():
+        restaurants[rid] = RestaurantSummary(**summary)
+
+    return ScoresResponse(
+        user_id=user_id,
+        computed_at=data.get("computed_at"),
+        restaurants=restaurants,
+    )
+
+
+@app.post("/precompute/trigger")
+def trigger_precompute(request: PrecomputeRequest):
+    """
+    사전 분석을 트리거합니다 (백그라운드 실행).
+
+    BE가 호출하는 시점:
+    - 사용자가 알레르기 프로필을 등록/변경했을 때
+    - 새 사용자가 회원가입 후 프로필을 완성했을 때
+
+    모든 식당에 대해 병렬 분석 후 결과를 저장합니다.
+    """
+    import threading
+    from precompute import precompute_for_user
+
+    allergens = [a.value for a in request.allergens]
+    restaurants = [r.model_dump() for r in request.restaurants]
+
+    # 백그라운드 스레드에서 실행 (요청 즉시 응답)
+    def _run():
+        precompute_for_user(
+            user_id=request.user_id,
+            allergens=allergens,
+            restaurants=restaurants,
+            language=request.language.value,
+        )
+
+    thread = threading.Thread(target=_run, daemon=True)
+    thread.start()
+
+    return {
+        "status": "started",
+        "user_id": request.user_id,
+        "restaurant_count": len(request.restaurants),
+        "message": "백그라운드에서 분석이 진행됩니다. GET /scores/{user_id}로 결과를 확인하세요.",
+    }
+
+
+@app.post("/precompute/restaurant")
+def trigger_restaurant_recompute(request: PrecomputeSingleRequest):
+    """
+    단일 식당 재분석을 트리거합니다.
+
+    BE가 호출하는 시점:
+    - 식당 메뉴가 추가/변경/삭제되었을 때
+    - 데이터팀이 식당 정보를 업데이트했을 때
+    """
+    import threading
+    from precompute import precompute_single_restaurant
+
+    allergens = [a.value for a in request.allergens]
+    restaurant = request.restaurant.model_dump()
+
+    def _run():
+        precompute_single_restaurant(
+            user_id=request.user_id,
+            allergens=allergens,
+            restaurant=restaurant,
+            language=request.language.value,
+        )
+
+    thread = threading.Thread(target=_run, daemon=True)
+    thread.start()
+
+    return {
+        "status": "started",
+        "user_id": request.user_id,
+        "restaurant_id": request.restaurant.id,
+        "message": "해당 식당 재분석이 진행됩니다.",
+    }
