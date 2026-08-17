@@ -43,33 +43,39 @@ npm run dev          # runs on http://localhost:5173
 ### Backend
 
 ```bash
-cd dev/backend
-python -m venv .venv
+cd backend
+py -3.12 -m venv .venv            # Django 5.1 / Pillow don't yet support 3.14 on Windows
 source .venv/Scripts/activate    # Windows Git Bash
 # source .venv/bin/activate      # Mac/Linux
 pip install -r requirements.txt
+
+cp .env.example .env             # local secrets/config, gitignored
+
 python manage.py migrate
+python manage.py seed_data       # optional: sample Hongdae restaurants/menus for local dev
 python manage.py createsuperuser
 python manage.py runserver       # runs on http://localhost:8000
 ```
 
 ## API Endpoints
 
-| Method | Endpoint                  | Description                  | Auth     |
-|--------|---------------------------|------------------------------|----------|
-| POST   | /api/accounts/register/   | Create new user              | Public   |
-| POST   | /api/accounts/login/      | Get JWT token pair           | Public   |
-| POST   | /api/accounts/token/refresh/ | Refresh access token      | Public   |
-| GET/PUT| /api/profiles/me/         | Get/update allergy profile   | Required |
-| GET    | /api/restaurants/         | List restaurants             | Required |
-| GET    | /api/restaurants/:id/     | Restaurant detail            | Required |
-| GET    | /api/menus/               | List menus (?restaurant=id)  | Required |
-| GET    | /api/menus/:id/           | Menu item detail             | Required |
-| GET    | /api/feedback/            | List my feedbacks            | Required |
-| POST   | /api/feedback/create/     | Submit visit feedback        | Required |
-| POST   | /api/analysis/restaurant/ | AI 식당 전체 분석            | Required |
-| POST   | /api/analysis/query/      | 현장 문의 한국어 문장 생성    | Required |
-| POST   | /api/analysis/batch/      | 지도 다중 식당 요약 분석      | Required |
+| Method | Endpoint                  | Description                  | Auth     | Body / Notes |
+|--------|---------------------------|------------------------------|----------|--------------|
+| POST   | /api/accounts/register/   | Create new user, returns JWT pair (auto-login) | Public | `{email, password, password_confirm}` |
+| POST   | /api/accounts/login/      | Get JWT token pair           | Public   | `{email, password}` |
+| POST   | /api/accounts/token/refresh/ | Refresh access token      | Public   | `{refresh}` |
+| GET/PUT| /api/profiles/me/         | Get/update allergy profile   | Required | `{allergens: [...]}` |
+| GET    | /api/restaurants/         | List restaurants (paginated) | Required | |
+| GET    | /api/restaurants/:id/     | Restaurant detail            | Required | |
+| GET    | /api/menus/               | List menus, paginated (?restaurant=id) | Required | |
+| GET    | /api/menus/:id/           | Menu item detail (incl. allergens) | Required | |
+| GET    | /api/feedback/            | List my feedbacks (paginated) | Required | |
+| POST   | /api/feedback/create/     | Submit visit feedback        | Required | |
+| POST   | /api/analysis/restaurant/ | AI 식당 전체 분석            | Required | `{restaurant_id}` |
+| POST   | /api/analysis/query/      | 현장 문의 한국어 문장 생성    | Required | `{situations, restaurant_id?, menu_id?}` |
+| POST   | /api/analysis/batch/      | 지도 다중 식당 요약 분석      | Required | `{restaurant_ids: [...]}` |
+
+List endpoints are paginated with DRF's `PageNumberPagination` (`?page=`, 20 items/page). Every request needs `Authorization: Bearer <access_token>` except the three public ones above.
 
 ## Team Roles
 

@@ -1,0 +1,20 @@
+public_label,public_label_en,allergen_key,note
+난류,Egg,egg,가금류 알 전반
+우유,Milk,dairy,
+메밀,Buckwheat,buckwheat,
+땅콩,Peanut,peanut,
+대두,Soybean,soy,
+밀,Wheat,wheat,
+고등어,Mackerel,fish,우리 16종은 어류를 fish 하나로 묶음
+게,Crab,shellfish,게+새우가 shellfish 로 합쳐짐 (구분 손실)
+새우,Shrimp,shellfish,게+새우가 shellfish 로 합쳐짐 (구분 손실)
+돼지고기,Pork,pork,
+복숭아,Peach,peach,
+토마토,Tomato,tomato,
+아황산류,Sulfites,sulfites,
+호두,Walnut,nuts,호두+잣이 nuts 로 합쳐짐
+닭고기,Chicken,chicken,
+쇠고기,Beef,beef,
+오징어,Squid,mollusk,
+조개류,Shellfish (mollusk),mollusk,굴/전복/홍합 포함
+잣,Pine nut,nuts,호두+잣이 nuts 로 합쳐짐
