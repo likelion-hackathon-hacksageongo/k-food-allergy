@@ -6,7 +6,9 @@ from profiles.models import AllergyProfile
 from restaurants.models import Restaurant
 from menus.models import MenuItem
 
-from .client import analyze_restaurant, generate_query, AIServiceError
+from .client import analyze_restaurant, generate_query, analyze_batch, AIServiceError
+
+MAX_BATCH_RESTAURANTS = 20  # matches the AI service's own cap
 
 # NOTE: this is a direct, synchronous proxy to the AI server (see
 # AI/INTEGRATION_GUIDE.md section 4 "방법 A"). It does NOT use their
@@ -41,7 +43,7 @@ def _restaurant_payload(restaurant: Restaurant) -> dict:
 
 class AnalyzeRestaurantView(APIView):
     """
-    POST /api/ai/analyze/
+    POST /api/analysis/restaurant/
     Body: {"restaurant_id": 1}
 
     Looks up the logged-in user's allergy profile and the restaurant's
@@ -81,7 +83,7 @@ class AnalyzeRestaurantView(APIView):
 
 class GenerateQueryView(APIView):
     """
-    POST /api/ai/query/
+    POST /api/analysis/query/
     Body: {"restaurant_id": 1, "menu_item_id": 101 (optional), "situations": [...]}
 
     situations defaults to ["ingredient_check"] if omitted. See
@@ -122,6 +124,59 @@ class GenerateQueryView(APIView):
                 restaurant_name=restaurant.name_ko or restaurant.name,
                 menu_name=menu_name,
                 situations=situations,
+                language=profile.preferred_language,
+            )
+        except AIServiceError as e:
+            return Response({'detail': str(e)}, status=status.HTTP_503_SERVICE_UNAVAILABLE)
+
+        return Response(result)
+
+
+class BatchAnalyzeView(APIView):
+    """
+    POST /api/analysis/batch/
+    Body: {"restaurant_ids": [1, 2, 3]}  (optional - omit for all active
+    restaurants, up to MAX_BATCH_RESTAURANTS)
+
+    For the map view: lightweight per-restaurant summary scores (no
+    per-menu detail - use /api/analysis/restaurant/ for that) in one call.
+    Restaurants with no menu items are skipped (nothing to analyze).
+    """
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        restaurant_ids = request.data.get('restaurant_ids')
+
+        try:
+            profile = request.user.allergy_profile
+        except AllergyProfile.DoesNotExist:
+            return Response(
+                {'detail': '알레르기 프로필을 먼저 등록해주세요.'},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        if restaurant_ids:
+            if len(restaurant_ids) > MAX_BATCH_RESTAURANTS:
+                return Response(
+                    {'detail': f'restaurant_ids는 최대 {MAX_BATCH_RESTAURANTS}개까지만 가능합니다.'},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+            queryset = Restaurant.objects.filter(pk__in=restaurant_ids, is_active=True)
+        else:
+            queryset = Restaurant.objects.filter(is_active=True)[:MAX_BATCH_RESTAURANTS]
+
+        restaurants = [
+            _restaurant_payload(r)
+            for r in queryset.prefetch_related('menu_items')
+            if r.menu_items.exists()
+        ]
+        if not restaurants:
+            return Response({'results': [], 'cached_count': 0, 'api_call_count': 0})
+
+        try:
+            result = analyze_batch(
+                allergens=profile.allergens,
+                restaurants=restaurants,
                 language=profile.preferred_language,
             )
         except AIServiceError as e:

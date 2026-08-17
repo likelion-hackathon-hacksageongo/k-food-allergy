@@ -4,7 +4,7 @@ Thin client for the AI team's live analysis server (see AI/INTEGRATION_GUIDE.md)
 Runs separately on AI_SERVICE_URL (default http://localhost:8100, their
 `uvicorn main:app --port 8100`). We call it synchronously per-request and
 relay its response - no caching/precompute wired up yet (see the "later"
-note in ai_integration/views.py).
+note in analysis/views.py).
 """
 
 import requests
@@ -16,10 +16,10 @@ class AIServiceError(Exception):
     pass
 
 
-def _post(path: str, payload: dict) -> dict:
+def _post(path: str, payload: dict, timeout: int = 20) -> dict:
     url = f"{settings.AI_SERVICE_URL.rstrip('/')}{path}"
     try:
-        response = requests.post(url, json=payload, timeout=20)
+        response = requests.post(url, json=payload, timeout=timeout)
     except requests.RequestException as e:
         raise AIServiceError(f"AI 서버({url})에 연결할 수 없습니다: {e}")
 
@@ -55,3 +55,16 @@ def generate_query(
     if menu_name:
         payload['menu_name'] = menu_name
     return _post('/query', payload)
+
+
+def analyze_batch(allergens: list[str], restaurants: list[dict], language: str = 'en') -> dict:
+    """
+    POST /analyze/batch - lightweight per-restaurant summary scores for the
+    map view. Max 20 restaurants per call (AI service's own limit); longer
+    timeout since it may run several uncached LLM analyses.
+    """
+    return _post('/analyze/batch', {
+        'allergens': allergens,
+        'restaurants': restaurants,
+        'language': language,
+    }, timeout=90)
