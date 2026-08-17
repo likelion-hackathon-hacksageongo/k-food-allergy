@@ -1,0 +1,16 @@
+# restaurants.csv 의 category(영문 자유 표기) → AI/DATA_FORMAT.md 의 카테고리 10종.
+# AI 분석 프롬프트가 카테고리를 그대로 읽으므로 그쪽이 정한 어휘를 써야 합니다.
+# 매핑에 없는 값을 만나면 export_ai.py 가 경고하고 '한식' 으로 내보냅니다.
+#
+# 닭갈비는 '치킨' 이 아니라 '한식' 입니다 — AI 쪽 '치킨' 은 치킨 전문점(후라이드·양념)을 뜻합니다.
+category,ai_category
+Korean - Gimbap & Snacks,분식
+Korean - Ssambap,한식
+Korean - Home cooking,한식
+Korean - Dakgalbi,한식
+Korean - Soup & Rice,국밥
+Korean - Stew,한식
+Korean - BBQ,고기
+Korean - Noodles,죽/면
+Korean - Seafood,해산물
+Korean,한식

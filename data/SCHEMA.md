@@ -22,7 +22,17 @@
 | `unverified` | 미확인 |
 
 ### `likelihood` — 알레르겐 포함 가능성
-`confirmed` · `likely` · `possible` · `unlikely`
+
+| 값 | 의미 | 사용자 화면 |
+|---|---|---|
+| `confirmed` | 90% 이상 포함 확인 | 🔴 포함 확인됨 |
+| `likely` | 70~80% 포함 가능성 | 🟡 확인 필요 |
+| `possible` | 20~30% 포함 가능성 | 🟡 확인 필요 |
+| `none` | 포함되지 않을 확률 높음 | 표시 없음 |
+
+> 저장하는 값은 4단계지만 사용자에게는 2단계로 접힙니다. `likely` 와 `possible` 은
+> 화면에서 구분되지 않으므로, 둘 중 어느 쪽인지 고민하는 데 시간을 쓰지 마세요.
+> 중요한 경계는 `confirmed` 인가 아닌가입니다. (`SCHEMA_CHANGES.md` 1번)
 
 ### `presence` — 재료가 그 메뉴에 들어가는 정도
 `always` · `usually` · `sometimes` · `optional` · `removable`

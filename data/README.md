@@ -13,6 +13,7 @@ data/
 ├── raw/          # 원본 다운로드 (gitignore — 커밋하지 않음)
 ├── curated/      # 정규화된 CSV (커밋 대상, 백엔드 import 입력)
 ├── mappings/     # 코드 매핑표 (커밋 대상)
+├── exports/      # 팀에 넘기는 산출물 (커밋 대상, 스크립트로 재생성 가능)
 ├── scripts/      # 수집·정규화·검증 스크립트 (표준 라이브러리만)
 └── SCHEMA.md     # 전체 CSV 컬럼 정의 + enum 값
 ```
@@ -23,7 +24,8 @@ data/
 1. raw/ 에 원본 다운로드        (LOCALDATA, 식약처, 레시피 데이터)
 2. scripts/ 로 필터링·정규화    → curated/*.csv
 3. scripts/validate.py 로 검증  → 통과해야 커밋
-4. (백엔드 머지 후) manage.py import_* 로 DB 적재
+4. scripts/export_ai.py 로 내보내기 → exports/restaurants.json (AI 팀 입력)
+5. (백엔드 머지 후) manage.py import_* 로 DB 적재
 ```
 
 ## 스크립트
@@ -51,7 +53,29 @@ python3 data/scripts/fetch_foodsafety.py
 # 알레르겐 롤업 미리보기 — 데이터가 상식적인지 눈으로 확인
 python3 data/scripts/rollup_preview.py 김치볶음밥 순댓국밥
 python3 data/scripts/rollup_preview.py --allergen shellfish
+python3 data/scripts/rollup_preview.py --menus                # 실제 식당 메뉴 기준
+
+# 식당 메뉴명 → 패턴 매칭 검증 (우리 DB 만으로 판정 가능한 메뉴인지)
+python3 data/scripts/match_menus.py data/review/menu_input.txt
+
+# AI 팀 입력 JSON 내보내기 (AI/DATA_FORMAT.md 형식)
+python3 data/scripts/export_ai.py
 ```
+
+### AI 팀에 넘기는 형식
+
+`export_ai.py` 는 CSV 를 `AI/DATA_FORMAT.md` 의 `restaurants.json` 으로 바꿉니다.
+직접 손으로 만들지 마세요 — 재료 목록이 패턴 상속의 결과라 손으로 못 씁니다.
+
+| 그쪽 필드 | 우리 쪽 출처 |
+|---|---|
+| `name` / `name_ko` | `restaurants.csv` · `menus.csv` 의 같은 컬럼 |
+| `category` | `mappings/ai_category_map.csv` 로 한국어 10종에 매핑 |
+| `ingredients` | `pattern_ingredients` 상속 + `menu_ingredients` 보정 결과 |
+
+`ingredients` 에는 `always` 가 아닌 재료에 `(가끔)` · `(선택)` 같은 꼬리표가 붙습니다.
+그쪽 스키마의 `ingredients` 가 `list[str]` 이라 `presence` 를 담을 자리가 없는데,
+그냥 버리면 "가끔 들어가는 재료"가 "항상 들어가는 재료"로 격상되기 때문입니다.
 
 ## 식당 데이터 출처와 좌표계
 

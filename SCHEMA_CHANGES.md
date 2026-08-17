@@ -67,6 +67,24 @@ low_risk = [a for a in matched if a.likelihood in (LIKELY, POSSIBLE)]
 **데이터팀:** 수집 시 영어 이름 + 한국어 이름 둘 다 기입 부탁드립니다.
 **BE:** import 시 `name_ko`로 매칭하도록 변경 필요.
 
+**⚠ AI 확인 필요 — `DATA_FORMAT.md` 와 `schemas/types.py` 가 어긋납니다.**
+
+`RestaurantInput.name` / `MenuItemInput.name` 의 설명이 아직 `"(한국어)"` 이고
+`name_ko` 필드가 없습니다. pydantic 기본값이 `extra="ignore"` 라서 데이터팀이
+`name_ko` 를 보내도 조용히 버려지고, 프롬프트(`analyzer.py:_build_user_message`)에는
+영문 메뉴명만 들어갑니다. `analyzer_system.txt` 와 다국어 지시문은 메뉴명이
+한국어라고 전제하고 있어("메뉴명은 원래 한국어 이름을 유지하되"), 한식 재료 추론
+품질이 떨어지고 `menu_name` 이 영문으로 되돌아옵니다.
+
+```python
+# AI/schemas/types.py — 제안
+class MenuItemInput(BaseModel):
+    name: str = Field(..., description="메뉴명 (영어/로마자)")
+    name_ko: str = Field(..., description="메뉴명 (한국어)")
+```
+그리고 `_build_user_message` 에서 프롬프트에 넣는 값을 `item.name_ko` 로 바꿔야 합니다.
+데이터팀 export 는 이미 두 필드를 모두 내보내고 있으므로 AI 쪽만 고치면 됩니다.
+
 ---
 
 ## 4. 언어 코드 — AI 수정 완료
@@ -112,4 +130,6 @@ FE에서 임계값 결정 필요 (제안: score >= 60 → 초록)
 | **BE** | matching.py에서 likely를 warning으로 이동 | ⬜ 미완 |
 | **BE** | import 커맨드 name_ko 매칭 | ⬜ 미완 |
 | **FE** | API 경로를 실제 BE 엔드포인트로 변경 | ⬜ 미완 |
-| **데이터** | 수집 시 name + name_ko 둘 다 기입 | ⬜ 미완 |
+| **데이터** | 수집 시 name + name_ko 둘 다 기입 | ✅ 완료 |
+| **데이터** | `restaurants.json` export (`data/scripts/export_ai.py`) | ✅ 완료 |
+| **AI** | `types.py` 에 `name_ko` 추가 + 프롬프트를 한글 메뉴명으로 (위 3번 ⚠) | ⬜ 미완 |

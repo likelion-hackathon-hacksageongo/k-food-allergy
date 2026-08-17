@@ -19,9 +19,14 @@ from pathlib import Path
 CURATED = Path(__file__).resolve().parent.parent / 'curated'
 
 # 강한 것부터. 한 재료가 여러 경로로 같은 알레르겐을 유발하면 가장 강한 것을 취합니다.
-RANK = {'confirmed': 3, 'likely': 2, 'possible': 1, 'unlikely': 0}
+RANK = {'confirmed': 3, 'likely': 2, 'possible': 1, 'none': 0}
 BY_RANK = {v: k for k, v in RANK.items()}
-SYMBOL = {'confirmed': '●', 'likely': '◐', 'possible': '○', 'unlikely': '·'}
+SYMBOL = {'confirmed': '●', 'likely': '◐', 'possible': '○', 'none': '·'}
+
+# 사용자 화면에서는 4단계가 2단계로 접힙니다 (SCHEMA_CHANGES.md 1번).
+# confirmed 만 🔴 이고 likely·possible 은 둘 다 🟡 로 같이 보입니다.
+# 여기서 ◐ 와 ○ 를 나눠 보여주는 건 데이터 점검용이며, 사용자에게는 같은 경고입니다.
+USER_FACING = {'confirmed': '🔴', 'likely': '🟡', 'possible': '🟡', 'none': '  '}
 
 # presence(재료가 그 요리에 들어가는 정도)가 likelihood(그 재료에 알레르겐이 있는 정도)의
 # 상한을 정합니다. "가끔 들어가는 재료에 확실히 있는 알레르겐"은 결국 "가능" 수준입니다.
@@ -148,9 +153,11 @@ def preview_menus(filter_names):
                 print('    검출된 알레르겐 없음')
             for allergen, (likelihood, causes) in sorted(found.items(),
                                                          key=lambda i: -RANK[i[1][0]]):
-                print(f'    {SYMBOL[likelihood]} {allergen:<10} {likelihood:<10} ← {", ".join(causes)}')
+                print(f'    {USER_FACING[likelihood]} {SYMBOL[likelihood]} {allergen:<10} '
+                      f'{likelihood:<10} ← {", ".join(causes)}')
             print()
     print('* 표시는 menu_ingredients.csv 로 보정한 재료입니다.')
+    print('🔴 포함 확인됨 · 🟡 확인 필요 — 사용자에게 보이는 2단계 (likely 와 possible 은 같이 보임)')
     return 0
 
 
@@ -223,7 +230,7 @@ def main():
             print()
         return 0
 
-    print(f'{"요리":<16} {"재료":>4}  알레르겐 (● 확정 ◐ 유력 ○ 가능)')
+    print(f'{"요리":<16} {"재료":>4}  알레르겐 (● 확정 = 사용자 🔴 / ◐ 유력 ○ 가능 = 사용자 🟡)')
     print('-' * 84)
     for key, pattern in sorted(patterns.items(), key=lambda p: -len(rolled.get(p[0], {}))):
         found = rolled.get(key, {})

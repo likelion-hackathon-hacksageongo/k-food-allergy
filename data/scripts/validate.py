@@ -33,7 +33,7 @@ SOURCE_STATUS = {
     'official_menu', 'public_data', 'public_recipe',
     'cooking_pattern', 'user_feedback', 'unverified',
 }
-LIKELIHOOD = {'confirmed', 'likely', 'possible', 'unlikely'}
+LIKELIHOOD = {'confirmed', 'likely', 'possible', 'none'}
 PRESENCE = {'always', 'usually', 'sometimes', 'optional', 'removable'}
 ROLE = {'main', 'broth', 'sauce', 'garnish', 'side'}
 KIND = {'ingredient', 'broth', 'sauce', 'jang', 'garnish'}
