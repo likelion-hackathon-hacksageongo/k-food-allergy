@@ -33,6 +33,14 @@ backend/media/
 backend/staticfiles/
 backend/.env
 
+# ----- Data -----
+# 원본 공공데이터 덤프는 커밋하지 않습니다 (용량 + 재다운로드 가능)
+data/raw/*
+!data/raw/.gitkeep
+data/**/__pycache__/
+# API 키
+data/.env
+
 # ----- AI -----
 AI/.venv/
 AI/__pycache__/
