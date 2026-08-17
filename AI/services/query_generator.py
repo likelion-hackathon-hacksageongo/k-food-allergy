@@ -6,7 +6,8 @@
 """
 
 import json
-from openai import OpenAI
+import time
+from openai import OpenAI, RateLimitError, APIError
 
 from config import (
     OPENAI_API_KEY,
@@ -141,15 +142,26 @@ def generate_queries(context: QueryContext, language: str = "ko") -> QueryGenera
 
     user_message = _build_user_message(context, language)
 
-    response = client.chat.completions.create(
-        model=OPENAI_MODEL,
-        temperature=TEMPERATURE_QUERY_GEN,
-        messages=[
-            {"role": "system", "content": _SYSTEM_PROMPT},
-            {"role": "user", "content": user_message},
-        ],
-        response_format=_RESPONSE_SCHEMA,
-    )
+    # Rate limit 대응: 최대 3회 재시도 (exponential backoff)
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            response = client.chat.completions.create(
+                model=OPENAI_MODEL,
+                temperature=TEMPERATURE_QUERY_GEN,
+                messages=[
+                    {"role": "system", "content": _SYSTEM_PROMPT},
+                    {"role": "user", "content": user_message},
+                ],
+                response_format=_RESPONSE_SCHEMA,
+            )
+            break
+        except RateLimitError:
+            if attempt < max_retries - 1:
+                wait_time = (2 ** attempt) * 5  # 5s, 10s, 20s
+                time.sleep(wait_time)
+            else:
+                raise
 
     raw_json = response.choices[0].message.content
     data = json.loads(raw_json)

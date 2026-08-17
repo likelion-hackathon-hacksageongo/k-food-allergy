@@ -230,8 +230,8 @@ def batch_analyze_endpoint(request: BatchAnalyzeRequest):
     api_call_count = len(to_analyze)
 
     if to_analyze:
-        # 최대 5개 동시 호출 (OpenAI rate limit 고려)
-        with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+        # 최대 3개 동시 호출 (OpenAI rate limit 고려)
+        with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
             futures = {executor.submit(_analyze_one, r): r for r in to_analyze}
             for future in concurrent.futures.as_completed(futures):
                 summary = future.result()
