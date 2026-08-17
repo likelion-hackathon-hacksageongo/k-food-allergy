@@ -11,7 +11,8 @@ AI 분석 모듈이 기대하는 식당/메뉴 데이터 형식입니다.
 [
   {
     "id": 1,
-    "name": "홍대 한솥밥",
+    "name": "Hongdae Hansotbap",
+    "name_ko": "홍대 한솥밥",
     "category": "한식",
     "address": "서울 마포구 와우산로 123",
     "latitude": 37.5563,
@@ -19,13 +20,15 @@ AI 분석 모듈이 기대하는 식당/메뉴 데이터 형식입니다.
     "menu_items": [
       {
         "id": 101,
-        "name": "된장찌개",
+        "name": "Doenjang Jjigae",
+        "name_ko": "된장찌개",
         "description": "된장, 두부, 호박, 감자, 청양고추",
         "ingredients": ["된장", "두부", "호박", "감자", "청양고추", "멸치육수"]
       },
       {
         "id": 102,
-        "name": "김치찌개",
+        "name": "Kimchi Jjigae",
+        "name_ko": "김치찌개",
         "description": "김치, 돼지고기, 두부, 대파",
         "ingredients": ["김치", "돼지고기", "두부", "대파", "고춧가루"]
       }
@@ -43,7 +46,8 @@ AI 분석 모듈이 기대하는 식당/메뉴 데이터 형식입니다.
 | 필드 | 타입 | 필수 | 설명 |
 |------|------|------|------|
 | `id` | int | ✅ | 고유 ID (1부터 순번) |
-| `name` | string | ✅ | 식당명 (한국어) |
+| `name` | string | ✅ | 식당명 (영어/로마자) |
+| `name_ko` | string | ✅ | 식당명 (한국어) |
 | `category` | string | ✅ | 음식 카테고리 (아래 목록 참고) |
 | `address` | string | ✅ | 주소 |
 | `latitude` | float | ✅ | 위도 (카카오맵에서 확인) |
@@ -55,7 +59,8 @@ AI 분석 모듈이 기대하는 식당/메뉴 데이터 형식입니다.
 | 필드 | 타입 | 필수 | 설명 |
 |------|------|------|------|
 | `id` | int | ✅ | 고유 ID (식당 ID × 100 + 순번 권장) |
-| `name` | string | ✅ | 메뉴명 (한국어) |
+| `name` | string | ✅ | 메뉴명 (영어/로마자) |
+| `name_ko` | string | ✅ | 메뉴명 (한국어) |
 | `description` | string | ⬜ | 간단한 설명 또는 주요 재료 나열 |
 | `ingredients` | array[string] | ⬜ | 알려진 재료 목록 (한국어) |
 

@@ -35,16 +35,16 @@ class AllergenKey(str, Enum):
 
 class Likelihood(str, Enum):
     """알레르겐 포함 가능성 수준"""
-    CONFIRMED = "confirmed"      # 확인됨 (주재료로 포함)
-    LIKELY = "likely"            # 가능성 높음
-    POSSIBLE = "possible"        # 가능성 있음 (조리 패턴상)
-    UNLIKELY = "unlikely"        # 가능성 낮음
+    CONFIRMED = "confirmed"      # 확인됨 (주재료로 포함, 90% 이상)
+    LIKELY = "likely"            # 포함 가능성 있음 (확인 필요, 70-80%)
+    POSSIBLE = "possible"        # 포함 여부 알 수 없음 (확인 필요, 20-30%)
+    NONE = "none"                # 포함되지 않을 확률이 높음
 
 
 class InfoLevel(str, Enum):
     """정보 충분도"""
-    SUFFICIENT = "sufficient"    # 정보 충분 (공개 메뉴 기반)
-    MODERATE = "moderate"        # 보통 (일부 추정 포함)
+    CONFIRMED = "confirmed"      # 공개 메뉴판 등 확인된 정보 기반
+    PATTERN = "pattern"          # 일반 조리 패턴 기반 추정
     INSUFFICIENT = "insufficient"  # 정보 부족 (확인 필요)
 
 
@@ -66,6 +66,9 @@ class SupportedLanguage(str, Enum):
     TH = "th"    # ภาษาไทย
     ES = "es"    # Español
     FR = "fr"    # Français
+    DE = "de"    # Deutsch
+    RU = "ru"    # Русский
+    ID = "id"    # Bahasa Indonesia
 
 
 # 언어 코드 → 자연어 이름 매핑 (프롬프트용)
@@ -78,6 +81,9 @@ LANGUAGE_NAMES = {
     "th": "ภาษาไทย (Thai)",
     "es": "Español (Spanish)",
     "fr": "Français (French)",
+    "de": "Deutsch (German)",
+    "ru": "Русский (Russian)",
+    "id": "Bahasa Indonesia (Indonesian)",
 }
 
 

@@ -61,7 +61,7 @@ _RESPONSE_SCHEMA = {
                             },
                             "info_level": {
                                 "type": "string",
-                                "enum": ["sufficient", "moderate", "insufficient"],
+                                "enum": ["confirmed", "pattern", "insufficient"],
                             },
                             "allergen_details": {
                                 "type": "array",
@@ -71,7 +71,7 @@ _RESPONSE_SCHEMA = {
                                         "allergen": {"type": "string"},
                                         "likelihood": {
                                             "type": "string",
-                                            "enum": ["confirmed", "likely", "possible", "unlikely"],
+                                            "enum": ["confirmed", "likely", "possible", "none"],
                                         },
                                         "source": {"type": "string"},
                                         "hidden_risk": {"type": "string"},
