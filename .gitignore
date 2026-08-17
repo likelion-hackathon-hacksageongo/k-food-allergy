@@ -35,6 +35,7 @@ backend/.env
 
 # ----- AI -----
 AI/.venv/
+AI/.env
 AI/__pycache__/
 AI/**/__pycache__/
 AI/**/*.pyc
