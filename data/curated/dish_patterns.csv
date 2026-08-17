@@ -1,0 +1,56 @@
+key,name_ko,name_en,description,source_status,source_url
+bokkeumbap,볶음밥,Fried Rice,식품안전나라 레시피 14건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+mandu,만두,Dumplings,식품안전나라 레시피 12건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+doenjang_guk,된장국,Soybean Paste Soup,식품안전나라 레시피 10건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+bulgogi,불고기,Bulgogi,식품안전나라 레시피 10건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+suyuk,수육,Boiled Pork Slices,식품안전나라 레시피 8건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+japchae,잡채,Japchae,식품안전나라 레시피 8건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+sujebi,수제비,Hand-torn Noodle Soup,식품안전나라 레시피 6건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+miyeok_guk,미역국,Seaweed Soup,식품안전나라 레시피 6건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+kimchi_jjigae,김치찌개,Kimchi Stew,식품안전나라 레시피 5건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+tteokbokki,떡볶이,Tteokbokki,식품안전나라 레시피 5건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+haejang_guk,해장국,Hangover Soup,식품안전나라 레시피 4건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+doenjang_jjigae,된장찌개,Soybean Paste Stew,식품안전나라 레시피 4건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+budae_jjigae,부대찌개,Army Base Stew,식품안전나라 레시피 4건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+sundubu_jjigae,순두부찌개,Soft Tofu Stew,식품안전나라 레시피 4건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+bossam,보쌈,Bossam,식품안전나라 레시피 3건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+deulkkae_tang,들깨탕,Perilla Seed Soup,식품안전나라 레시피 3건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+samgyetang,삼계탕,Ginseng Chicken Soup,식품안전나라 레시피 2건 통계 집계 (표본 부족 — 검토 필요),public_recipe,https://openapi.foodsafetykorea.go.kr/
+dakgalbi,닭갈비,Spicy Stir-fried Chicken,식품안전나라 레시피 2건 통계 집계 (표본 부족 — 검토 필요),public_recipe,https://openapi.foodsafetykorea.go.kr/
+jeongol,전골,Hot Pot,식품안전나라 레시피 2건 통계 집계 (표본 부족 — 검토 필요),public_recipe,https://openapi.foodsafetykorea.go.kr/
+mu_guk,무국,Radish Soup,식품안전나라 레시피 2건 통계 집계 (표본 부족 — 검토 필요),public_recipe,https://openapi.foodsafetykorea.go.kr/
+yukgaejang,육개장,Spicy Beef Soup,식품안전나라 레시피 2건 통계 집계 (표본 부족 — 검토 필요),public_recipe,https://openapi.foodsafetykorea.go.kr/
+kalguksu,칼국수,Hand-cut Noodle Soup,식품안전나라 레시피 2건 통계 집계 (표본 부족 — 검토 필요),public_recipe,https://openapi.foodsafetykorea.go.kr/
+white_rice,흰밥,Steamed White Rice,한식진흥원 정밀레시피 기준 (1종 원재료),public_recipe,https://www.hansik.or.kr/
+nurungji,누룽지,Scorched Rice,한식진흥원 정밀레시피 기준 (1종 원재료),public_recipe,https://www.hansik.or.kr/
+jumeokbap,주먹밥,Rice Balls,한식진흥원 정밀레시피 기준 (9종 원재료),public_recipe,https://www.hansik.or.kr/
+bibimbap,비빔밥,Bibimbap,한식진흥원 정밀레시피 기준 (21종 원재료),public_recipe,https://www.hansik.or.kr/
+sanchae_bibimbap,산채비빔밥,Wild Vegetable Bibimbap,한식진흥원 정밀레시피 기준 (16종 원재료),public_recipe,https://www.hansik.or.kr/
+sprout_bibimbap,새싹비빔밥,Sprout Bibimbap,한식진흥원 정밀레시피 기준 (13종 원재료),public_recipe,https://www.hansik.or.kr/
+dolsot_bibimbap,돌솥비빔밥,Hot Stone Pot Bibimbap,한식진흥원 정밀레시피 기준 (33종 원재료),public_recipe,https://www.hansik.or.kr/
+yeongyang_dolsotbap,영양돌솥밥,Nutritious Hot Stone Pot Rice,한식진흥원 정밀레시피 기준 (17종 원재료),public_recipe,https://www.hansik.or.kr/
+bulgogi_rice_bowl,불고기덮밥,Bulgogi Rice Bowl,한식진흥원 정밀레시피 기준 (15종 원재료),public_recipe,https://www.hansik.or.kr/
+dwaeji_gukbap,돼지국밥,Pork and Rice Soup,한식진흥원 정밀레시피 기준 (19종 원재료),public_recipe,https://www.hansik.or.kr/
+sogogi_gukbap,소고기국밥,Beef and Rice Soup,한식진흥원 정밀레시피 기준 (13종 원재료),public_recipe,https://www.hansik.or.kr/
+five_grain_rice,오곡밥,Five-Grain Rice,한식진흥원 정밀레시피 기준 (7종 원재료),public_recipe,https://www.hansik.or.kr/
+sundae_gukbap,순댓국밥,Korean Blood Sausage Soup with Rice,한식진흥원 정밀레시피 기준 (14종 원재료),public_recipe,https://www.hansik.or.kr/
+kongnamul_gukbap,콩나물국밥,Bean Sprout Soup with Rice,한식진흥원 정밀레시피 기준 (11종 원재료),public_recipe,https://www.hansik.or.kr/
+kongnamul_bap,콩나물밥,Bean Sprout Rice,한식진흥원 정밀레시피 기준 (13종 원재료),public_recipe,https://www.hansik.or.kr/
+ugeoji_sagol_gukbap,우거지사골국밥,Napa Cabbage Beef Bone Soup with Rice,한식진흥원 정밀레시피 기준 (18종 원재료),public_recipe,https://www.hansik.or.kr/
+ssambap,쌈밥,Leaf Wraps with Rice,한식진흥원 정밀레시피 기준 (15종 원재료),public_recipe,https://www.hansik.or.kr/
+jeyuk_rice_bowl,제육덮밥,Spicy Pork Rice Bowl,한식진흥원 정밀레시피 기준 (21종 원재료),public_recipe,https://www.hansik.or.kr/
+jeyuk_bibimbap,제육비빔밥,Spicy Pork Bibimbap,한식진흥원 정밀레시피 기준 (18종 원재료),public_recipe,https://www.hansik.or.kr/
+ureong_doenjang_bibimbap,우렁된장비빔밥,River Snail Doenjang Bibimbap,한식진흥원 정밀레시피 기준 (16종 원재료),public_recipe,https://www.hansik.or.kr/
+yukhoe_bibimbap,육회비빔밥,Beef Tartare Bibimbap,한식진흥원 정밀레시피 기준 (23종 원재료),public_recipe,https://www.hansik.or.kr/
+hoedeopbap,회덮밥,Raw Fish Rice Bowl,한식진흥원 정밀레시피 기준 (18종 원재료),public_recipe,https://www.hansik.or.kr/
+multigrain_rice,잡곡밥,Multigrain Rice,한식진흥원 정밀레시피 기준 (4종 원재료),public_recipe,https://www.hansik.or.kr/
+japchae_rice_bowl,잡채덮밥,Japchae Rice Bowl,한식진흥원 정밀레시피 기준 (21종 원재료),public_recipe,https://www.hansik.or.kr/
+barley_rice,보리밥,Barley Rice,한식진흥원 정밀레시피 기준 (2종 원재료),public_recipe,https://www.hansik.or.kr/
+gondre_namul_bap,곤드레나물밥,Gondre Herb Rice,한식진흥원 정밀레시피 기준 (11종 원재료),public_recipe,https://www.hansik.or.kr/
+gimbap,김밥,Gimbap (Seaweed Rice Roll),한식진흥원 정밀레시피 기준 (20종 원재료),public_recipe,https://www.hansik.or.kr/
+squid_rice_bowl,오징어덮밥,Spicy Squid Rice Bowl,한식진흥원 정밀레시피 기준 (21종 원재료),public_recipe,https://www.hansik.or.kr/
+octopus_rice_bowl,낙지덮밥,Spicy Octopus Rice Bowl,한식진흥원 정밀레시피 기준 (19종 원재료),public_recipe,https://www.hansik.or.kr/
+kimchi_fried_rice,김치볶음밥,Kimchi Fried Rice,한식진흥원 정밀레시피 기준 (10종 원재료),public_recipe,https://www.hansik.or.kr/
+jokbal,족발,Braised Pig Trotters,간장·한약재에 조린 돼지 족발. 마늘소스·새우젓·쌈장을 곁들임 — 대표 조리 패턴 기반 수기 작성 (공개 레시피 DB 미수록),cooking_pattern,
+makguksu,막국수,Buckwheat Noodles,메밀면에 새콤한 양념장을 비벼 먹는 국수 — 대표 조리 패턴 기반 수기 작성 (공개 레시피 DB 미수록),cooking_pattern,
+gamjatang,감자탕,Pork Backbone Stew,돼지 등뼈와 감자·우거지를 들깨와 끓인 탕 — 대표 조리 패턴 기반 수기 작성 (공개 레시피 DB 미수록),cooking_pattern,

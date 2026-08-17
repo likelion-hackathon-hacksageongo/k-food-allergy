@@ -1,0 +1,4 @@
+key,name,name_ko,address,latitude,longitude,category,description,source_status,source_url,collected_at,collected_by,is_active
+hongdae_sundubu,Hongdae Sundubu House,홍대 순두부집,서울 마포구 홍익로 12,37.5551,126.9236,Korean - Stew,Soft tofu stew specialist near Hongik Univ.,public_data,https://www.localdata.go.kr/,2026-08-17,hanjoon,true
+yeonnam_hansang,Yeonnam Hansang,연남 한상,서울 마포구 동교로 242,37.5623,126.9251,Korean - Home cooking,Home-style Korean set meals.,public_data,https://www.localdata.go.kr/,2026-08-17,hanjoon,true
+hongdae_kalguksu,Hongdae Kalguksu,홍대 칼국수,서울 마포구 양화로 157,37.5541,126.9219,Korean - Noodles,Hand-cut noodle soup restaurant.,public_data,https://www.localdata.go.kr/,2026-08-17,hanjoon,true

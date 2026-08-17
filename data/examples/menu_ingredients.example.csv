@@ -1,0 +1,11 @@
+restaurant_key,menu_key,ingredient_key,presence,role,action,source_status,notes
+hongdae_sundubu,seafood_sundubu,shrimp,always,main,add,official_menu,메뉴명에 해물 명시
+hongdae_sundubu,seafood_sundubu,clam,always,main,add,official_menu,메뉴명에 해물 명시
+hongdae_sundubu,seafood_sundubu,squid,usually,main,add,cooking_pattern,
+hongdae_sundubu,beef_sundubu,beef,always,main,add,official_menu,
+hongdae_sundubu,beef_sundubu,egg,removable,main,add,cooking_pattern,요청 시 제외 가능
+yeonnam_hansang,veggie_bibimbap,beef,always,main,remove,official_menu,야채 비빔밥이므로 패턴의 소고기 제외
+yeonnam_hansang,beef_bibimbap,beef,always,main,add,official_menu,
+hongdae_kalguksu,seafood_kalguksu,clam,always,main,add,official_menu,
+hongdae_kalguksu,seafood_kalguksu,mussel,usually,main,add,cooking_pattern,
+hongdae_kalguksu,dumplings,dumpling,always,main,add,official_menu,
