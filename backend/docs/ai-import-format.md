@@ -39,9 +39,20 @@ JSON 파일 하나에 메뉴 아이템별 분석 결과를 리스트로 담아�
 | `info_level` | `confirmed` / `pattern` / `insufficient` | 이 메뉴 정보가 얼마나 확실한지 (공식확인 / 일반 조리 패턴 / 정보 부족) |
 | `allergens` | 리스트 | 이 메뉴에서 검출된 알레르겐들. 없으면 빈 리스트 `[]` |
 | `allergens[].allergen_key` | 아래 16개 중 하나 | 알레르겐 종류 |
-| `allergens[].likelihood` | `confirmed` / `likely` / `possible` / `unlikely` | 이 알레르겐이 들어있을 가능성 |
+| `allergens[].likelihood` | `confirmed` / `likely` / `possible` / `none` | 이 알레르겐이 들어있을 가능성 |
 | `allergens[].source` | 문자열 (자유값) | 예: `ai_inference`, `cooking_pattern` |
 | `allergens[].notes` | 문자열 (선택) | 추가 설명 |
+
+### `likelihood` 4단계 정의
+
+| 값 | 의미 |
+|---|---|
+| `confirmed` | 들어감이 확실함 |
+| `likely` | 들어갔을 수 있으니 확인 필요 |
+| `possible` | 알 수 없음 |
+| `none` | 들어가지 않을 확률이 높음 |
+
+`confirmed`/`likely`는 매칭 시 위험(danger), `possible`은 경고(warning)로 처리되고, `none`은 위험도 계산에서 제외됩니다(정보가 없는 것과 다르게, 명시적으로 "낮은 확률"이라는 판단 결과이므로).
 
 ## `allergen_key` 허용값 (16종, 철자 그대로 사용)
 

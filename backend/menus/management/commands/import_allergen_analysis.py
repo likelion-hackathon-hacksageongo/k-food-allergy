@@ -19,7 +19,7 @@ Contract (JSON file, list of menu item entries):
     "allergens": [
       {
         "allergen_key": "shellfish",         # must be a key from profiles.models.AllergenChoice
-        "likelihood": "confirmed",           # confirmed | likely | possible | unlikely
+        "likelihood": "confirmed",           # confirmed | likely | possible | none
         "source": "ai_inference",            # free text, e.g. ai_inference / cooking_pattern / public_menu
         "notes": "Contains shrimp and clams"
       }
