@@ -102,20 +102,30 @@ menus.pattern_key 의 pattern_ingredients 를 그대로 물려받음
   → action=remove 로 상속분 제거   (예: 야채비빔밥에서 소고기 제외)
 ```
 
-**2) 알레르겐 강도: presence 가 likelihood 의 상한**
+**2) 알레르겐 강도: 세 축 중 가장 약한 값**
 
 ```
-presence always    → likelihood 상한 confirmed
-         usually   →              likely
-         sometimes →              possible
-         optional / removable →   possible
+presence  always → confirmed / usually → likely / sometimes·optional·removable → possible
+likelihood 재료에 기록된 값 그대로
+출처       official_menu·public_data·public_recipe → confirmed
+           cooking_pattern → likely        (추정이므로 단정 불가)
+           user_feedback·unverified → possible
 
-실효 likelihood = min(재료의 likelihood, presence 상한)
+실효 likelihood = min(presence 상한, 재료의 likelihood, 출처 상한)
 ```
 
 "가끔 들어가는 재료에 확실히 있는 알레르겐"은 결국 "가능" 수준입니다.
 한 메뉴에서 같은 알레르겐이 여러 재료로 잡히면 **가장 강한 것**을 취하고,
 근거가 된 재료를 사용자에게 함께 보여줘야 합니다.
+
+출처 상한을 적용하는 곳은 **재료 목록의 출처**입니다.
+패턴에서 상속된 재료는 `dish_patterns.source_status`,
+`menu_ingredients` 로 넣은 재료는 그 행의 `source_status` 를 씁니다.
+`menus.source_status` 는 메뉴 자체(이름·가격)의 출처이므로 알레르겐 상한에는 쓰지 않고
+따로 표시합니다.
+
+> 이 상한이 없으면 공표 문서에서 온 재료와 추정으로 넣은 재료가 같은 확신으로
+> 사용자에게 나갑니다. `cooking_pattern` 패턴이 `confirmed` 경고를 만들면 안 됩니다.
 
 ## 출처 관리 원칙
 

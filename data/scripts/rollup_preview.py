@@ -34,11 +34,29 @@ PRESENCE_CEILING = {
     'removable': 'possible',
 }
 
+# 재료 목록이 어디서 왔는지도 상한을 정합니다.
+# 공표 문서(정밀레시피)에서 온 재료와 사람·AI가 추정해 넣은 재료가 같은 확신으로
+# 사용자에게 가면 안 됩니다. SCHEMA.md 가 cooking_pattern 을 "추정"으로 정의하므로
+# 추정은 confirmed 에 도달할 수 없습니다.
+SOURCE_CEILING = {
+    'official_menu':   'confirmed',
+    'public_data':     'confirmed',
+    'public_recipe':   'confirmed',
+    'cooking_pattern': 'likely',
+    'user_feedback':   'possible',
+    'unverified':      'possible',
+}
 
-def combine(presence, likelihood):
-    """presence × likelihood → 실효 likelihood (둘 중 약한 쪽)."""
-    ceiling = PRESENCE_CEILING.get(presence, 'possible')
-    return BY_RANK[min(RANK[ceiling], RANK[likelihood])]
+
+def combine(presence, likelihood, source_status=None):
+    """presence × likelihood × 출처 → 실효 likelihood (가장 약한 쪽).
+
+    세 축 모두 상한이며, 셋 중 가장 낮은 값이 사용자에게 보이는 경고 강도입니다.
+    """
+    ceilings = [RANK[PRESENCE_CEILING.get(presence, 'possible')], RANK[likelihood]]
+    if source_status:
+        ceilings.append(RANK[SOURCE_CEILING.get(source_status, 'possible')])
+    return BY_RANK[min(ceilings)]
 
 
 def read(name):
@@ -46,7 +64,7 @@ def read(name):
         return list(csv.DictReader(fh))
 
 
-def resolve_menu_ingredients(menu, pattern_members, overrides):
+def resolve_menu_ingredients(menu, pattern_members, overrides, pattern_source=''):
     """패턴 상속 → menu_ingredients 보정 순으로 최종 재료 구성을 만든다.
 
     백엔드도 같은 순서로 계산해야 합니다.
@@ -56,19 +74,21 @@ def resolve_menu_ingredients(menu, pattern_members, overrides):
     """
     resolved = {}
     for row in pattern_members.get(menu['pattern_key'], []):
-        resolved[row['ingredient_key']] = (row['presence'], row['role'], '패턴')
+        resolved[row['ingredient_key']] = (row['presence'], row['role'], '패턴', pattern_source)
 
     for row in overrides.get((menu['restaurant_key'], menu['key']), []):
         action = (row.get('action') or 'add').strip() or 'add'
         if action == 'remove':
             resolved.pop(row['ingredient_key'], None)
         else:
-            resolved[row['ingredient_key']] = (row['presence'], row['role'], '보정')
+            resolved[row['ingredient_key']] = (row['presence'], row['role'], '보정',
+                                               row.get('source_status', ''))
     return resolved
 
 
 def preview_menus(filter_names):
     restaurants = {r['key']: r for r in read('restaurants.csv')}
+    patterns = {r['key']: r for r in read('dish_patterns.csv')}
     menus = read('menus.csv')
     ingredients = {r['key']: r for r in read('ingredients.csv')}
 
@@ -97,15 +117,17 @@ def preview_menus(filter_names):
               f'({restaurant.get("category", "")}) ===\n')
 
         for menu in own:
-            resolved = resolve_menu_ingredients(menu, pattern_members, overrides)
+            resolved = resolve_menu_ingredients(
+                menu, pattern_members, overrides,
+                patterns.get(menu['pattern_key'], {}).get('source_status', ''))
             inherited = sum(1 for v in resolved.values() if v[2] == '패턴')
             adjusted = sum(1 for v in resolved.values() if v[2] == '보정')
 
             found = {}
-            for ingredient_key, (presence, _role, origin) in resolved.items():
+            for ingredient_key, (presence, _role, origin, source) in resolved.items():
                 for entry in allergens.get(ingredient_key, []):
                     allergen = entry['allergen_key']
-                    likelihood = combine(presence, entry['likelihood'])
+                    likelihood = combine(presence, entry['likelihood'], source)
                     name_ko = ingredients.get(ingredient_key, {}).get('name_ko', ingredient_key)
                     label = name_ko if presence == 'always' else f'{name_ko}({presence})'
                     if origin == '보정':
@@ -116,7 +138,9 @@ def preview_menus(filter_names):
                     elif likelihood == current[0]:
                         current[1].append(label)
 
-            source = f'패턴 {menu["pattern_key"]}' if menu['pattern_key'] else '패턴 없음'
+            pattern_status = patterns.get(menu['pattern_key'], {}).get('source_status', '')
+            source = (f'패턴 {menu["pattern_key"]} ({pattern_status})'
+                      if menu['pattern_key'] else '패턴 없음')
             print(f'  {menu["name_ko"]}  ({menu["name"]})')
             print(f'    {source} · 재료 {len(resolved)}종 (상속 {inherited} + 보정 {adjusted})'
                   f' · info_level={menu["info_level"]} · 출처={menu["source_status"]}')
@@ -143,6 +167,7 @@ def main():
 
     patterns = {r['key']: r for r in read('dish_patterns.csv')}
     ingredients = {r['key']: r for r in read('ingredients.csv')}
+    pattern_source = {k: p.get('source_status', '') for k, p in patterns.items()}
 
     allergens = {}
     for row in read('ingredient_allergens.csv'):
@@ -160,7 +185,8 @@ def main():
             ingredient_key = row['ingredient_key']
             for entry in allergens.get(ingredient_key, []):
                 allergen = entry['allergen_key']
-                likelihood = combine(row['presence'], entry['likelihood'])
+                likelihood = combine(row['presence'], entry['likelihood'],
+                                     pattern_source.get(key))
                 name_ko = ingredients.get(ingredient_key, {}).get('name_ko', ingredient_key)
                 label = f'{name_ko}({row["presence"]})' if row['presence'] != 'always' else name_ko
                 current = found.get(allergen)
