@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'restaurants',
     'menus',
     'feedback',
+    'ai_integration',
 ]
 
 MIDDLEWARE = [
@@ -156,3 +157,7 @@ CORS_ALLOWED_ORIGINS = os.getenv(
 # Kakao Local API (restaurant info enrichment - phone/category/place link)
 # Get a REST API key at https://developers.kakao.com/ (앱 만들기 -> REST API 키)
 KAKAO_REST_API_KEY = os.getenv('KAKAO_REST_API_KEY', '')
+
+
+# AI team's live analysis server (see AI/INTEGRATION_GUIDE.md)
+AI_SERVICE_URL = os.getenv('AI_SERVICE_URL', 'http://localhost:8100')

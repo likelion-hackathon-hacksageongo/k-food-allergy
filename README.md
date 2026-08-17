@@ -53,6 +53,11 @@ python manage.py createsuperuser
 python manage.py runserver       # runs on http://localhost:8000
 ```
 
+**Kakao Local API (restaurant info enrichment, optional):**
+1. [developers.kakao.com](https://developers.kakao.com/) → 앱 만들기 → REST API 키 복사
+2. `backend/.env`에 `KAKAO_REST_API_KEY=<키>` 추가
+3. `python manage.py enrich_restaurants_kakao --dry-run` 으로 확인 후, `--dry-run` 빼고 실제 반영. 전화번호/카테고리/카카오맵 링크를 채워줌 (영업시간은 Kakao API가 제공하지 않아 미포함).
+
 ## API Endpoints
 
 | Method | Endpoint                  | Description                  | Auth     | Body / Notes |
@@ -67,8 +72,18 @@ python manage.py runserver       # runs on http://localhost:8000
 | GET    | /api/menus/:id/           | Menu item detail (incl. allergens) | Required | |
 | GET    | /api/feedback/            | List my feedbacks (paginated) | Required | |
 | POST   | /api/feedback/create/     | Submit visit feedback        | Required | |
+| POST   | /api/ai/analyze/          | Live AI analysis of a restaurant (proxies AI server) | Required | `{restaurant_id}` |
+| POST   | /api/ai/query/            | Generate on-site inquiry phrases (proxies AI server) | Required | `{restaurant_id, menu_item_id?, situations?}` |
 
 List endpoints are paginated with DRF's `PageNumberPagination` (`?page=`, 20 items/page). Every request needs `Authorization: Bearer <access_token>` except the three public ones above.
+
+Menu/restaurant responses include a `personalized` field computed from the logged-in user's allergy profile:
+- Menu item: 4-level (`danger` / `warning` / `unconfirmed` / `safe`) + reasons
+- Restaurant: 2-level (`safe` / `other`) — `safe` means it has at least one menu item that's safe for this user — plus a `counts` breakdown of its menu items' 4-level verdicts
+
+See [`backend/docs/ai-import-format.md`](backend/docs/ai-import-format.md) for how AI's batch allergen analysis gets imported into the data that powers this.
+
+`/api/ai/analyze/` and `/api/ai/query/` are separate from the above: they proxy AI's *live* server (port 8100, see `AI/INTEGRATION_GUIDE.md`) for a real-time GPT-based analysis / on-site phrase generation, rather than reading our own precomputed `MenuAllergen` data. Needs `AI_SERVICE_URL` set and the AI server running; returns 503 with a message if it's unreachable.
 
 ## Team Roles
 

@@ -21,6 +21,7 @@ urlpatterns = [
     path('api/restaurants/', include('restaurants.urls')),
     path('api/menus/', include('menus.urls')),
     path('api/feedback/', include('feedback.urls')),
+    path('api/ai/', include('ai_integration.urls')),
 ]
 
 if settings.DEBUG:
