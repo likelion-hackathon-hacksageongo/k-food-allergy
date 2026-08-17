@@ -153,11 +153,23 @@ def analyze_restaurant(
         ValueError: 메뉴가 너무 많은 경우 (MAX_MENU_ITEMS_PER_REQUEST 초과)
         openai.APIError: OpenAI API 호출 실패 시
     """
+    from cache import analysis_cache
+
     if len(restaurant.menu_items) > MAX_MENU_ITEMS_PER_REQUEST:
         raise ValueError(
             f"메뉴 수가 {MAX_MENU_ITEMS_PER_REQUEST}개를 초과합니다. "
             f"({len(restaurant.menu_items)}개) 분할 요청이 필요합니다."
         )
+
+    # 캐시 확인
+    cache_data = {
+        "allergens": sorted(a.value for a in profile.allergens),
+        "restaurant_id": restaurant.id,
+        "menu_ids": sorted(m.id for m in restaurant.menu_items),
+    }
+    cached = analysis_cache.get("analyze", cache_data)
+    if cached:
+        return RestaurantAnalysisResult(**cached)
 
     client = OpenAI(api_key=OPENAI_API_KEY)
 
@@ -175,5 +187,8 @@ def analyze_restaurant(
 
     raw_json = response.choices[0].message.content
     data = json.loads(raw_json)
+
+    # 결과 캐시 저장
+    analysis_cache.set("analyze", cache_data, data)
 
     return RestaurantAnalysisResult(**data)

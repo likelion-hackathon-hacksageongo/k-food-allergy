@@ -109,6 +109,19 @@ def generate_queries(context: QueryContext) -> QueryGeneratorResult:
     Raises:
         openai.APIError: OpenAI API 호출 실패 시
     """
+    from cache import query_cache
+
+    # 캐시 확인
+    cache_data = {
+        "allergens": sorted(a.value for a in context.allergens),
+        "situations": sorted(context.situations),
+        "restaurant_name": context.restaurant_name,
+        "menu_name": context.menu_name,
+    }
+    cached = query_cache.get("query", cache_data)
+    if cached:
+        return QueryGeneratorResult(**cached)
+
     client = OpenAI(api_key=OPENAI_API_KEY)
 
     user_message = _build_user_message(context)
@@ -125,5 +138,8 @@ def generate_queries(context: QueryContext) -> QueryGeneratorResult:
 
     raw_json = response.choices[0].message.content
     data = json.loads(raw_json)
+
+    # 결과 캐시 저장
+    query_cache.set("query", cache_data, data)
 
     return QueryGeneratorResult(**data)
