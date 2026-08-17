@@ -31,7 +31,7 @@ class RestaurantListSerializer(PersonalizedRestaurantMixin, serializers.ModelSer
         model = Restaurant
         fields = [
             'id', 'name', 'name_ko', 'address',
-            'latitude', 'longitude', 'category',
+            'latitude', 'longitude', 'category', 'phone',
             'source_type', 'is_active', 'personalized',
         ]
 

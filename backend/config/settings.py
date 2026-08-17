@@ -151,3 +151,8 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = os.getenv(
     'CORS_ALLOWED_ORIGINS', 'http://localhost:5173'
 ).split(',')
+
+
+# Kakao Local API (restaurant info enrichment - phone/category/place link)
+# Get a REST API key at https://developers.kakao.com/ (앱 만들기 -> REST API 키)
+KAKAO_REST_API_KEY = os.getenv('KAKAO_REST_API_KEY', '')
