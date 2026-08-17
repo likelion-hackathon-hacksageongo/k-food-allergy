@@ -2,19 +2,22 @@
 Django settings for K-Food Allergy Map project.
 """
 
+import os
 from pathlib import Path
 from datetime import timedelta
 
+from dotenv import load_dotenv
+
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / '.env')
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# TODO: Move to environment variable before deployment
-SECRET_KEY = 'django-insecure-change-this-before-deployment'
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-change-this-before-deployment')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 
 # Application definition
@@ -30,6 +33,7 @@ INSTALLED_APPS = [
     # Third-party
     'rest_framework',
     'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
     'drf_spectacular',
 
@@ -39,6 +43,7 @@ INSTALLED_APPS = [
     'restaurants',
     'menus',
     'feedback',
+    'analysis',
 ]
 
 MIDDLEWARE = [
@@ -102,6 +107,10 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+# Media files (user uploads, e.g. feedback photos)
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -116,6 +125,8 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20,
 }
 
 
@@ -138,6 +149,15 @@ SIMPLE_JWT = {
 
 
 # CORS (allow frontend dev server)
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',
-]
+CORS_ALLOWED_ORIGINS = os.getenv(
+    'CORS_ALLOWED_ORIGINS', 'http://localhost:5173'
+).split(',')
+
+
+# Kakao Local API (restaurant info enrichment - phone/category/place link)
+# Get a REST API key at https://developers.kakao.com/ (앱 만들기 -> REST API 키)
+KAKAO_REST_API_KEY = os.getenv('KAKAO_REST_API_KEY', '')
+
+
+# AI team's live analysis server (see AI/INTEGRATION_GUIDE.md)
+AI_SERVICE_URL = os.getenv('AI_SERVICE_URL', 'http://localhost:8100')
