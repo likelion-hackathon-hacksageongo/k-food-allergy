@@ -186,3 +186,101 @@ from schemas.types import UserAllergyProfile, RestaurantInput
 - 기본 모델: `gpt-4o-mini` (비용 효율적, 변경 가능)
 - AI 서버 포트: `8100` (Django 8000, Vite 5173과 충돌 없음)
 - 응답 시간: 분석 약 3~8초, 문장 생성 약 2~5초 (첫 호출 기준)
+
+
+---
+
+## 6. 사전 분석 (Pre-compute) 엔드포인트
+
+지도 뷰가 즉시 로딩되려면, 식당 점수를 미리 계산해 저장해야 합니다.
+
+### 흐름
+
+```
+사용자 프로필 등록/변경
+    → BE가 POST /precompute/trigger 호출 (즉시 반환)
+    → AI가 백그라운드에서 모든 식당 분석
+    → 결과 저장
+
+사용자가 지도 열기
+    → FE가 GET /scores/{user_id} 호출
+    → 즉시 반환 (<50ms)
+```
+
+### POST /precompute/trigger — 전체 식당 사전 분석
+
+BE가 호출하는 시점: 사용자 프로필 등록/변경 시
+
+```json
+{
+  "user_id": "user_123",
+  "allergens": ["soy", "shellfish", "wheat"],
+  "restaurants": [ /* restaurants.json 형식 */ ],
+  "language": "en"
+}
+```
+
+응답 (즉시 반환):
+```json
+{
+  "status": "started",
+  "user_id": "user_123",
+  "restaurant_count": 12,
+  "message": "백그라운드에서 분석이 진행됩니다."
+}
+```
+
+### POST /precompute/restaurant — 단일 식당 재분석
+
+BE가 호출하는 시점: 식당 메뉴가 변경되었을 때
+
+```json
+{
+  "user_id": "user_123",
+  "allergens": ["soy", "shellfish", "wheat"],
+  "restaurant": { /* 단일 식당 데이터 */ },
+  "language": "en"
+}
+```
+
+### GET /scores/{user_id} — 지도 뷰 즉시 조회
+
+```json
+{
+  "user_id": "user_123",
+  "computed_at": "2026-08-15T14:30:00",
+  "restaurants": {
+    "1": {
+      "restaurant_id": 1,
+      "restaurant_name": "홍대 한솥밥",
+      "overall_score": 72,
+      "overall_suitability": "caution",
+      "safe_menu_count": 2,
+      "caution_menu_count": 2,
+      "avoid_menu_count": 1,
+      "risk_summary": "Soy-based seasonings widely used..."
+    }
+  }
+}
+```
+
+---
+
+## 7. 언어 파라미터 (`language`)
+
+모든 분석 엔드포인트에 `language` 필드를 추가할 수 있습니다:
+
+| 코드 | 언어 |
+|------|------|
+| `ko` | 한국어 (기본값) |
+| `en` | English |
+| `ja` | 日本語 |
+| `zh` | 中文 |
+| `vi` | Tiếng Việt |
+| `th` | ภาษาไทย |
+| `es` | Español |
+| `fr` | Français |
+
+규칙:
+- `/analyze`, `/analyze/batch`, `/precompute/*`: 결과 텍스트가 해당 언어로 출력
+- `/query`: `korean_text`는 항상 한국어 (직원에게 보여줄 용도), `english_note`와 `situation_label`은 사용자 언어
