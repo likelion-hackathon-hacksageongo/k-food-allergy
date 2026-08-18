@@ -136,7 +136,8 @@ def full_scan_menu(
     user_message = (
         f"알레르겐: {allergen_en_list} (한국어: {allergen_ko_list})\n"
         f"번역 언어: {lang_name}\n\n"
-        f"이 메뉴판을 분석하세요. danger/caution 메뉴에는 staff_query(한국어 문의 문장)를 생성하세요."
+        f"이 메뉴판을 분석하세요. danger/caution 메뉴에는 staff_query(한국어 문의 문장)를 생성하세요.\n"
+        f"중요: allergen_keys에는 반드시 영어 코드만 사용 (shellfish, soy, wheat, egg 등). 한국어 재료명 X."
     )
 
     # Rate limit 대응

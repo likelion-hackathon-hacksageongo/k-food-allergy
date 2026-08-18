@@ -239,7 +239,7 @@ class ScannedMenuItem(BaseModel):
         default_factory=list,
         description="사용자 알레르겐과 관련된 경고 목록 (사용자 언어)",
     )
-    allergen_keys: list[AllergenKey] = Field(
+    allergen_keys: list[str] = Field(
         default_factory=list,
         description="감지된 알레르겐 코드 목록",
     )
