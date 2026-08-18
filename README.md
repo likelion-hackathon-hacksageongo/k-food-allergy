@@ -66,8 +66,8 @@ python manage.py runserver       # runs on http://localhost:8000
 
 | Method | Endpoint                  | Description                  | Auth     | Body / Notes |
 |--------|---------------------------|------------------------------|----------|--------------|
-| POST   | /api/accounts/register/   | Create new user, returns JWT pair (auto-login) | Public | `{email, password, password_confirm}` |
-| POST   | /api/accounts/login/      | Get JWT token pair           | Public   | `{email, password}` |
+| POST   | /api/accounts/register/   | Create new user, returns JWT pair (auto-login) | Public | `{username, email, password, password_confirm}` |
+| POST   | /api/accounts/login/      | Get JWT token pair (login with ID, not email) | Public   | `{username, password}` |
 | POST   | /api/accounts/token/refresh/ | Refresh access token      | Public   | `{refresh}` |
 | GET/PUT| /api/profiles/me/         | Get/update allergy profile   | Required | `{allergens: [...]}` |
 | GET    | /api/restaurants/         | List restaurants (paginated) | Required | |
@@ -78,7 +78,6 @@ python manage.py runserver       # runs on http://localhost:8000
 | POST   | /api/feedback/create/     | Submit visit feedback        | Required | |
 | POST   | /api/analysis/restaurant/ | Live AI analysis of a restaurant (proxies AI server) | Required | `{restaurant_id}` |
 | POST   | /api/analysis/query/      | Generate on-site inquiry phrases (proxies AI server) | Required | `{restaurant_id, menu_item_id?, situations?}` |
-| POST   | /api/analysis/batch/      | Map view: summary scores for multiple restaurants (proxies AI server) | Required | `{restaurant_ids?: [...]}` (omit for all active, max 20) |
 
 List endpoints are paginated with DRF's `PageNumberPagination` (`?page=`, 20 items/page). Every request needs `Authorization: Bearer <access_token>` except the three public ones above.
 
