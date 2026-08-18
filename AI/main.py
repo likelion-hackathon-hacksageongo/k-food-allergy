@@ -12,7 +12,7 @@ Swagger 문서:
     http://localhost:8100/docs
 """
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
@@ -35,6 +35,18 @@ app = FastAPI(
     description="한식 알레르기 분석 및 현장 문의 문장 생성 API",
     version="0.1.0",
 )
+
+# 422 에러 시 요청 body 로깅
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
+
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    body = await request.body()
+    print(f"\n[422 VALIDATION ERROR] {request.url.path}")
+    print(f"[422 BODY] {body[:500]}")
+    print(f"[422 ERRORS] {exc.errors()}\n")
+    return JSONResponse(status_code=422, content={"detail": exc.errors()})
 
 # CORS — FE 개발 서버 허용
 app.add_middleware(
@@ -70,9 +82,8 @@ class QueryRequest(QueryContext):
 class BatchAnalyzeRequest(BaseModel):
     """지도 일괄 분석 요청: 사용자 알레르겐 + 여러 식당 + 언어"""
     allergens: list[AllergenKey] = Field(
-        ...,
+        default_factory=list,
         description="사용자가 등록한 알레르겐 목록",
-        min_length=1,
     )
     restaurants: list[RestaurantInput] = Field(
         ...,
@@ -165,6 +176,24 @@ def generate_query_endpoint(request: QueryRequest):
     return result
 
 
+@app.post("/debug/batch")
+async def debug_batch(request: Request):
+    """디버그: BE가 보내는 raw body 확인"""
+    body = await request.json()
+    print(f"[DEBUG /analyze/batch] keys: {list(body.keys())}")
+    print(f"[DEBUG] allergens: {body.get('allergens')}")
+    print(f"[DEBUG] language: {body.get('language')}")
+    restaurants = body.get('restaurants', [])
+    print(f"[DEBUG] restaurant count: {len(restaurants)}")
+    if restaurants:
+        first = restaurants[0]
+        print(f"[DEBUG] first restaurant keys: {list(first.keys())}")
+        print(f"[DEBUG] first restaurant: id={first.get('id')}, name={first.get('name')}, menu_items={len(first.get('menu_items', []))}")
+        if first.get('menu_items'):
+            print(f"[DEBUG] first menu item: {first['menu_items'][0]}")
+    return {"received": True, "restaurant_count": len(restaurants), "allergens": body.get("allergens")}
+
+
 @app.post("/analyze/batch", response_model=BatchAnalyzeResponse)
 def batch_analyze_endpoint(request: BatchAnalyzeRequest):
     """
@@ -175,6 +204,24 @@ def batch_analyze_endpoint(request: BatchAnalyzeRequest):
     - 각 식당의 요약 점수와 판정을 반환 (상세 메뉴 결과는 /analyze에서)
     """
     import concurrent.futures
+
+    if not request.allergens:
+        # 알레르겐 없음 = 모든 메뉴 안전
+        results = []
+        for restaurant in request.restaurants:
+            if not restaurant.menu_items:
+                continue
+            results.append(RestaurantSummary(
+                restaurant_id=restaurant.id,
+                restaurant_name=restaurant.name,
+                overall_score=100,
+                overall_suitability="safe",
+                safe_menu_count=len(restaurant.menu_items),
+                caution_menu_count=0,
+                avoid_menu_count=0,
+                risk_summary="No allergens registered. All menus are available.",
+            ))
+        return BatchAnalyzeResponse(results=results, cached_count=0, api_call_count=0)
 
     profile = UserAllergyProfile(allergens=request.allergens)
     language = request.language
@@ -224,7 +271,10 @@ def batch_analyze_endpoint(request: BatchAnalyzeRequest):
                 avoid_menu_count=result.avoid_menu_count,
                 risk_summary=result.risk_summary,
             )
-        except Exception:
+        except Exception as e:
+            import traceback
+            print(f"[BATCH ERROR] {restaurant.name}: {e}")
+            traceback.print_exc()
             return None
 
     api_call_count = len(to_analyze)
