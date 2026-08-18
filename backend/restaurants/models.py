@@ -20,6 +20,16 @@ class Restaurant(models.Model):
         help_text='e.g. public_menu, general_pattern, no_info',
     )
     is_active = models.BooleanField(default=True)
+
+    # Enriched via Kakao Local API (see restaurants/kakao.py + the
+    # enrich_restaurants_kakao management command). Kakao doesn't provide
+    # business hours, so that's not modeled here - handle it separately
+    # (manual entry) if it turns out to be needed.
+    phone = models.CharField(max_length=30, blank=True)
+    kakao_place_id = models.CharField(max_length=50, blank=True, db_index=True)
+    kakao_category = models.CharField(max_length=100, blank=True)
+    kakao_place_url = models.URLField(blank=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

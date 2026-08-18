@@ -37,7 +37,7 @@ class MenuAllergen(models.Model):
         CONFIRMED = 'confirmed', 'Confirmed'
         LIKELY = 'likely', 'Likely'
         POSSIBLE = 'possible', 'Possible'
-        UNLIKELY = 'unlikely', 'Unlikely'
+        NONE = 'none', 'None'
 
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE, related_name='allergens')
     allergen_key = models.CharField(max_length=30, help_text='Key from AllergenChoice')
