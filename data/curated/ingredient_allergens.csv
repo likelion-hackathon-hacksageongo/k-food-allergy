@@ -114,3 +114,21 @@ cheonggukjang,soy,confirmed,public_data,
 cheonggukjang,wheat,possible,cooking_pattern,
 pork_trotter,pork,confirmed,public_data,
 pork_backbone,pork,confirmed,public_data,
+imitation_crab,fish,confirmed,public_data,명태 연육
+imitation_crab,wheat,likely,public_data,결착제로 밀 전분 사용
+imitation_crab,egg,possible,public_data,
+saury,fish,confirmed,public_data,
+hairtail,fish,confirmed,public_data,
+tuna,fish,confirmed,public_data,
+croaker_jogi,fish,confirmed,public_data,
+soybean,soy,confirmed,public_data,
+beef_tripe,beef,confirmed,public_data,
+jellyfish,mollusk,possible,cooking_pattern,분류상 별개지만 해산물 교차 주의
+seasoning_mix,soy,possible,public_data,
+seasoning_mix,wheat,possible,public_data,
+gopchang,beef,confirmed,public_data,
+cuttlefish,mollusk,confirmed,public_data,
+flying_fish_roe,fish,confirmed,public_data,
+yukjeon,beef,confirmed,official_menu,메뉴판 영문명 Beef Jeon
+yukjeon,egg,likely,cooking_pattern,전 반죽
+yukjeon,wheat,likely,cooking_pattern,전 반죽

@@ -1,0 +1,351 @@
+[
+  {
+    "id": 1,
+    "name": "Dongkyo Gimbap",
+    "name_ko": "동교김밥",
+    "category": "분식",
+    "address": "서울특별시 마포구 신촌로 24, 2,3층 (동교동)",
+    "latitude": 37.557747,
+    "longitude": 126.928812,
+    "menu_items": [
+      {
+        "id": 101,
+        "name": "Kimchi Gimbap",
+        "name_ko": "김치김밥",
+        "description": "",
+        "ingredients": [
+          "쌀밥",
+          "김",
+          "소고기",
+          "단무지",
+          "오이",
+          "당근",
+          "계란",
+          "대파",
+          "마늘",
+          "김치",
+          "소금",
+          "참기름",
+          "식용유",
+          "간장",
+          "설탕",
+          "후춧가루",
+          "식초"
+        ],
+        "info_level": "pattern",
+        "source_status": "unverified"
+      },
+      {
+        "id": 102,
+        "name": "Green Chili Gimbap",
+        "name_ko": "고추김밥",
+        "description": "",
+        "ingredients": [
+          "쌀밥",
+          "김",
+          "소고기",
+          "단무지",
+          "오이",
+          "당근",
+          "계란",
+          "대파",
+          "마늘",
+          "풋고추",
+          "소금",
+          "참기름",
+          "식용유",
+          "간장",
+          "설탕",
+          "후춧가루",
+          "식초"
+        ],
+        "info_level": "pattern",
+        "source_status": "unverified"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Nokwon Ssambap",
+    "name_ko": "녹원쌈밥",
+    "category": "한식",
+    "address": "서울특별시 마포구 동교로27길 102, 1층 (연남동)",
+    "latitude": 37.561962,
+    "longitude": 126.91967,
+    "menu_items": [
+      {
+        "id": 201,
+        "name": "Nokwon Ssambap",
+        "name_ko": "녹원쌈밥",
+        "description": "",
+        "ingredients": [
+          "쌀밥",
+          "상추",
+          "쑥갓",
+          "깻잎",
+          "케일",
+          "청겨자",
+          "양배추",
+          "호박잎",
+          "소고기",
+          "풋고추",
+          "잣",
+          "된장",
+          "고추장",
+          "고춧가루",
+          "참기름"
+        ],
+        "info_level": "pattern",
+        "source_status": "unverified"
+      },
+      {
+        "id": 202,
+        "name": "Bossam Set Meal",
+        "name_ko": "보쌈정식",
+        "description": "",
+        "ingredients": [
+          "돼지고기",
+          "배추(가끔)",
+          "소금(가끔)",
+          "배(가끔)",
+          "밤(가끔)",
+          "당근(대개)",
+          "오이(가끔)",
+          "식초(가끔)",
+          "설탕(가끔)",
+          "풋고추(가끔)",
+          "홍고추(가끔)",
+          "무(대개)",
+          "미나리(대개)",
+          "대파(가끔)",
+          "마늘(대개)",
+          "생강(대개)",
+          "새우젓(가끔)",
+          "양파(대개)",
+          "피망(가끔)",
+          "잣(가끔)",
+          "멸치액젓(가끔)",
+          "고춧가루(가끔)",
+          "버섯(가끔)",
+          "멸치(가끔)"
+        ],
+        "info_level": "pattern",
+        "source_status": "unverified"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Gamnamujip Gisa Sikdang",
+    "name_ko": "감나무집기사식당",
+    "category": "한식",
+    "address": "서울특별시 마포구 연남로 23, 1층 (연남동)",
+    "latitude": 37.561733,
+    "longitude": 126.922075,
+    "menu_items": [
+      {
+        "id": 301,
+        "name": "Pork Bulgogi",
+        "name_ko": "돼지불고기",
+        "description": "",
+        "ingredients": [
+          "돼지고기",
+          "깨",
+          "고추장",
+          "고춧가루",
+          "간장",
+          "맛술",
+          "대파",
+          "마늘",
+          "설탕",
+          "물엿",
+          "참기름",
+          "후춧가루"
+        ],
+        "info_level": "pattern",
+        "source_status": "unverified"
+      },
+      {
+        "id": 302,
+        "name": "Braised Mackerel with Kimchi",
+        "name_ko": "고등어김치조림",
+        "description": "",
+        "ingredients": [
+          "고등어",
+          "김치",
+          "대파",
+          "마늘",
+          "생강",
+          "간장",
+          "고춧가루",
+          "설탕"
+        ],
+        "info_level": "pattern",
+        "source_status": "unverified"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Jangin Dakgalbi (Hongdae)",
+    "name_ko": "장인닭갈비홍대",
+    "category": "한식",
+    "address": "서울특별시 마포구 어울마당로 111-1, 1층 (동교동)",
+    "latitude": 37.554915,
+    "longitude": 126.922828,
+    "menu_items": [
+      {
+        "id": 401,
+        "name": "Dakgalbi",
+        "name_ko": "닭갈비",
+        "description": "",
+        "ingredients": [
+          "닭고기",
+          "마늘(가끔)",
+          "깻잎(가끔)",
+          "대파(가끔)",
+          "피망(가끔)",
+          "양파(가끔)",
+          "토마토(가끔)",
+          "라면사리(가끔)",
+          "생강(가끔)",
+          "당근(가끔)",
+          "양배추(가끔)",
+          "고구마(가끔)",
+          "고추장",
+          "카레가루(가끔)",
+          "고춧가루(가끔)",
+          "참기름(가끔)",
+          "매실청(가끔)"
+        ],
+        "info_level": "pattern",
+        "source_status": "unverified"
+      },
+      {
+        "id": 402,
+        "name": "Cheese Dakgalbi",
+        "name_ko": "치즈닭갈비",
+        "description": "",
+        "ingredients": [
+          "닭고기",
+          "마늘(가끔)",
+          "깻잎(가끔)",
+          "대파(가끔)",
+          "피망(가끔)",
+          "양파(가끔)",
+          "토마토(가끔)",
+          "라면사리(가끔)",
+          "생강(가끔)",
+          "당근(가끔)",
+          "양배추(가끔)",
+          "고구마(가끔)",
+          "치즈",
+          "고추장",
+          "카레가루(가끔)",
+          "고춧가루(가끔)",
+          "참기름(가끔)",
+          "매실청(가끔)"
+        ],
+        "info_level": "pattern",
+        "source_status": "unverified"
+      },
+      {
+        "id": 403,
+        "name": "Kimchi Flying Fish Roe Fried Rice",
+        "name_ko": "김치 날치알 볶음밥",
+        "description": "",
+        "ingredients": [
+          "쌀밥",
+          "양파(대개)",
+          "피망(가끔)",
+          "마늘(가끔)",
+          "당근(가끔)",
+          "닭고기(가끔)",
+          "김치",
+          "날치알"
+        ],
+        "info_level": "pattern",
+        "source_status": "unverified"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Yukjeon Gukbap (Hongdae)",
+    "name_ko": "육전국밥 홍대점",
+    "category": "국밥",
+    "address": "서울특별시 마포구 어울마당로 140, 1층 (서교동)",
+    "latitude": 37.556119,
+    "longitude": 126.925613,
+    "menu_items": [
+      {
+        "id": 501,
+        "name": "Beef and Rice Soup",
+        "name_ko": "소고기국밥",
+        "description": "",
+        "ingredients": [
+          "쌀밥",
+          "소고기",
+          "마늘",
+          "무",
+          "대파",
+          "콩나물",
+          "후춧가루",
+          "고춧가루",
+          "식용유",
+          "간장",
+          "참기름",
+          "소금"
+        ],
+        "info_level": "pattern",
+        "source_status": "official_menu"
+      },
+      {
+        "id": 502,
+        "name": "Beef Jeon on Beef and Rice Soup",
+        "name_ko": "육전 소고기국밥",
+        "description": "",
+        "ingredients": [
+          "쌀밥",
+          "소고기",
+          "마늘",
+          "무",
+          "대파",
+          "콩나물",
+          "육전",
+          "후춧가루",
+          "고춧가루",
+          "식용유",
+          "간장",
+          "참기름",
+          "소금"
+        ],
+        "info_level": "pattern",
+        "source_status": "official_menu"
+      },
+      {
+        "id": 503,
+        "name": "Beef and Rice Soup Set Menu",
+        "name_ko": "소고기국밥 정식",
+        "description": "",
+        "ingredients": [
+          "쌀밥",
+          "소고기",
+          "마늘",
+          "무",
+          "대파",
+          "콩나물",
+          "육전(가끔)",
+          "후춧가루",
+          "고춧가루",
+          "식용유",
+          "간장",
+          "참기름",
+          "소금"
+        ],
+        "info_level": "pattern",
+        "source_status": "official_menu"
+      }
+    ]
+  }
+]

@@ -1,8 +1,0 @@
-restaurant_key,key,name,name_ko,price_krw,pattern_key,info_level,description,source_status,source_url,collected_at,collected_by,notes
-hongdae_sundubu,seafood_sundubu,Seafood Sundubu Jjigae,해물 순두부찌개,9000,sundubu_jjigae,confirmed,,official_menu,,2026-08-17,hanjoon,메뉴판 사진 기준
-hongdae_sundubu,beef_sundubu,Beef Sundubu Jjigae,차돌 순두부찌개,9500,sundubu_jjigae,confirmed,,official_menu,,2026-08-17,hanjoon,
-hongdae_sundubu,kimchi_jjigae,Kimchi Jjigae,김치찌개,9000,kimchi_jjigae,confirmed,,official_menu,,2026-08-17,hanjoon,
-yeonnam_hansang,veggie_bibimbap,Vegetable Bibimbap,야채 비빔밥,10000,bibimbap,confirmed,,official_menu,,2026-08-17,hanjoon,
-yeonnam_hansang,beef_bibimbap,Beef Bibimbap,소고기 비빔밥,12000,bibimbap,confirmed,,official_menu,,2026-08-17,hanjoon,
-hongdae_kalguksu,seafood_kalguksu,Seafood Kalguksu,해물 칼국수,9500,kalguksu,confirmed,,official_menu,,2026-08-17,hanjoon,
-hongdae_kalguksu,dumplings,Steamed Dumplings,찐만두,6000,,insufficient,,official_menu,,2026-08-17,hanjoon,속재료 미확인 — 현장 문의 필요

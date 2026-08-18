@@ -13,9 +13,15 @@ data/
 ├── raw/          # 원본 다운로드 (gitignore — 커밋하지 않음)
 ├── curated/      # 정규화된 CSV (커밋 대상, 백엔드 import 입력)
 ├── mappings/     # 코드 매핑표 (커밋 대상)
+├── review/       # 사람이 손으로 옮겨적은 메뉴판 원문 (커밋 대상)
+├── exports/      # 팀에 넘기는 산출물 (커밋 대상, 스크립트로 재생성 가능)
 ├── scripts/      # 수집·정규화·검증 스크립트 (표준 라이브러리만)
 └── SCHEMA.md     # 전체 CSV 컬럼 정의 + enum 값
 ```
+
+`review/*.txt` 는 지우지 마세요. 공개 API 어디에도 식당 메뉴가 없어서
+메뉴명은 전부 사람이 메뉴판을 보고 옮겨적은 것이고, 이 파일이 그 원본입니다.
+`match_menus.py` 에 다시 넣으면 "어떤 메뉴가 왜 탈락했는지"가 그대로 재현됩니다.
 
 ## 작업 흐름
 
@@ -23,7 +29,8 @@ data/
 1. raw/ 에 원본 다운로드        (LOCALDATA, 식약처, 레시피 데이터)
 2. scripts/ 로 필터링·정규화    → curated/*.csv
 3. scripts/validate.py 로 검증  → 통과해야 커밋
-4. (백엔드 머지 후) manage.py import_* 로 DB 적재
+4. scripts/export_ai.py 로 내보내기 → exports/restaurants.json (AI 팀 입력)
+5. (백엔드 머지 후) manage.py import_* 로 DB 적재
 ```
 
 ## 스크립트
@@ -51,7 +58,29 @@ python3 data/scripts/fetch_foodsafety.py
 # 알레르겐 롤업 미리보기 — 데이터가 상식적인지 눈으로 확인
 python3 data/scripts/rollup_preview.py 김치볶음밥 순댓국밥
 python3 data/scripts/rollup_preview.py --allergen shellfish
+python3 data/scripts/rollup_preview.py --menus                # 실제 식당 메뉴 기준
+
+# 식당 메뉴명 → 패턴 매칭 검증 (우리 DB 만으로 판정 가능한 메뉴인지)
+python3 data/scripts/match_menus.py data/review/menu_input.txt
+
+# AI 팀 입력 JSON 내보내기 (AI/DATA_FORMAT.md 형식)
+python3 data/scripts/export_ai.py
 ```
+
+### AI 팀에 넘기는 형식
+
+`export_ai.py` 는 CSV 를 `AI/DATA_FORMAT.md` 의 `restaurants.json` 으로 바꿉니다.
+직접 손으로 만들지 마세요 — 재료 목록이 패턴 상속의 결과라 손으로 못 씁니다.
+
+| 그쪽 필드 | 우리 쪽 출처 |
+|---|---|
+| `name` / `name_ko` | `restaurants.csv` · `menus.csv` 의 같은 컬럼 |
+| `category` | `mappings/ai_category_map.csv` 로 한국어 10종에 매핑 |
+| `ingredients` | `pattern_ingredients` 상속 + `menu_ingredients` 보정 결과 |
+
+`ingredients` 에는 `always` 가 아닌 재료에 `(가끔)` · `(선택)` 같은 꼬리표가 붙습니다.
+그쪽 스키마의 `ingredients` 가 `list[str]` 이라 `presence` 를 담을 자리가 없는데,
+그냥 버리면 "가끔 들어가는 재료"가 "항상 들어가는 재료"로 격상되기 때문입니다.
 
 ## 식당 데이터 출처와 좌표계
 
@@ -102,20 +131,30 @@ menus.pattern_key 의 pattern_ingredients 를 그대로 물려받음
   → action=remove 로 상속분 제거   (예: 야채비빔밥에서 소고기 제외)
 ```
 
-**2) 알레르겐 강도: presence 가 likelihood 의 상한**
+**2) 알레르겐 강도: 세 축 중 가장 약한 값**
 
 ```
-presence always    → likelihood 상한 confirmed
-         usually   →              likely
-         sometimes →              possible
-         optional / removable →   possible
+presence  always → confirmed / usually → likely / sometimes·optional·removable → possible
+likelihood 재료에 기록된 값 그대로
+출처       official_menu·public_data·public_recipe → confirmed
+           cooking_pattern → likely        (추정이므로 단정 불가)
+           user_feedback·unverified → possible
 
-실효 likelihood = min(재료의 likelihood, presence 상한)
+실효 likelihood = min(presence 상한, 재료의 likelihood, 출처 상한)
 ```
 
 "가끔 들어가는 재료에 확실히 있는 알레르겐"은 결국 "가능" 수준입니다.
 한 메뉴에서 같은 알레르겐이 여러 재료로 잡히면 **가장 강한 것**을 취하고,
 근거가 된 재료를 사용자에게 함께 보여줘야 합니다.
+
+출처 상한을 적용하는 곳은 **재료 목록의 출처**입니다.
+패턴에서 상속된 재료는 `dish_patterns.source_status`,
+`menu_ingredients` 로 넣은 재료는 그 행의 `source_status` 를 씁니다.
+`menus.source_status` 는 메뉴 자체(이름·가격)의 출처이므로 알레르겐 상한에는 쓰지 않고
+따로 표시합니다.
+
+> 이 상한이 없으면 공표 문서에서 온 재료와 추정으로 넣은 재료가 같은 확신으로
+> 사용자에게 나갑니다. `cooking_pattern` 패턴이 `confirmed` 경고를 만들면 안 됩니다.
 
 ## 출처 관리 원칙
 

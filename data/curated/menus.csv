@@ -1,7 +1,13 @@
 restaurant_key,key,name,name_ko,price_krw,pattern_key,info_level,description,source_status,source_url,collected_at,collected_by,notes
-jokbal_yasijang,jokbal_medium,Braised Pig Trotters (Medium),족발 (중),,jokbal,confirmed,"간장에 조린 족발, 마늘소스와 함께",unverified,,2026-08-17,hanjoon,마늘소스 구성 확인 필요
-jokbal_yasijang,bul_jokbal,Spicy Braised Pig Trotters,불족발,,jokbal,confirmed,매운 양념을 입힌 족발,unverified,,2026-08-17,hanjoon,
-jokbal_yasijang,makguksu,Buckwheat Noodles,막국수,,makguksu,confirmed,메밀면 비빔국수,unverified,,2026-08-17,hanjoon,메밀면의 밀 혼합 비율 확인 필요
-jokbal_yasijang,mucheong_gamjatang,Pork Backbone Stew with Radish Greens,무청감자탕,,gamjatang,confirmed,무청을 넣은 감자탕,unverified,,2026-08-17,hanjoon,
-jokbal_yasijang,ppyeo_haejangguk,Pork Backbone Hangover Soup,뼈해장국,,gamjatang,pattern,감자탕 1인분 형태,unverified,,2026-08-17,hanjoon,감자탕과 같은 육수·재료로 가정
-jokbal_yasijang,gyeranjjim,Steamed Egg,계란찜,,,insufficient,뚝배기 계란찜,unverified,,2026-08-17,hanjoon,패턴 없음 — 재료를 직접 입력
+dongkyo_gimbap,kimchi_gimbap,Kimchi Gimbap,김치김밥,,gimbap,pattern,,unverified,,2026-08-17,hanjoon,
+dongkyo_gimbap,gochu_gimbap,Green Chili Gimbap,고추김밥,,gimbap,pattern,,unverified,,2026-08-17,hanjoon,
+nokwon_ssambap,nokwon_ssambap,Nokwon Ssambap,녹원쌈밥,,ssambap,pattern,,unverified,,2026-08-17,hanjoon,
+nokwon_ssambap,bossam_jeongsik,Bossam Set Meal,보쌈정식,,bossam,pattern,,unverified,,2026-08-17,hanjoon,
+gamnamujip_gisa_sikdang,dwaeji_bulgogi,Pork Bulgogi,돼지불고기,,dwaejibulgogi,pattern,,unverified,,2026-08-17,hanjoon,
+gamnamujip_gisa_sikdang,godeungeo_kimchi_jorim,Braised Mackerel with Kimchi,고등어김치조림,,godeungeogimchijorim,pattern,,unverified,,2026-08-17,hanjoon,
+jangin_dakgalbi,dakgalbi,Dakgalbi,닭갈비,,dakgalbi,pattern,,unverified,,2026-08-17,hanjoon,
+jangin_dakgalbi,cheese_dakgalbi,Cheese Dakgalbi,치즈닭갈비,,dakgalbi,pattern,,unverified,,2026-08-17,hanjoon,
+jangin_dakgalbi,kimchi_roe_bokkeumbap,Kimchi Flying Fish Roe Fried Rice,김치 날치알 볶음밥,,bokkeumbap,pattern,,unverified,,2026-08-17,hanjoon,
+yukjeon_gukbap_hongdae,sogogi_gukbap,Beef and Rice Soup,소고기국밥,,sogogi_gukbap,pattern,,official_menu,,2026-08-17,hanjoon,
+yukjeon_gukbap_hongdae,yukjeon_sogogi_gukbap,Beef Jeon on Beef and Rice Soup,육전 소고기국밥,,sogogi_gukbap,pattern,,official_menu,,2026-08-17,hanjoon,
+yukjeon_gukbap_hongdae,sogogi_gukbap_jeongsik,Beef and Rice Soup Set Menu,소고기국밥 정식,,sogogi_gukbap,pattern,,official_menu,,2026-08-17,hanjoon,
