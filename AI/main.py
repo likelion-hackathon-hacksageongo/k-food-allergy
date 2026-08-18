@@ -318,6 +318,59 @@ def cache_clear():
 
 
 # ============================================================
+# 메뉴판 스캔 엔드포인트
+# ============================================================
+
+from fastapi import File, UploadFile, Form
+from typing import Optional
+from schemas.types import MenuScanResult
+from services.menu_scanner import scan_menu
+
+
+@app.post("/scan", response_model=MenuScanResult)
+async def scan_menu_endpoint(
+    image: UploadFile = File(..., description="메뉴판 사진 (jpg, png, webp)"),
+    allergens: str = Form(default="", description="쉼표 구분 알레르겐 코드 (예: soy,shellfish,wheat)"),
+    language: str = Form(default="en", description="번역 대상 언어 코드"),
+):
+    """
+    메뉴판 사진을 스캔하여 번역 + 알레르겐 체크 결과를 반환합니다.
+
+    - 이미지에서 메뉴 항목을 자동 인식
+    - 사용자가 설정한 언어로 메뉴명과 설명을 번역
+    - 사용자 알레르겐과 매칭하여 위험도 표시
+
+    지원 이미지 형식: JPEG, PNG, WebP, GIF
+    """
+    # 이미지 읽기
+    image_bytes = await image.read()
+
+    if not image_bytes:
+        raise HTTPException(status_code=400, detail="이미지 파일이 비어있습니다.")
+
+    # 파일 확장자에서 형식 추출
+    filename = image.filename or "image.jpeg"
+    ext = filename.rsplit(".", 1)[-1].lower() if "." in filename else "jpeg"
+    format_map = {"jpg": "jpeg", "jpeg": "jpeg", "png": "png", "webp": "webp", "gif": "gif"}
+    image_format = format_map.get(ext, "jpeg")
+
+    # 알레르겐 파싱 (쉼표 구분 문자열 → 리스트)
+    allergen_list = [a.strip() for a in allergens.split(",") if a.strip()] if allergens else []
+
+    try:
+        result = scan_menu(
+            image_bytes=image_bytes,
+            allergens=allergen_list,
+            language=language,
+            image_format=image_format,
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"메뉴 스캔 중 오류 발생: {str(e)}")
+
+    return result
+
+
+# ============================================================
 # 사전 분석 (Pre-computed) 엔드포인트
 # ============================================================
 
