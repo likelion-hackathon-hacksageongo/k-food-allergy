@@ -325,6 +325,8 @@ from fastapi import File, UploadFile, Form
 from typing import Optional
 from schemas.types import MenuScanResult
 from services.menu_scanner import scan_menu
+from schemas.types import FullScanResult
+from services.full_scanner import full_scan_menu
 
 
 @app.post("/scan", response_model=MenuScanResult)
@@ -359,6 +361,48 @@ async def scan_menu_endpoint(
 
     try:
         result = scan_menu(
+            image_bytes=image_bytes,
+            allergens=allergen_list,
+            language=language,
+            image_format=image_format,
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"메뉴 스캔 중 오류 발생: {str(e)}")
+
+    return result
+
+
+@app.post("/scan/full", response_model=FullScanResult)
+async def full_scan_endpoint(
+    image: UploadFile = File(..., description="메뉴판 사진 (jpg, png, webp)"),
+    allergens: str = Form(default="", description="쉼표 구분 알레르겐 코드 (예: soy,shellfish,wheat)"),
+    language: str = Form(default="en", description="번역 대상 언어 코드"),
+):
+    """
+    메뉴판 스캔 + 번역 + 알레르겐 체크 + 문의 문장 생성 (올인원).
+
+    위험(danger/caution) 메뉴에는 직원에게 보여줄 한국어 문의 문장이
+    자동으로 포함됩니다. 한 번의 호출로 전체 플로우를 처리합니다.
+
+    사용 시나리오:
+    1. 외국인이 식당에서 메뉴판 사진 촬영
+    2. 앱이 이 API 호출
+    3. 번역된 메뉴 + 위험 표시 + "이거 직원에게 보여주세요" 문장 제공
+    """
+    image_bytes = await image.read()
+
+    if not image_bytes:
+        raise HTTPException(status_code=400, detail="이미지 파일이 비어있습니다.")
+
+    filename = image.filename or "image.jpeg"
+    ext = filename.rsplit(".", 1)[-1].lower() if "." in filename else "jpeg"
+    format_map = {"jpg": "jpeg", "jpeg": "jpeg", "png": "png", "webp": "webp", "gif": "gif"}
+    image_format = format_map.get(ext, "jpeg")
+
+    allergen_list = [a.strip() for a in allergens.split(",") if a.strip()] if allergens else []
+
+    try:
+        result = full_scan_menu(
             image_bytes=image_bytes,
             allergens=allergen_list,
             language=language,

@@ -266,3 +266,42 @@ class MenuScanResult(BaseModel):
         default="This translation is AI-generated and may not be perfectly accurate. Please confirm with restaurant staff.",
         description="면책 안내",
     )
+
+
+# ============================================================
+# 메뉴판 스캔 + 문의 문장 통합 출력
+# ============================================================
+
+class ScannedMenuWithQuery(ScannedMenuItem):
+    """스캔된 메뉴 + 해당 메뉴에 대한 문의 문장 (위험 메뉴만)"""
+    staff_query: str = Field(
+        default="",
+        description="직원에게 보여줄 한국어 문의 문장 (danger/caution일 때만)",
+    )
+    query_explanation: str = Field(
+        default="",
+        description="문의 문장의 사용자 언어 설명",
+    )
+
+
+class FullScanResult(BaseModel):
+    """메뉴판 스캔 + 문의 문장 통합 결과"""
+    menu_items: list[ScannedMenuWithQuery] = Field(
+        ...,
+        description="인식된 메뉴 목록 (위험 메뉴에는 문의 문장 포함)",
+    )
+    restaurant_name: str = Field(default="", description="인식된 식당명")
+    total_items: int = Field(..., description="인식된 메뉴 총 개수")
+    danger_count: int = Field(default=0, description="위험 메뉴 수")
+    caution_count: int = Field(default=0, description="확인 필요 메뉴 수")
+    safe_count: int = Field(default=0, description="안전 메뉴 수")
+    intro_text: str = Field(
+        default="",
+        description="직원에게 먼저 보여줄 소개 문장 (한국어)",
+    )
+    scan_language: str = Field(default="ko", description="메뉴판 원문 언어")
+    user_language: str = Field(..., description="번역 대상 언어")
+    disclaimer: str = Field(
+        default="This is an AI-generated analysis. Please confirm with restaurant staff.",
+        description="면책 안내",
+    )
