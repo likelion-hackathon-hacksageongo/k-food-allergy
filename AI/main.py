@@ -53,16 +53,16 @@ app.add_middleware(
 class AnalyzeRequest(UserAllergyProfile):
     """식당 분석 요청: 사용자 알레르겐 + 식당 정보 + 언어"""
     restaurant: RestaurantInput
-    language: SupportedLanguage = Field(
-        default=SupportedLanguage.KO,
-        description="응답 언어 (ko, en, ja, zh, vi, th, es, fr)",
+    language: str = Field(
+        default="ko",
+        description="응답 언어 (ko, en, ja, zh, vi, th, es, fr, de, ru, id)",
     )
 
 
 class QueryRequest(QueryContext):
     """문의 문장 생성 요청: 알레르겐 + 상황 + 식당/메뉴 + 언어"""
-    language: SupportedLanguage = Field(
-        default=SupportedLanguage.KO,
+    language: str = Field(
+        default="ko",
         description="인터페이스 언어 (korean_text는 항상 한국어 유지)",
     )
 
@@ -79,8 +79,8 @@ class BatchAnalyzeRequest(BaseModel):
         description="분석할 식당 목록 (최대 20개)",
         max_length=20,
     )
-    language: SupportedLanguage = Field(
-        default=SupportedLanguage.KO,
+    language: str = Field(
+        default="ko",
         description="응답 언어 (ko, en, ja, zh, vi, th, es, fr)",
     )
 
@@ -130,7 +130,7 @@ def analyze_restaurant_endpoint(request: AnalyzeRequest):
         raise HTTPException(status_code=400, detail="메뉴가 비어있습니다.")
 
     try:
-        result = analyze_restaurant(profile, restaurant, language=request.language.value)
+        result = analyze_restaurant(profile, restaurant, language=request.language)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
@@ -158,7 +158,7 @@ def generate_query_endpoint(request: QueryRequest):
     )
 
     try:
-        result = generate_queries(context, language=request.language.value)
+        result = generate_queries(context, language=request.language)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"문장 생성 중 오류 발생: {str(e)}")
 
@@ -177,7 +177,7 @@ def batch_analyze_endpoint(request: BatchAnalyzeRequest):
     import concurrent.futures
 
     profile = UserAllergyProfile(allergens=request.allergens)
-    language = request.language.value
+    language = request.language
     results = []
     cached_count = 0
     to_analyze = []
@@ -277,7 +277,7 @@ class PrecomputeRequest(BaseModel):
     user_id: str = Field(..., description="사용자 식별자")
     allergens: list[AllergenKey] = Field(..., description="사용자 알레르겐 목록", min_length=1)
     restaurants: list[RestaurantInput] = Field(..., description="분석할 식당 목록")
-    language: SupportedLanguage = Field(default=SupportedLanguage.KO, description="응답 언어")
+    language: str = Field(default="ko", description="응답 언어")
 
 
 class PrecomputeSingleRequest(BaseModel):
@@ -285,7 +285,7 @@ class PrecomputeSingleRequest(BaseModel):
     user_id: str = Field(..., description="사용자 식별자")
     allergens: list[AllergenKey] = Field(..., description="사용자 알레르겐 목록", min_length=1)
     restaurant: RestaurantInput = Field(..., description="재분석할 식당")
-    language: SupportedLanguage = Field(default=SupportedLanguage.KO, description="응답 언어")
+    language: str = Field(default="ko", description="응답 언어")
 
 
 class ScoresResponse(BaseModel):
@@ -346,7 +346,7 @@ def trigger_precompute(request: PrecomputeRequest):
             user_id=request.user_id,
             allergens=allergens,
             restaurants=restaurants,
-            language=request.language.value,
+            language=request.language,
         )
 
     thread = threading.Thread(target=_run, daemon=True)
@@ -380,7 +380,7 @@ def trigger_restaurant_recompute(request: PrecomputeSingleRequest):
             user_id=request.user_id,
             allergens=allergens,
             restaurant=restaurant,
-            language=request.language.value,
+            language=request.language,
         )
 
     thread = threading.Thread(target=_run, daemon=True)
