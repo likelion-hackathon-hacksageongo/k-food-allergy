@@ -16,11 +16,14 @@ MenuAllergen.likelihood is one of confirmed / likely / possible / none
 
 Per-menu-item verdict (4-level, matches the plan doc's STEP2/3 wording,
 using the AI section's shorter labels as the machine-readable keys):
-  - danger      "적합 가능성 낮음"   - a matched allergen is confirmed/likely present
-  - warning     "일부 확인 필요"     - a matched allergen is only possible,
+  - danger      "적합 가능성 낮음"   - a matched allergen is confirmed present
+  - warning     "일부 확인 필요"     - a matched allergen is likely/possible,
                                        or the underlying menu info is a general pattern
   - unconfirmed "정보 부족"          - not enough info to judge either way
   - safe        "적합 정보 충분"     - no matched allergens, and info is solid
+
+(Per SCHEMA_CHANGES.md: only `confirmed` counts as danger; `likely` moved
+into the warning tier alongside `possible`.)
 
 Per-restaurant verdict (2-level, simpler than the menu-item one): a
 restaurant is "safe" if it has at least one menu item that's safe for
@@ -54,7 +57,7 @@ def evaluate_menu_item(menu_item: MenuItem, user_allergens: set[str]) -> dict:
     allergens = list(menu_item.allergens.all())
     matched = [a for a in allergens if a.allergen_key in user_allergens]
 
-    high_risk = [a for a in matched if a.likelihood in (MenuAllergen.Likelihood.CONFIRMED, MenuAllergen.Likelihood.LIKELY)]
+    high_risk = [a for a in matched if a.likelihood == MenuAllergen.Likelihood.CONFIRMED]
     if high_risk:
         return {
             'status': Verdict.DANGER,
@@ -69,7 +72,7 @@ def evaluate_menu_item(menu_item: MenuItem, user_allergens: set[str]) -> dict:
             'reasons': ['이 메뉴는 아직 확인된 재료 정보가 부족합니다. 현장 문의를 권장합니다.'],
         }
 
-    low_risk = [a for a in matched if a.likelihood == MenuAllergen.Likelihood.POSSIBLE]
+    low_risk = [a for a in matched if a.likelihood in (MenuAllergen.Likelihood.LIKELY, MenuAllergen.Likelihood.POSSIBLE)]
     if low_risk or menu_item.info_level == MenuItem.InfoLevel.PATTERN:
         reasons = [_reason(a) for a in low_risk] or [
             '공식 확인 정보가 아닌 일반적인 조리 패턴을 기준으로 한 분석입니다. 현장 확인을 권장합니다.'

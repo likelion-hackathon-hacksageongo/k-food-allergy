@@ -13,8 +13,8 @@ Contract (JSON file, list of menu item entries):
 
 [
   {
-    "restaurant": "Hongdae Sundubu House",   # Restaurant.name (exact match)
-    "menu_item": "Seafood Sundubu Jjigae",   # MenuItem.name (exact match, under that restaurant)
+    "restaurant_name_ko": "홍대 순두부집",     # Restaurant.name_ko (exact match)
+    "menu_item_name_ko": "해물 순두부찌개",    # MenuItem.name_ko (exact match, under that restaurant)
     "info_level": "confirmed",               # confirmed | pattern | insufficient
     "allergens": [
       {
@@ -27,6 +27,10 @@ Contract (JSON file, list of menu item entries):
   },
   ...
 ]
+
+Matching is on `name_ko` (Korean name), not the English `name` - the
+Korean text is what stays consistent end-to-end through Data -> AI ->
+here, since romanization can vary. See SCHEMA_CHANGES.md.
 
 Unknown restaurant/menu_item names are skipped and reported at the end
 (they need to exist already — this command doesn't create restaurants).
@@ -62,17 +66,17 @@ class Command(BaseCommand):
 
         with transaction.atomic():
             for entry in entries:
-                restaurant_name = entry.get("restaurant")
-                menu_name = entry.get("menu_item")
+                restaurant_name_ko = entry.get("restaurant_name_ko")
+                menu_name_ko = entry.get("menu_item_name_ko")
 
-                restaurant = Restaurant.objects.filter(name=restaurant_name).first()
+                restaurant = Restaurant.objects.filter(name_ko=restaurant_name_ko).first()
                 if restaurant is None:
-                    skipped.append(f"Unknown restaurant: {restaurant_name!r}")
+                    skipped.append(f"Unknown restaurant: {restaurant_name_ko!r}")
                     continue
 
-                menu_item = MenuItem.objects.filter(restaurant=restaurant, name=menu_name).first()
+                menu_item = MenuItem.objects.filter(restaurant=restaurant, name_ko=menu_name_ko).first()
                 if menu_item is None:
-                    skipped.append(f"Unknown menu item: {menu_name!r} @ {restaurant_name!r}")
+                    skipped.append(f"Unknown menu item: {menu_name_ko!r} @ {restaurant_name_ko!r}")
                     continue
 
                 info_level = entry.get("info_level")
