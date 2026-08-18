@@ -18,7 +18,7 @@ class RegisterView(generics.CreateAPIView):
         refresh = RefreshToken.for_user(user)
         return Response(
             {
-                'user': {'id': user.id, 'email': user.email},
+                'user': {'id': user.id, 'username': user.username, 'email': user.email},
                 'refresh': str(refresh),
                 'access': str(refresh.access_token),
             },

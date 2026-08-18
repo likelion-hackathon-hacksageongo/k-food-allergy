@@ -57,14 +57,9 @@ def generate_query(
     return _post('/query', payload)
 
 
-def analyze_batch(allergens: list[str], restaurants: list[dict], language: str = 'en') -> dict:
-    """
-    POST /analyze/batch - lightweight per-restaurant summary scores for the
-    map view. Max 20 restaurants per call (AI service's own limit); longer
-    timeout since it may run several uncached LLM analyses.
-    """
-    return _post('/analyze/batch', {
-        'allergens': allergens,
-        'restaurants': restaurants,
-        'language': language,
-    }, timeout=90)
+# NOTE: no analyze_batch()/`/analyze/batch` client here on purpose. The map
+# view's per-restaurant scores come from menus/matching.py (deterministic,
+# no network call) via RestaurantListSerializer - see restaurants/serializers.py.
+# Calling the AI service's batch endpoint for that would burn through its
+# rate limit for no benefit; AI is reserved for the on-demand restaurant
+# detail analysis below.

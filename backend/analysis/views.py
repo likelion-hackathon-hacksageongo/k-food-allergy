@@ -6,9 +6,7 @@ from profiles.models import AllergyProfile
 from restaurants.models import Restaurant
 from menus.models import MenuItem
 
-from .client import analyze_restaurant, generate_query, analyze_batch, AIServiceError
-
-MAX_BATCH_RESTAURANTS = 20  # matches the AI service's own cap
+from .client import analyze_restaurant, generate_query, AIServiceError
 
 # NOTE: this is a direct, synchronous proxy to the AI server (see
 # AI/INTEGRATION_GUIDE.md section 4 "방법 A"). It does NOT use their
@@ -132,54 +130,9 @@ class GenerateQueryView(APIView):
         return Response(result)
 
 
-class BatchAnalyzeView(APIView):
-    """
-    POST /api/analysis/batch/
-    Body: {"restaurant_ids": [1, 2, 3]}  (optional - omit for all active
-    restaurants, up to MAX_BATCH_RESTAURANTS)
-
-    For the map view: lightweight per-restaurant summary scores (no
-    per-menu detail - use /api/analysis/restaurant/ for that) in one call.
-    Restaurants with no menu items are skipped (nothing to analyze).
-    """
-    permission_classes = [permissions.IsAuthenticated]
-
-    def post(self, request):
-        restaurant_ids = request.data.get('restaurant_ids')
-
-        try:
-            profile = request.user.allergy_profile
-        except AllergyProfile.DoesNotExist:
-            return Response(
-                {'detail': '알레르기 프로필을 먼저 등록해주세요.'},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
-
-        if restaurant_ids:
-            if len(restaurant_ids) > MAX_BATCH_RESTAURANTS:
-                return Response(
-                    {'detail': f'restaurant_ids는 최대 {MAX_BATCH_RESTAURANTS}개까지만 가능합니다.'},
-                    status=status.HTTP_400_BAD_REQUEST,
-                )
-            queryset = Restaurant.objects.filter(pk__in=restaurant_ids, is_active=True)
-        else:
-            queryset = Restaurant.objects.filter(is_active=True)[:MAX_BATCH_RESTAURANTS]
-
-        restaurants = [
-            _restaurant_payload(r)
-            for r in queryset.prefetch_related('menu_items')
-            if r.menu_items.exists()
-        ]
-        if not restaurants:
-            return Response({'results': [], 'cached_count': 0, 'api_call_count': 0})
-
-        try:
-            result = analyze_batch(
-                allergens=profile.allergens,
-                restaurants=restaurants,
-                language=profile.preferred_language,
-            )
-        except AIServiceError as e:
-            return Response({'detail': str(e)}, status=status.HTTP_503_SERVICE_UNAVAILABLE)
-
-        return Response(result)
+# NOTE: no BatchAnalyzeView / POST /api/analysis/batch/ here on purpose - the
+# map's restaurant list already gets its per-restaurant verdict from
+# menus/matching.py via GET /api/restaurants/ (see restaurants/serializers.py
+# PersonalizedRestaurantMixin), with no AI server call. Calling the AI
+# service's /analyze/batch for the same thing would just burn its rate limit;
+# AI is reserved for the on-demand restaurant detail analysis above.
