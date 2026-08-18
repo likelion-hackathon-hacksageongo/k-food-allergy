@@ -13,12 +13,18 @@ const allergyOptions = [
   "Soy",
   "Pork",
   "Beef",
+  "Mollusk",
+  "Peach",
+  "Chicken",
+  "Sulfites",
+  "Buckwheat",
+  "Tomato",
 ];
 const koreanAllergens = { Shellfish: "갑각류", Dairy: "유제품", Peanut: "땅콩", "Tree nuts": "견과류", Egg: "계란", Fish: "생선", Gluten: "글루텐", Soy: "간장·대두", Pork: "돼지고기", Beef: "소고기" };
 const restaurants = [
-  { id: "gyeong", name: "Yeonnam Hansang", type: "Korean home cooking · 4 min walk", status: "great", label: "Good match", icon: "✓", food: "🥗", x: "33%", y: "25%", menus: ["Vegetable bibimbap", "Soy-marinated bulgogi", "Seasonal namul"], note: "Two menu options look compatible with your profile.", address: "242, Donggyo-ro, Mapo-gu, Seoul", image: "Bibimbap" },
-  { id: "dubu", name: "Buchang-dong Sundubu", type: "Tofu stew · 6 min walk", status: "check", label: "Check first", icon: "?", food: "🍲", x: "70%", y: "38%", menus: ["Mushroom tofu stew", "Plain rice", "Grilled vegetables"], note: "Please check the broth and side dishes on site.", address: "63, Wausan-ro, Mapo-gu, Seoul", image: "Sundubu" },
-  { id: "bbq", name: "Yeonnam Meat Garden", type: "Korean BBQ · 8 min walk", status: "great", label: "Good match", icon: "✓", food: "🥓", x: "51%", y: "66%", menus: ["Pork belly", "Plain rice", "Lettuce wraps"], note: "Staff confirmed an allergen-free dipping sauce.", address: "45, Yeonhui-ro 1-gil, Mapo-gu, Seoul", image: "Korean BBQ" },
+  { id: "gyeong", name: "Yeonnam Hansang", type: "Korean home cooking · 4 min walk", status: "great", label: "Good match", icon: "✓", food: "🥗", x: "25%", y: "23%", menus: ["Vegetable bibimbap", "Soy-marinated bulgogi", "Seasonal namul"], note: "Two menu options look compatible with your profile.", address: "242, Donggyo-ro, Mapo-gu, Seoul", image: "Bibimbap" },
+  { id: "dubu", name: "Buchang-dong Sundubu", type: "Tofu stew · 6 min walk", status: "check", label: "Check first", icon: "?", food: "🍲", x: "72%", y: "34%", menus: ["Mushroom tofu stew", "Plain rice", "Grilled vegetables"], note: "Please check the broth and side dishes on site.", address: "63, Wausan-ro, Mapo-gu, Seoul", image: "Sundubu" },
+  { id: "bbq", name: "Yeonnam Meat Garden", type: "Korean BBQ · 8 min walk", status: "great", label: "Good match", icon: "✓", food: "🥓", x: "57%", y: "71%", menus: ["Pork belly", "Plain rice", "Lettuce wraps"], note: "Staff confirmed an allergen-free dipping sauce.", address: "45, Yeonhui-ro 1-gil, Mapo-gu, Seoul", image: "Korean BBQ" },
   { id: "noodle", name: "Hongdae Kalguksu", type: "Noodles · 9 min walk", status: "risk", label: "Caution", icon: "!", food: "🍜", x: "15%", y: "69%", menus: ["Kalguksu", "Dumplings", "Kimchi"], note: "Shellfish may be used in the broth.", address: "157, Yanghwa-ro, Mapo-gu, Seoul", image: "Kalguksu" },
 ];
 const topKFood = [
