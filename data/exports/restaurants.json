@@ -282,7 +282,7 @@
         "id": 501,
         "name": "Beef and Rice Soup",
         "name_ko": "소고기국밥",
-        "description": "하루에도 몇 번씩 매장에서 직접 끓이는 소고기국밥",
+        "description": "",
         "ingredients": [
           "쌀밥",
           "소고기",
@@ -298,14 +298,13 @@
           "소금"
         ],
         "info_level": "pattern",
-        "source_status": "official_menu",
-        "price": 10000
+        "source_status": "official_menu"
       },
       {
         "id": 502,
         "name": "Beef Jeon on Beef and Rice Soup",
         "name_ko": "육전 소고기국밥",
-        "description": "소고기국밥에 육전을 올린 대표 메뉴",
+        "description": "",
         "ingredients": [
           "쌀밥",
           "소고기",
@@ -322,14 +321,13 @@
           "소금"
         ],
         "info_level": "pattern",
-        "source_status": "official_menu",
-        "price": 11000
+        "source_status": "official_menu"
       },
       {
         "id": 503,
         "name": "Beef and Rice Soup Set Menu",
         "name_ko": "소고기국밥 정식",
-        "description": "소고기국밥 + 육전 또는 완자 택1",
+        "description": "",
         "ingredients": [
           "쌀밥",
           "소고기",
@@ -346,8 +344,7 @@
           "소금"
         ],
         "info_level": "pattern",
-        "source_status": "official_menu",
-        "price": 17000
+        "source_status": "official_menu"
       }
     ]
   }

@@ -4,15 +4,15 @@ LOCALDATA(지방행정 인허가데이터) → 홍대 MVP 식당 후보 추출.
 
 원본은 JSON(공공데이터포털 다운로드) 또는 CSV 모두 지원합니다.
 
-    # 1) 후보 뽑기 — 사람이 검토할 candidates.csv 생성
+    # 1) 후보 뽑기 — 사람이 검토할 candidates.csv 생성 (review/ 는 gitignore)
     python3 data/scripts/filter_localdata.py \
         "data/raw/서울시 마포구 일반음식점 인허가 정보.json" \
-        --out data/curated/_candidates.csv --top 60
+        --out data/review/candidates.csv --top 60
 
     # 2) 사람이 candidates.csv 에서 key / name 채우고 _keep 에 y 표시
 
     # 3) 확정본을 restaurants.csv 로 승격
-    python3 data/scripts/filter_localdata.py --promote data/curated/_candidates.csv \
+    python3 data/scripts/filter_localdata.py --promote data/review/candidates.csv \
         --out data/curated/restaurants.csv
 
 선별 기준 (MVP):

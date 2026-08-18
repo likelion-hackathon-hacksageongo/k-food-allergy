@@ -1,13 +1,13 @@
 restaurant_key,key,name,name_ko,price_krw,pattern_key,info_level,description,source_status,source_url,collected_at,collected_by,notes
-dongkyo_gimbap,kimchi_gimbap,Kimchi Gimbap,김치김밥,,gimbap,pattern,,unverified,,2026-08-17,hanjoon,가격 미확인 · 메뉴명에 명시된 재료 보정
-dongkyo_gimbap,gochu_gimbap,Green Chili Gimbap,고추김밥,,gimbap,pattern,,unverified,,2026-08-17,hanjoon,가격 미확인 · 메뉴명에 명시된 재료 보정
-nokwon_ssambap,nokwon_ssambap,Nokwon Ssambap,녹원쌈밥,,ssambap,pattern,,unverified,,2026-08-17,hanjoon,가격 미확인
-nokwon_ssambap,bossam_jeongsik,Bossam Set Meal,보쌈정식,,bossam,pattern,,unverified,,2026-08-17,hanjoon,가격 미확인
-gamnamujip_gisa_sikdang,dwaeji_bulgogi,Pork Bulgogi,돼지불고기,,dwaejibulgogi,pattern,,unverified,,2026-08-17,hanjoon,가격 미확인
-gamnamujip_gisa_sikdang,godeungeo_kimchi_jorim,Braised Mackerel with Kimchi,고등어김치조림,,godeungeogimchijorim,pattern,,unverified,,2026-08-17,hanjoon,가격 미확인
-jangin_dakgalbi,dakgalbi,Dakgalbi,닭갈비,,dakgalbi,pattern,,unverified,,2026-08-17,hanjoon,가격 미확인
-jangin_dakgalbi,cheese_dakgalbi,Cheese Dakgalbi,치즈닭갈비,,dakgalbi,pattern,,unverified,,2026-08-17,hanjoon,가격 미확인 · 메뉴명에 명시된 재료 보정
-jangin_dakgalbi,kimchi_roe_bokkeumbap,Kimchi Flying Fish Roe Fried Rice,김치 날치알 볶음밥,,bokkeumbap,pattern,,unverified,,2026-08-17,hanjoon,가격 미확인 · 메뉴명에 명시된 재료 보정
-yukjeon_gukbap_hongdae,sogogi_gukbap,Beef and Rice Soup,소고기국밥,10000,sogogi_gukbap,pattern,하루에도 몇 번씩 매장에서 직접 끓이는 소고기국밥,official_menu,,2026-08-17,hanjoon,매장 메뉴판 사진 기준
-yukjeon_gukbap_hongdae,yukjeon_sogogi_gukbap,Beef Jeon on Beef and Rice Soup,육전 소고기국밥,11000,sogogi_gukbap,pattern,소고기국밥에 육전을 올린 대표 메뉴,official_menu,,2026-08-17,hanjoon,매장 메뉴판 사진 기준
-yukjeon_gukbap_hongdae,sogogi_gukbap_jeongsik,Beef and Rice Soup Set Menu,소고기국밥 정식,17000,sogogi_gukbap,pattern,소고기국밥 + 육전 또는 완자 택1,official_menu,,2026-08-17,hanjoon,매장 메뉴판 사진 기준
+dongkyo_gimbap,kimchi_gimbap,Kimchi Gimbap,김치김밥,,gimbap,pattern,,unverified,,2026-08-17,hanjoon,
+dongkyo_gimbap,gochu_gimbap,Green Chili Gimbap,고추김밥,,gimbap,pattern,,unverified,,2026-08-17,hanjoon,
+nokwon_ssambap,nokwon_ssambap,Nokwon Ssambap,녹원쌈밥,,ssambap,pattern,,unverified,,2026-08-17,hanjoon,
+nokwon_ssambap,bossam_jeongsik,Bossam Set Meal,보쌈정식,,bossam,pattern,,unverified,,2026-08-17,hanjoon,
+gamnamujip_gisa_sikdang,dwaeji_bulgogi,Pork Bulgogi,돼지불고기,,dwaejibulgogi,pattern,,unverified,,2026-08-17,hanjoon,
+gamnamujip_gisa_sikdang,godeungeo_kimchi_jorim,Braised Mackerel with Kimchi,고등어김치조림,,godeungeogimchijorim,pattern,,unverified,,2026-08-17,hanjoon,
+jangin_dakgalbi,dakgalbi,Dakgalbi,닭갈비,,dakgalbi,pattern,,unverified,,2026-08-17,hanjoon,
+jangin_dakgalbi,cheese_dakgalbi,Cheese Dakgalbi,치즈닭갈비,,dakgalbi,pattern,,unverified,,2026-08-17,hanjoon,
+jangin_dakgalbi,kimchi_roe_bokkeumbap,Kimchi Flying Fish Roe Fried Rice,김치 날치알 볶음밥,,bokkeumbap,pattern,,unverified,,2026-08-17,hanjoon,
+yukjeon_gukbap_hongdae,sogogi_gukbap,Beef and Rice Soup,소고기국밥,,sogogi_gukbap,pattern,,official_menu,,2026-08-17,hanjoon,
+yukjeon_gukbap_hongdae,yukjeon_sogogi_gukbap,Beef Jeon on Beef and Rice Soup,육전 소고기국밥,,sogogi_gukbap,pattern,,official_menu,,2026-08-17,hanjoon,
+yukjeon_gukbap_hongdae,sogogi_gukbap_jeongsik,Beef and Rice Soup Set Menu,소고기국밥 정식,,sogogi_gukbap,pattern,,official_menu,,2026-08-17,hanjoon,

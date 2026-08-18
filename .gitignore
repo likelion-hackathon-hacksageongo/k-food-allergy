@@ -40,6 +40,9 @@ data/raw/*
 data/**/__pycache__/
 # API 키
 data/.env
+# 식당 후보 목록은 filter_localdata.py 로 언제든 다시 뽑습니다.
+# LOCALDATA 가 매일 갱신되므로 커밋본은 받는 즉시 낡습니다.
+data/review/candidates.csv
 
 # ----- AI -----
 AI/.venv/
