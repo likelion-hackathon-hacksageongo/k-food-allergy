@@ -114,9 +114,8 @@ class RestaurantInput(BaseModel):
     name: str = Field(..., description="식당명 (한국어)")
     category: str = Field(default="한식", description="음식 카테고리")
     menu_items: list[MenuItemInput] = Field(
-        ...,
+        default_factory=list,
         description="해당 식당의 전체 메뉴 목록",
-        min_length=1,
     )
 
 
