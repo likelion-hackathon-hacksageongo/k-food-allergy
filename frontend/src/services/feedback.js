@@ -6,14 +6,18 @@ const headers = () => {
 async function request(path, options = {}) {
   const response = await fetch(path, options);
   const data = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(data.detail || "Feedback request failed.");
+  if (!response.ok) {
+    const message = data.detail || Object.values(data).flat().join(" ");
+    throw new Error(message || `Feedback request failed (HTTP ${response.status}).`);
+  }
   return data;
 }
 
 export async function fetchMyFeedback() {
   const auth = headers();
   if (!auth) return null;
-  return request("/api/feedback/", { headers: auth });
+  const data = await request("/api/feedback/", { headers: auth });
+  return Array.isArray(data) ? data : data.results || [];
 }
 
 export async function createFeedback(feedback) {
