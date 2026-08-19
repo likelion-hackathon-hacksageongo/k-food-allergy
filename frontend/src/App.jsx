@@ -592,6 +592,11 @@ function App() {
             map: map,
             yAnchor: 2.5,
           });
+        } else {
+          // 이미 생성된 맵 — relayout으로 크기 재조정
+          setTimeout(() => {
+            kakaoMapRef.current.relayout();
+          }, 100);
         }
 
         // 기존 마커 제거
