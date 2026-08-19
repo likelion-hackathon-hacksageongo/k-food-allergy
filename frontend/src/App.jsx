@@ -1247,14 +1247,39 @@ function App() {
                 <p><b>possible</b> May contain this allergen (20–30% confidence).</p>
                 <p><b>none</b> Unlikely to contain this allergen.</p>
               </div>
-              {selected.menus.map((menu, index) => (
-                <div className="menu-row" key={menu}>
-                  <span className={index === 0 ? "checkmark" : "soft-check"}>
-                    {index === 0 ? "✓" : "·"}
-                  </span>
-                  <strong>{menu}</strong>
-                </div>
-              ))}
+              {(() => {
+                const menuDetails = selected.menuDetails || [];
+                const scored = menuDetails.map((menu) => {
+                  const lp = likelihoodForProfile(menu.allergens, profile);
+                  const order = lp ? (lp.tone === "confirmed" ? 3 : lp.tone === "warning" ? 2 : 1) : 0;
+                  return { ...menu, lp, order };
+                }).sort((a, b) => a.order - b.order);
+                const safeCount = scored.filter((m) => m.order === 0).length;
+                const checkCount = scored.filter((m) => m.order > 0).length;
+                return (
+                  <>
+                    {profile.length > 0 && (
+                      <div style={{padding:"10px 12px",background:"#f0faf2",borderRadius:"6px",marginBottom:"12px",fontSize:"12px",lineHeight:"1.8"}}>
+                        {safeCount > 0 && <span style={{color:"#2f6b43",fontWeight:600}}>● Safer to eat: {safeCount}</span>}
+                        {checkCount > 0 && <span style={{color:"#6b7370",marginLeft:safeCount ? "12px" : "0",fontWeight:600}}>● Check first: {checkCount}</span>}
+                      </div>
+                    )}
+                    {scored.map((menu) => (
+                      <div className="menu-row" key={menu.id || menu.name} style={{gridTemplateColumns:"auto 1fr"}}>
+                        <span style={{
+                          display:"inline-block",width:"8px",height:"8px",borderRadius:"50%",marginTop:"4px",
+                          background: menu.order === 0 ? "#2f6b43" : "#8b938e"
+                        }}></span>
+                        <div>
+                          <strong>{menu.name}</strong>
+                          {menu.lp && <small style={{display:"block",marginTop:"2px",color:"#6b7370"}}>{menu.lp.label} — {menu.lp.description}</small>}
+                          {!menu.lp && profile.length > 0 && <small style={{display:"block",marginTop:"2px",color:"#2f6b43"}}>Safer to eat</small>}
+                        </div>
+                      </div>
+                    ))}
+                  </>
+                );
+              })()}
             </div>
             <div className="insight">
               <p className="overline">K-food ingredient insight</p>
