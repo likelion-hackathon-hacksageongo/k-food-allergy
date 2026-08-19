@@ -16,6 +16,7 @@ data/
 ├── review/       # 사람이 손으로 옮겨적은 메뉴판 원문 (커밋 대상)
 ├── exports/      # 팀에 넘기는 산출물 (커밋 대상, 스크립트로 재생성 가능)
 ├── scripts/      # 수집·정규화·검증 스크립트 (표준 라이브러리만)
+├── research/     # 배경 조사 메모 (커밋 대상)
 └── SCHEMA.md     # 전체 CSV 컬럼 정의 + enum 값
 ```
 
@@ -107,6 +108,12 @@ pip install pyproj
 - **제외** 업태가 '한식'이어도 상호에 주류·카페·타국 음식 키워드가 있으면 제외
   (`--show-excluded` 로 전부 확인 가능)
 - **최종 확정은 사람** — 업태 분류가 부정확해 자동 필터만으로는 걸러지지 않습니다
+
+현재 MVP 범위는 **식당 10곳 · 메뉴 30개**입니다. 식당은 전부 LOCALDATA 영업중 레코드에서
+왔고(주소·좌표 그대로 사용), 메뉴는 업소 공식 홈페이지 또는 공개 맛집 정보에서 옮겼습니다.
+반경 800m 를 고른 근거와 알레르기 표시 제도 현황은
+[research/foreign-tourists-hongdae-allergy.md](research/foreign-tourists-hongdae-allergy.md) 에
+정리해 뒀습니다.
 
 ## 수집 대상 3종
 

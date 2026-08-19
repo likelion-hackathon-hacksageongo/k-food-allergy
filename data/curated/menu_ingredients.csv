@@ -6,3 +6,14 @@ jangin_dakgalbi,kimchi_roe_bokkeumbap,kimchi,always,main,add,unverified,"메뉴�
 jangin_dakgalbi,kimchi_roe_bokkeumbap,flying_fish_roe,always,main,add,unverified,"메뉴명 ""김치 날치알 볶음밥"" 에 날치알 명시"
 yukjeon_gukbap_hongdae,yukjeon_sogogi_gukbap,yukjeon,always,main,add,official_menu,메뉴명에 육전 명시
 yukjeon_gukbap_hongdae,sogogi_gukbap_jeongsik,yukjeon,sometimes,main,add,official_menu,육전 또는 완자 택1 — 선택 시에만 포함
+nokwon_ssambap,nokwon_ssambap,pork,always,main,add,unverified,제육+오징어+버섯 삼합 구성
+nokwon_ssambap,nokwon_ssambap,squid,always,main,add,unverified,제육+오징어+버섯 삼합 구성
+nokwon_ssambap,nokwon_ssambap,mushroom,always,main,add,unverified,제육+오징어+버섯 삼합 구성
+jeju_eunhuine_haejangguk,haejangguk,seonji,always,main,add,unverified,제주식 선지해장국 — 상호·업종이 선지해장국
+jeju_eunhuine_haejangguk,haejangguk,gopchang,sometimes,main,add,unverified,선지와 함께 내장이 들어가는 경우가 많음
+jeju_eunhuine_haejangguk,naejangtang,gopchang,always,main,add,unverified,"메뉴명 ""내장탕"" 에 소 내장 명시"
+jeju_eunhuine_haejangguk,naejangtang,beef_tripe,usually,main,add,unverified,내장탕에는 곱창과 양이 함께 들어감
+hongdae_budae_jjigae,daechang_budae_bokkeum,gopchang,always,main,add,unverified,"메뉴명 ""한우대창"" 명시 — 대창은 곱창과 같은 소 내장"
+wonhalmeoni_bossam_hongdae,gul_bossam,oyster,always,main,add,unverified,"메뉴명 ""어리굴젓"" 에 굴 명시"
+baeknyeon_samgyetang,deulkkae_samgyetang,perilla_seed,always,main,add,official_menu,"메뉴명 ""들깨삼계탕"" 에 들깨 명시"
+baeknyeon_samgyetang,heukmaneul_samgyetang,garlic,always,main,add,official_menu,"메뉴명 ""흑마늘삼계탕"" 에 마늘 명시"

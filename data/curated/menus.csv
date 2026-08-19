@@ -11,3 +11,21 @@ jangin_dakgalbi,kimchi_roe_bokkeumbap,Kimchi Flying Fish Roe Fried Rice,김치 �
 yukjeon_gukbap_hongdae,sogogi_gukbap,Beef and Rice Soup,소고기국밥,,sogogi_gukbap,pattern,,official_menu,,2026-08-17,hanjoon,
 yukjeon_gukbap_hongdae,yukjeon_sogogi_gukbap,Beef Jeon on Beef and Rice Soup,육전 소고기국밥,,sogogi_gukbap,pattern,,official_menu,,2026-08-17,hanjoon,
 yukjeon_gukbap_hongdae,sogogi_gukbap_jeongsik,Beef and Rice Soup Set Menu,소고기국밥 정식,,sogogi_gukbap,pattern,,official_menu,,2026-08-17,hanjoon,
+dongkyo_gimbap,gyeranmali_gimbap,Egg Roll Gimbap,계란말이김밥,,gimbap,pattern,,unverified,https://www.diningcode.com/profile.php?rid=pN6hIL0JkQju,2026-08-18,hanjoon,대표메뉴
+dongkyo_gimbap,gogi_mandu,Meat Dumplings,고기만두,,mandu,pattern,,unverified,https://www.diningcode.com/profile.php?rid=pN6hIL0JkQju,2026-08-18,hanjoon,대표메뉴
+gamnamujip_gisa_sikdang,so_bulgogi,Beef Bulgogi,소불고기,,bulgogi,pattern,,unverified,https://www.diningcode.com/profile.php?rid=NlHNTdkgXxqI,2026-08-18,hanjoon,
+jeju_eunhuine_haejangguk,haejangguk,Haejangguk (Blood Curd Hangover Soup),해장국,,seonjiguk,pattern,,unverified,https://www.diningcode.com/profile.php?rid=ovu0cwyxUg5h,2026-08-18,hanjoon,제주식 선지해장국 — 선지국 패턴 + 선지·내장 보정
+jeju_eunhuine_haejangguk,naejangtang,Beef Offal Soup,내장탕,,seonjiguk,pattern,,unverified,https://www.diningcode.com/profile.php?rid=ovu0cwyxUg5h,2026-08-18,hanjoon,선지 없이 내장만 — 국물 구성은 선지국과 동일
+jeju_eunhuine_haejangguk,dombegogi,Dombe Gogi (Jeju Sliced Boiled Pork),돔베고기,,suyuk,pattern,,unverified,https://www.diningcode.com/profile.php?rid=ovu0cwyxUg5h,2026-08-18,hanjoon,제주식 수육 — 도마(돔베)에 썰어 냄
+hongdae_budae_jjigae,budae_jjigae,Budae Jjigae (Army Stew),부대찌개,,budae_jjigae,pattern,,unverified,https://www.tabling.co.kr/place/67a19c3bfb544fef682bd1b4,2026-08-18,hanjoon,밥·라면사리·반찬 포함
+hongdae_budae_jjigae,daechang_budae_bokkeum,Hanwoo Beef Intestine Budae Stir-fry,한우대창 부대볶음,,budae_jjigae,pattern,,unverified,https://www.tabling.co.kr/place/67a19c3bfb544fef682bd1b4,2026-08-18,hanjoon,국물 없는 볶음 형태 — 부대찌개 재료 + 대창
+hongdae_budae_jjigae,galbisal_modeum_gui,Assorted Short Rib Grill,갈빗살 모듬구이,,galbigui,pattern,,unverified,https://www.tabling.co.kr/place/67a19c3bfb544fef682bd1b4,2026-08-18,hanjoon,
+wonhalmeoni_bossam_hongdae,bossam_1in,Bossam for One,1인 보쌈,,bossam,pattern,,unverified,https://www.diningcode.com/profile.php?rid=5E7yOs9mim7Y,2026-08-18,hanjoon,
+wonhalmeoni_bossam_hongdae,maeun_bossam,Spicy Bossam,매운火보쌈,,bossam,pattern,,unverified,https://www.diningcode.com/profile.php?rid=5E7yOs9mim7Y,2026-08-18,hanjoon,매운 양념 추가
+wonhalmeoni_bossam_hongdae,gul_bossam,Oyster Bossam,어리굴젓 굴보쌈,,bossam,pattern,,unverified,https://www.diningcode.com/profile.php?rid=5E7yOs9mim7Y,2026-08-18,hanjoon,어리굴젓(굴 젓갈) 동반 — 연체류 주의
+baeknyeon_samgyetang,baeknyeon_samgyetang,Baeknyeon Samgyetang,백년삼계탕,,samgyetang,pattern,,official_menu,https://100tojong.com/,2026-08-18,hanjoon,대표메뉴
+baeknyeon_samgyetang,deulkkae_samgyetang,Perilla Seed Samgyetang,들깨삼계탕,,samgyetang,pattern,,official_menu,https://100tojong.com/,2026-08-18,hanjoon,
+baeknyeon_samgyetang,heukmaneul_samgyetang,Black Garlic Samgyetang,흑마늘삼계탕,,samgyetang,pattern,,official_menu,https://100tojong.com/,2026-08-18,hanjoon,
+idaejo_ppyeodagwi,ppyeo_haejangguk,Pork Backbone Hangover Soup,뼈해장국,,gamjatang,pattern,,unverified,https://www.diningcode.com/profile.php?rid=ntvPzD19PNmI,2026-08-18,hanjoon,1인분 감자탕
+idaejo_ppyeodagwi,gamjatang,Gamjatang (Pork Backbone Stew),감자탕,,gamjatang,pattern,,unverified,https://www.diningcode.com/profile.php?rid=ntvPzD19PNmI,2026-08-18,hanjoon,2~4인분
+idaejo_ppyeodagwi,bokkeumbap,Fried Rice,볶음밥,,bokkeumbap,pattern,,unverified,https://www.diningcode.com/profile.php?rid=ntvPzD19PNmI,2026-08-18,hanjoon,감자탕 국물에 볶아 먹는 사리
