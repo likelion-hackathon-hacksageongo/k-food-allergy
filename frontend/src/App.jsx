@@ -1031,9 +1031,11 @@ function App() {
               </div>
             );
           })()}
-          <button className="next-step" onClick={() => setView("list")}>
-            See restaurants in a list →
-          </button>
+          {!mapSelectedId && (
+            <button className="next-step" onClick={() => setView("list")}>
+              See restaurants in a list →
+            </button>
+          )}
         </div>
       </section>
 
