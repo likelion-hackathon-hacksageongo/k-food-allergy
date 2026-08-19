@@ -57,3 +57,150 @@ body{font-size:16px}.hero-section>p,.panel-copy,.restaurant-card p,.detail-intro
 .map-pin-wrap>span{max-width:125px}@media(max-width:760px){.map-pin-wrap>span{max-width:96px;font-size:9px}.map-pin-wrap>span b{font-size:10px}}
 
 @keyframes spin { to { transform: rotate(360deg); } }
+
+
+/* ============================================
+   Mobile-first responsive + font size improvements
+   WCAG AA minimum: 16px body, 12px minimum for any text
+   Apple HIG: 44px minimum touch target
+   ============================================ */
+
+/* Global font size bump */
+body { font-size: 16px; line-height: 1.5; }
+.hero-section > p { font-size: 17px; line-height: 1.7; }
+.panel-copy { font-size: 14px; }
+.filter-chip { font-size: 13px; padding: 9px 12px; }
+.restaurant-card h3 { font-size: 15px; }
+.restaurant-card p { font-size: 13px; }
+.menu-tags span { font-size: 11px; padding: 5px 8px; }
+.status-pill { font-size: 10px; padding: 5px 8px; }
+.overline { font-size: 11px; }
+.menu-row { font-size: 13px; }
+.menu-row small { font-size: 11px; }
+.insight > p:not(.overline) { font-size: 13px; line-height: 1.7; }
+.korean-question { font-size: 13px; padding: 12px; }
+.detail-status h3 { font-size: 14px; }
+.scan-copy h3 { font-size: 20px; }
+.scan-copy > p { font-size: 13px; }
+.staff-phrase p { font-size: 14px; }
+.staff-phrase b { font-size: 12px; }
+.feedback-form label { font-size: 13px; }
+.feedback-list article b { font-size: 14px; }
+.feedback-list article p { font-size: 12px; }
+.primary-button { font-size: 14px; padding: 14px; min-height: 44px; }
+.nav-links button { font-size: 14px; }
+.modal > p { font-size: 14px; line-height: 1.65; }
+.name-input { font-size: 13px; }
+.name-input input { font-size: 14px; padding: 12px; }
+.allergy-editor button { font-size: 13px; padding: 10px 12px; min-height: 40px; }
+.auth-tabs button { font-size: 14px; }
+footer { font-size: 13px; }
+.map-message:before, .map-message:after { font-size: 13px; }
+
+/* Touch targets — minimum 44px */
+.map-pin { width: 42px; height: 42px; font-size: 20px; }
+.avatar { width: 40px; height: 40px; font-size: 15px; }
+.filter-chip { min-height: 38px; }
+.area-button { padding: 12px 14px; font-size: 13px; }
+.map-control { width: 40px; height: 40px; font-size: 20px; }
+.next-step { padding: 13px 16px; font-size: 13px; }
+.back-button { font-size: 13px; padding: 5px 0 20px; min-height: 44px; }
+
+/* Map detail panel — mobile bottom sheet */
+@media (max-width: 760px) {
+  .map-detail-panel {
+    position: fixed !important;
+    bottom: 75px !important;
+    left: 10px !important;
+    right: 10px !important;
+    max-height: 45vh !important;
+    border-radius: 16px 16px 8px 8px !important;
+    padding: 18px !important;
+    animation: slideUp 0.25s ease-out;
+  }
+  @keyframes slideUp {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  /* Mobile nav larger touch targets */
+  .mobile-nav { height: 76px; }
+  .mobile-nav button { font-size: 10px; gap: 4px; }
+  .mobile-nav button span { font-size: 21px; }
+  
+  /* Scan results — stack on mobile */
+  .scan-result { grid-template-columns: 1fr !important; }
+  .scan-result img { width: 100% !important; height: 160px !important; }
+  
+  /* Feedback page */
+  .feedback-content { padding: 28px 16px; }
+  .feedback-content h1 { font-size: 28px; }
+  
+  /* Cards — larger padding for fat fingers */
+  .restaurant-card { padding: 16px 14px; min-height: 72px; }
+  .menu-idea-card { padding: 12px; }
+  
+  /* Modal — full width bottom sheet style */
+  .modal { padding: 28px 20px; }
+  .modal h2 { font-size: 26px; }
+}
+
+/* Small phones (< 420px) */
+@media (max-width: 420px) {
+  h1 { font-size: 38px; letter-spacing: -2px; }
+  .hero-section > p { font-size: 15px; }
+  .panel-heading h2, .results-top h2 { font-size: 22px; }
+  .restaurant-card h3 { font-size: 14px; }
+  .detail-intro h2 { font-size: 24px; }
+  .map-detail-panel h3 { font-size: 15px !important; }
+}
+
+/* Tablet / wide mobile (420-760px) */
+@media (min-width: 420px) and (max-width: 760px) {
+  .restaurant-grid { grid-template-columns: 1fr 1fr; }
+  .menu-idea-grid { grid-template-columns: 1fr 1fr; }
+}
+
+
+/* Fix: "See restaurants in a list" button above mobile nav */
+@media (max-width: 760px) {
+  .map-area .next-step {
+    position: fixed;
+    bottom: 84px;
+    left: 16px;
+    right: 16px;
+    width: auto;
+    z-index: 12;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,.15);
+  }
+}
+
+
+/* Fix: Map scroll/zoom conflict with page scroll */
+@media (max-width: 760px) {
+  .map-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .side-panel {
+    order: 2;
+    max-height: none;
+  }
+  .map-area {
+    order: 1;
+    height: 55svh;
+    min-height: 350px;
+    position: relative;
+  }
+  .map-area #kakao-map {
+    position: absolute;
+    inset: 0;
+    min-height: unset !important;
+    height: 100% !important;
+  }
+  .map-filters {
+    top: 14px !important;
+    left: 14px !important;
+  }
+}

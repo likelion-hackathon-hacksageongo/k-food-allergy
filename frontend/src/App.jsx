@@ -326,6 +326,7 @@ function App() {
   const [name, setName] = useState("");
   const [loginUsername, setLoginUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [language, setLanguage] = useState(
     () => localStorage.getItem("kfood-language") || "en",
   );
@@ -346,6 +347,7 @@ function App() {
   const [scanLoading, setScanLoading] = useState(false);
   const [directionsUrl, setDirectionsUrl] = useState("");
   const [mapSelectedId, setMapSelectedId] = useState(null);
+  const [mapFilter, setMapFilter] = useState("all"); // "all" | "great" | "neutral"
   const [aiMenuIdeas, setAiMenuIdeas] = useState(null);
   const [restaurantVersion, setRestaurantVersion] = useState(0);
   const [profileVersion, setProfileVersion] = useState(0);
@@ -599,6 +601,8 @@ function App() {
         // 식당 마커 추가
         restaurants.forEach((item) => {
           if (!item.lat || !item.lng) return;
+          if (mapFilter === "great" && item.status !== "great") return;
+          if (mapFilter === "neutral" && item.status !== "neutral") return;
           const position = new kakao.maps.LatLng(item.lat, item.lng);
           const isSafe = item.status === "great";
 
@@ -619,7 +623,7 @@ function App() {
     };
 
     initMap();
-  }, [view, restaurants, restaurantVersion]);
+  }, [view, restaurants, restaurantVersion, mapFilter]);
 
   useEffect(() => {
     const path =
@@ -692,12 +696,9 @@ function App() {
     );
   };
   const finishProfile = async () => {
-    const password = document.querySelector(
-      '.modal input[type="password"]',
-    )?.value;
+    const enteredPassword = password;
     const enteredEmail =
       email.trim() ||
-      document.querySelector('.modal input[type="email"]')?.value?.trim() ||
       "";
     const username = authMode === "signup" ? name.trim() : loginUsername.trim();
     const enteredUsername =
@@ -707,7 +708,7 @@ function App() {
         : "");
     if (
       !enteredUsername ||
-      !password ||
+      !enteredPassword ||
       (authMode === "signup" && !enteredEmail)
     ) {
       setToast(
@@ -726,7 +727,7 @@ function App() {
         authMode,
         enteredUsername,
         enteredEmail,
-        password,
+        enteredPassword,
       );
       localStorage.setItem("kfood-access-token", session.access);
       localStorage.setItem("kfood-refresh-token", session.refresh);
@@ -976,6 +977,11 @@ function App() {
               ◎
             </button>
           </div>
+          <div className="map-filters" style={{position:"absolute",zIndex:5,top:"60px",left:"22px",display:"flex",gap:"6px"}}>
+            <button onClick={() => setMapFilter("all")} style={{padding:"7px 12px",borderRadius:"20px",border: mapFilter === "all" ? "2px solid #2f6b43" : "1px solid #dce4d7",background: mapFilter === "all" ? "#e8f5e3" : "#fffefa",fontSize:"12px",fontWeight:600,color: mapFilter === "all" ? "#2f6b43" : "#5f6863"}}>All</button>
+            <button onClick={() => setMapFilter("great")} style={{padding:"7px 12px",borderRadius:"20px",border: mapFilter === "great" ? "2px solid #2f6b43" : "1px solid #dce4d7",background: mapFilter === "great" ? "#e8f5e3" : "#fffefa",fontSize:"12px",fontWeight:600,color: mapFilter === "great" ? "#2f6b43" : "#5f6863"}}>● Safer to eat</button>
+            <button onClick={() => setMapFilter("neutral")} style={{padding:"7px 12px",borderRadius:"20px",border: mapFilter === "neutral" ? "2px solid #8b938e" : "1px solid #dce4d7",background: mapFilter === "neutral" ? "#f0f1ef" : "#fffefa",fontSize:"12px",fontWeight:600,color: mapFilter === "neutral" ? "#5f6863" : "#5f6863"}}>● Check first</button>
+          </div>
           <div id="kakao-map" ref={mapRef} style={{width:"100%",height:"100%",minHeight:"500px",borderRadius:"12px",background:"#e9efe4"}}>
           </div>
           {mapSelectedId && (() => {
@@ -1182,35 +1188,12 @@ function App() {
                 window.open(`https://map.kakao.com/link/search/${encodeURIComponent(destName)}`, "_blank");
                 return;
               }
-              // 모바일: 카카오맵 앱 열기 시도, 데스크톱: 웹 길찾기
-              const isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
               const originName = language === "ko" ? "홍대입구역" : "Hongdae Station";
+              const webUrl = `https://map.kakao.com/link/from/${encodeURIComponent(originName)},${originLat},${originLng}/to/${encodeURIComponent(destName)},${destLat},${destLng}`;
+              window.open(webUrl, "_blank");
+              const isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
               if (isMobile) {
-                // 카카오맵 앱 URL scheme
-                const appUrl = `kakaomap://route?sp=${originLat},${originLng}&ep=${destLat},${destLng}&by=FOOT`;
-                const webUrl = `https://map.kakao.com/link/from/${encodeURIComponent(originName)},${originLat},${originLng}/to/${encodeURIComponent(destName)},${destLat},${destLng}`;
-                // 앱 열기 시도 → 실패하면 웹으로
-                const start = Date.now();
-                window.location.href = appUrl;
-                setTimeout(() => {
-                  if (Date.now() - start < 2000) {
-                    if (confirm("Kakao Map app is required for directions.\nWould you like to install it?")) {
-                      const isIOS = /iPhone|iPad/i.test(navigator.userAgent);
-                      window.open(isIOS
-                        ? "https://apps.apple.com/app/id304608425"
-                        : "https://play.google.com/store/apps/details?id=net.daum.android.map",
-                        "_blank"
-                      );
-                    } else {
-                      window.open(webUrl, "_blank");
-                    }
-                  }
-                }, 1500);
-              } else {
-                // 데스크톱: 새 탭으로 카카오맵 웹
-                const originName = language === "ko" ? "홍대입구역" : "Hongdae Station";
-                const webUrl = `https://map.kakao.com/link/from/${encodeURIComponent(originName)},${originLat},${originLng}/to/${encodeURIComponent(destName)},${destLat},${destLng}`;
-                window.open(webUrl, "_blank");
+                setToast("Tip: Install Kakao Map app for turn-by-turn navigation.");
               }
             }}
           >
@@ -1486,7 +1469,7 @@ function App() {
                 {authMode === "signup" ? (
                   <label className="name-input">
                     Email address
-                    <input type="email" placeholder="alice@example.com" />
+                    <input type="email" placeholder="alice@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />
                   </label>
                 ) : (
                   <label className="name-input">
@@ -1500,7 +1483,7 @@ function App() {
                 )}
                 <label className="name-input">
                   Password
-                  <input type="password" placeholder="At least 8 characters" onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); finishProfile(); } }} />
+                  <input type="password" placeholder="At least 8 characters" value={password} onChange={(e) => setPassword(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); finishProfile(); } }} />
                 </label>
                 {authMode === "signup" ? (
                   <AllergyEditor profile={profile} onToggle={toggleAllergy} />
