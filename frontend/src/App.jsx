@@ -679,7 +679,9 @@ function App() {
       setToast(error.message);
     }
   };
+  const [previousView, setPreviousView] = useState("list");
   const openRestaurant = (id) => {
+    setPreviousView(view === "detail" ? previousView : view);
     setSelectedId(id);
     setView("detail");
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1168,8 +1170,8 @@ function App() {
         id="restaurant-detail"
       >
         <div className="detail-intro">
-          <button className="back-button" onClick={() => setView("list")}>
-            ← Back to restaurants
+          <button className="back-button" onClick={() => setView(previousView || "list")}>
+            ← Back
           </button>
           <p className="overline">Restaurant and menu details</p>
           <h2>{selected.name}</h2>
