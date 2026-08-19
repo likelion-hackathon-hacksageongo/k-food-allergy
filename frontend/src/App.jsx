@@ -342,6 +342,8 @@ function App() {
   const [toast, setToast] = useState("");
   const [menuPhoto, setMenuPhoto] = useState("");
   const [scanComplete, setScanComplete] = useState(false);
+  const [scanResult, setScanResult] = useState(null);
+  const [scanLoading, setScanLoading] = useState(false);
   const [aiMenuIdeas, setAiMenuIdeas] = useState(null);
   const [restaurantVersion, setRestaurantVersion] = useState(0);
   const [profileVersion, setProfileVersion] = useState(0);
@@ -705,11 +707,39 @@ function App() {
     setModal("");
     setToast(`Area changed to ${value}.`);
   };
-  const selectMenuPhoto = (event) => {
+  const selectMenuPhoto = async (event) => {
     const file = event.target.files?.[0];
     if (!file) return;
     setMenuPhoto(URL.createObjectURL(file));
-    setScanComplete(true);
+    setScanLoading(true);
+    setScanResult(null);
+
+    try {
+      const formData = new FormData();
+      formData.append("image", file);
+      formData.append("allergens", profile.map((item) => apiAllergenKeys[item]).filter(Boolean).join(","));
+      formData.append("language", language || "en");
+
+      const res = await fetch("http://localhost:8100/scan/full", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!res.ok) {
+        const errText = await res.text();
+        console.error("[Scan Error]", res.status, errText);
+        throw new Error("Scan failed");
+      }
+      const data = await res.json();
+      setScanResult(data);
+    } catch (e) {
+      console.error("[Scan Exception]", e);
+      setScanResult(null);
+      setToast("Menu scan failed. Check console for details.");
+    } finally {
+      setScanLoading(false);
+      setScanComplete(true);
+    }
   };
 
   if (view === "feedback" && isSignedIn)
@@ -1183,26 +1213,57 @@ function App() {
                 <b>Take or choose a menu photo</b>
                 <small>JPG, PNG, or HEIC</small>
               </label>
+            ) : scanLoading ? (
+              <div className="scan-result">
+                <img src={menuPhoto} alt="Uploaded menu" />
+                <div className="scan-copy" style={{textAlign:"center",padding:"30px 0"}}>
+                  <div style={{width:"40px",height:"40px",margin:"0 auto 16px",border:"3px solid #e5e7eb",borderTop:"3px solid #2f6b43",borderRadius:"50%",animation:"spin 1s linear infinite"}}></div>
+                  <p className="overline">Analyzing menu...</p>
+                  <p style={{color:"#666",fontSize:"14px"}}>Translating and checking allergens.<br/>This may take 5-10 seconds.</p>
+                </div>
+              </div>
+            ) : scanResult ? (
+              <div className="scan-result">
+                <img src={menuPhoto} alt="Uploaded menu" />
+                <div className="scan-copy">
+                  <p className="overline">Translation & allergen check — {scanResult.total_items} items found</p>
+                  {scanResult.intro_text && (
+                    <div className="staff-phrase">
+                      <b>Show this to staff first</b>
+                      <p style={{margin:"6px 0",fontSize:"15px"}}>{scanResult.intro_text}</p>
+                    </div>
+                  )}
+                  {scanResult.menu_items.map((item, i) => (
+                    <div key={i} style={{margin:"12px 0",padding:"10px",borderRadius:"8px",background: item.safety_level === "danger" ? "#fef2f2" : item.safety_level === "caution" ? "#fefce8" : "#f0fdf4"}}>
+                      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                        <strong>{item.translated_name}</strong>
+                        <span style={{fontSize:"11px",padding:"2px 6px",borderRadius:"4px",background: item.safety_level === "danger" ? "#fca5a5" : item.safety_level === "caution" ? "#fde047" : "#86efac"}}>
+                          {item.safety_level === "danger" ? "⚠ Danger" : item.safety_level === "caution" ? "? Check" : "✓ Safe"}
+                        </span>
+                      </div>
+                      <small style={{color:"#666"}}>{item.original_text} {item.price && `· ${item.price}`}</small>
+                      {item.description && <p style={{margin:"4px 0",fontSize:"13px"}}>{item.description}</p>}
+                      {item.allergen_warnings.map((w, j) => (
+                        <p key={j} style={{margin:"2px 0",fontSize:"12px",color:"#b91c1c"}}>⚠ {w}</p>
+                      ))}
+                      {item.staff_query && (
+                        <div style={{marginTop:"6px",padding:"6px 8px",background:"#fff",borderRadius:"4px",border:"1px solid #e5e7eb"}}>
+                          <small style={{color:"#888"}}>Show to staff:</small>
+                          <p style={{margin:"2px 0",fontSize:"14px",fontWeight:"500"}}>{item.staff_query}</p>
+                          <small style={{color:"#666"}}>{item.query_explanation}</small>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                  <p style={{fontSize:"11px",color:"#888",marginTop:"12px"}}>{scanResult.disclaimer}</p>
+                </div>
+              </div>
             ) : (
               <div className="scan-result">
                 <img src={menuPhoto} alt="Uploaded menu" />
                 <div className="scan-copy">
-                  <p className="overline">Translation & ingredient check</p>
-                  <h3>
-                    Vegetable bibimbap <small>· 채소 비빔밥</small>
-                  </h3>
-                  <p>
-                    Rice with seasonal vegetables, egg, sesame oil, and chili
-                    paste.
-                  </p>
-                  <KoreanAllergenList profile={profile} />
-                  <div className="staff-phrase">
-                    <b>Show this Korean message to staff</b>
-                    <StaffQuestion profile={profile} />
-                    <button onClick={() => setToast("Korean question copied.")}>
-                      Copy Korean question
-                    </button>
-                  </div>
+                  <p className="overline">Scan failed</p>
+                  <p>Could not analyze the menu. Please try again with a clearer photo.</p>
                 </div>
               </div>
             )}
