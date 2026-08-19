@@ -344,12 +344,17 @@ function App() {
   const [scanComplete, setScanComplete] = useState(false);
   const [scanResult, setScanResult] = useState(null);
   const [scanLoading, setScanLoading] = useState(false);
+  const [directionsUrl, setDirectionsUrl] = useState("");
+  const [mapSelectedId, setMapSelectedId] = useState(null);
   const [aiMenuIdeas, setAiMenuIdeas] = useState(null);
   const [restaurantVersion, setRestaurantVersion] = useState(0);
   const [profileVersion, setProfileVersion] = useState(0);
   const profileSnapshot = useRef(null);
   const latestProfile = useRef(profile);
   const latestLanguage = useRef(language);
+  const mapRef = useRef(null);
+  const kakaoMapRef = useRef(null);
+  const markersRef = useRef([]);
   latestProfile.current = profile;
   latestLanguage.current = language;
   const selected = useMemo(
@@ -495,6 +500,8 @@ function App() {
           name: restaurant.name,
           name_ko: restaurant.name_ko,
           type: restaurant.category,
+          lat: restaurant.latitude,
+          lng: restaurant.longitude,
           personalizedStatus: restaurant.personalized?.status,
           personalizedCounts: restaurant.personalized?.counts,
           status: "neutral",
@@ -544,6 +551,76 @@ function App() {
     const timer = setTimeout(() => setToast(""), 2600);
     return () => clearTimeout(timer);
   }, [toast]);
+
+  // Kakao Map SDK 동적 로드
+  useEffect(() => {
+    if (window.kakao?.maps) return;
+    const script = document.createElement("script");
+    script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${import.meta.env.VITE_KAKAO_JS_KEY}&libraries=services&autoload=false`;
+    script.async = true;
+    document.head.appendChild(script);
+  }, []);
+
+  // Kakao Map 초기화 + 마커 업데이트
+  useEffect(() => {
+    if (view !== "map" || !mapRef.current) return;
+
+    // SDK 로드 대기
+    const initMap = () => {
+      if (!window.kakao?.maps) {
+        setTimeout(initMap, 200);
+        return;
+      }
+
+      window.kakao.maps.load(() => {
+        const kakao = window.kakao;
+        const defaultCenter = new kakao.maps.LatLng(37.5563, 126.9237);
+
+        if (!kakaoMapRef.current) {
+          const map = new kakao.maps.Map(mapRef.current, {
+            center: defaultCenter,
+            level: 4,
+          });
+          kakaoMapRef.current = map;
+
+          // "You are here" 마커 (홍대입구역 고정)
+          new kakao.maps.CustomOverlay({
+            position: defaultCenter,
+            content: '<div style="padding:5px 10px;background:#2f6b43;color:#fff;border-radius:14px;font-size:11px;font-weight:600;box-shadow:0 2px 6px rgba(0,0,0,.2)">📍 You are here</div>',
+            map: map,
+            yAnchor: 2.5,
+          });
+        }
+
+        // 기존 마커 제거
+        markersRef.current.forEach((m) => m.setMap(null));
+        markersRef.current = [];
+
+        // 식당 마커 추가
+        restaurants.forEach((item) => {
+          if (!item.lat || !item.lng) return;
+          const position = new kakao.maps.LatLng(item.lat, item.lng);
+          const isSafe = item.status === "great";
+
+          const el = document.createElement("div");
+          el.style.cssText = `cursor:pointer;padding:6px 10px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap;border:2px solid ${isSafe ? "#2f6b43" : "#8b938e"};background:${isSafe ? "#e8f5e3" : "#f7f8f7"};color:${isSafe ? "#2f6b43" : "#5f6863"};box-shadow:0 2px 8px rgba(0,0,0,.12)`;
+          el.textContent = `${item.food} ${language === "ko" ? (item.name_ko || item.name) : item.name || item.name_ko}`;
+          el.onclick = () => setMapSelectedId(item.id);
+
+          const overlay = new kakao.maps.CustomOverlay({
+            position,
+            content: el,
+            map: kakaoMapRef.current,
+            yAnchor: 1.5,
+          });
+          markersRef.current.push(overlay);
+        });
+      });
+    };
+
+    initMap();
+  }, [view, restaurants, restaurantVersion]);
+
   useEffect(() => {
     const path =
       view === "map"
@@ -899,37 +976,48 @@ function App() {
               ◎
             </button>
           </div>
-          <div className="city-map">
-            <div className="river"></div>
-            <div className="road road-one"></div>
-            <div className="road road-two"></div>
-            <div className="road road-three"></div>
-            <span className="map-label hongik">Hongik University</span>
-            <span className="map-label seogyo">Seogyo-dong</span>
-            <span className="map-label yeonnam">Yeonnam-dong</span>
-            {restaurants.map((item) => (
-              <div
-                key={item.id}
-                className="map-pin-wrap"
-                style={{ left: item.x, top: item.y }}
-              >
-                <button
-                  className={`map-pin ${item.status} ${selectedId === item.id ? "selected" : ""}`}
-                  onClick={() => openRestaurant(item.id)}
-                  aria-label={`View ${item.name}`}
-                >
-                  {item.food}
-                </button>
-                <span>
-                  <b>{item.menus[0]}</b>
-                  {item.name}
-                </span>
-              </div>
-            ))}
-            <div className="you-are-here">
-              <span></span> You are here
-            </div>
+          <div id="kakao-map" ref={mapRef} style={{width:"100%",height:"100%",minHeight:"500px",borderRadius:"12px",background:"#e9efe4"}}>
           </div>
+          {mapSelectedId && (() => {
+            const r = restaurants.find((item) => item.id === mapSelectedId);
+            if (!r) return null;
+            return (
+              <div className="map-detail-panel" style={{
+                position:"absolute", bottom:"20px", left:"20px", right:"20px",
+                background:"#fff", borderRadius:"12px", padding:"20px",
+                boxShadow:"0 4px 20px rgba(0,0,0,.15)", zIndex:10,
+                maxHeight:"40vh", overflowY:"auto",
+              }}>
+                <button onClick={() => setMapSelectedId(null)} style={{position:"absolute",top:"10px",right:"14px",border:"none",background:"transparent",fontSize:"18px",cursor:"pointer"}}>×</button>
+                <div style={{display:"flex",alignItems:"center",gap:"10px",marginBottom:"8px"}}>
+                  <span style={{fontSize:"24px"}}>{r.food}</span>
+                  <div>
+                    <h3 style={{margin:0,fontSize:"16px"}}>{language === "ko" ? (r.name_ko || r.name) : r.name || r.name_ko}</h3>
+                    <small style={{color:"#666"}}>{r.type}</small>
+                  </div>
+                  <span style={{marginLeft:"auto",padding:"3px 8px",borderRadius:"10px",fontSize:"11px",fontWeight:600,background: r.status === "great" ? "#e3efe0" : "#f3f4ef",color: r.status === "great" ? "#35684d" : "#5f6863"}}>
+                    {r.status === "great" ? "✓ Safer to visit" : "Check first"}
+                  </span>
+                </div>
+                <p style={{fontSize:"13px",color:"#555",margin:"6px 0"}}>{r.address}</p>
+                <div style={{display:"flex",flexWrap:"wrap",gap:"5px",margin:"10px 0"}}>
+                  {r.menus?.slice(0, 4).map((menu) => (
+                    <span key={menu} style={{fontSize:"11px",background:"#f3f4ef",padding:"4px 7px",borderRadius:"4px"}}>{menu}</span>
+                  ))}
+                </div>
+                <div style={{display:"flex",gap:"8px",marginTop:"12px"}}>
+                  <button onClick={() => openRestaurant(r.id)} style={{flex:1,padding:"9px",background:"#2f6b43",color:"#fff",border:"none",borderRadius:"8px",fontWeight:600,cursor:"pointer"}}>View details</button>
+                  <button onClick={() => {
+                    const destLat = r.lat; const destLng = r.lng;
+                    const destName = r.name_ko || r.name;
+                    if (destLat && destLng) {
+                      window.open(`https://map.kakao.com/link/from/${encodeURIComponent(language === "ko" ? "홍대입구역" : "Hongdae Station")},37.5563,126.9237/to/${encodeURIComponent(destName)},${destLat},${destLng}`, "_blank");
+                    }
+                  }} style={{padding:"9px 14px",background:"#fee500",border:"none",borderRadius:"8px",fontWeight:600,cursor:"pointer"}}>🗺️</button>
+                </div>
+              </div>
+            );
+          })()}
           <button className="next-step" onClick={() => setView("list")}>
             See restaurants in a list →
           </button>
@@ -1081,6 +1169,56 @@ function App() {
           <h2>{selected.name}</h2>
           <p>{selected.type}</p>
           <p className="address">⌖ {selected.address}</p>
+          <button
+            className="directions-button"
+            style={{margin:"8px 0",padding:"8px 16px",background:"#fee500",border:"none",borderRadius:"8px",fontWeight:"600",cursor:"pointer"}}
+            onClick={() => {
+              const originLat = 37.5563;
+              const originLng = 126.9237;
+              const destLat = selected.lat;
+              const destLng = selected.lng;
+              const destName = selected.name_ko || selected.name;
+              if (!destLat || !destLng) {
+                window.open(`https://map.kakao.com/link/search/${encodeURIComponent(destName)}`, "_blank");
+                return;
+              }
+              // 모바일: 카카오맵 앱 열기 시도, 데스크톱: 웹 길찾기
+              const isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
+              const originName = language === "ko" ? "홍대입구역" : "Hongdae Station";
+              if (isMobile) {
+                // 카카오맵 앱 URL scheme
+                const appUrl = `kakaomap://route?sp=${originLat},${originLng}&ep=${destLat},${destLng}&by=FOOT`;
+                const webUrl = `https://map.kakao.com/link/from/${encodeURIComponent(originName)},${originLat},${originLng}/to/${encodeURIComponent(destName)},${destLat},${destLng}`;
+                // 앱 열기 시도 → 실패하면 웹으로
+                const start = Date.now();
+                window.location.href = appUrl;
+                setTimeout(() => {
+                  if (Date.now() - start < 2000) {
+                    if (confirm("Kakao Map app is required for directions.\nWould you like to install it?")) {
+                      const isIOS = /iPhone|iPad/i.test(navigator.userAgent);
+                      window.open(isIOS
+                        ? "https://apps.apple.com/app/id304608425"
+                        : "https://play.google.com/store/apps/details?id=net.daum.android.map",
+                        "_blank"
+                      );
+                    } else {
+                      window.open(webUrl, "_blank");
+                    }
+                  }
+                }, 1500);
+              } else {
+                // 데스크톱: 새 탭으로 카카오맵 웹
+                const originName = language === "ko" ? "홍대입구역" : "Hongdae Station";
+                const webUrl = `https://map.kakao.com/link/from/${encodeURIComponent(originName)},${originLat},${originLng}/to/${encodeURIComponent(destName)},${destLat},${destLng}`;
+                window.open(webUrl, "_blank");
+              }
+            }}
+          >
+            🗺️ Get directions
+          </button>
+          <small style={{display:"block",fontSize:"11px",color:"#888",marginBottom:"8px"}}>
+            📱 Mobile: Opens Kakao Map app (free download required)
+          </small>
           <button
             className={`heart-button ${saved.includes(selected.id) ? "saved" : ""}`}
             onClick={toggleSaved}
@@ -1274,7 +1412,19 @@ function App() {
           </div>
         </div>
       )}
-      {modal && modal !== "scan" && (
+      {modal === "directions" && directionsUrl && (
+        <div className="modal-backdrop" onClick={() => setModal("")}>
+          <div className="modal" style={{maxWidth:"90vw",width:"600px",height:"80vh",padding:"0",overflow:"hidden"}} onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setModal("")} style={{position:"absolute",top:"10px",right:"10px",zIndex:10}}>×</button>
+            <iframe
+              src={directionsUrl}
+              style={{width:"100%",height:"100%",border:"none",borderRadius:"8px"}}
+              title="Kakao Map Directions"
+            />
+          </div>
+        </div>
+      )}
+      {modal && modal !== "scan" && modal !== "directions" && (
         <div
           className="modal-backdrop"
           role="presentation"
