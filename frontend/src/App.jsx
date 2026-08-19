@@ -101,29 +101,30 @@ const getMapStatus = (restaurant) =>
     : "neutral";
 const likelihoodPresentation = (allergens = []) => {
   const likelihoods = allergens.map((item) => item.likelihood);
+  const matchedNames = [...new Set(allergens.map((item) => profileLabels[item.allergen_key] || item.allergen_key))].join(", ");
   if (likelihoods.includes("confirmed"))
     return {
       tone: "confirmed",
       label: "confirmed",
-      description: "Contains this allergen (90%+ confidence).",
+      description: `Contains ${matchedNames} (90%+ confidence).`,
     };
   if (likelihoods.includes("likely"))
     return {
       tone: "warning",
       label: "likely",
-      description: "Likely contains this allergen (70–80% confidence).",
+      description: `May contain ${matchedNames} — check with staff.`,
     };
   if (likelihoods.includes("possible"))
     return {
       tone: "warning",
       label: "possible",
-      description: "May contain this allergen (20–30% confidence).",
+      description: `May contain ${matchedNames} — check with staff.`,
     };
   if (likelihoods.includes("none"))
     return {
       tone: "none",
       label: "none",
-      description: "Unlikely to contain this allergen.",
+      description: `Unlikely to contain ${matchedNames}.`,
     };
   return null;
 };
