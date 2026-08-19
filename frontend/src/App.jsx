@@ -1349,7 +1349,7 @@ function App() {
                 )}
                 <label className="name-input">
                   Password
-                  <input type="password" placeholder="At least 8 characters" />
+                  <input type="password" placeholder="At least 8 characters" onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); finishProfile(); } }} />
                 </label>
                 {authMode === "signup" ? (
                   <AllergyEditor profile={profile} onToggle={toggleAllergy} />
