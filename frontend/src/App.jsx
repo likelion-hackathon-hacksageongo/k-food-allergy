@@ -138,17 +138,17 @@ const likelihoodForProfile = (allergens = [], profile = []) => {
   );
 };
 const supportedLanguages = [
-  { code: "ko", label: "한국어" },
-  { code: "en", label: "English" },
-  { code: "ja", label: "日本語" },
-  { code: "zh", label: "中文" },
-  { code: "vi", label: "Tiếng Việt" },
-  { code: "th", label: "ภาษาไทย" },
-  { code: "es", label: "Español" },
-  { code: "fr", label: "Français" },
-  { code: "de", label: "Deutsch" },
-  { code: "ru", label: "Русский" },
-  { code: "id", label: "Bahasa Indonesia" },
+  { code: "en", label: "English", active: true },
+  { code: "ko", label: "한국어", active: true },
+  { code: "ja", label: "日本語", active: false },
+  { code: "zh", label: "中文", active: false },
+  { code: "vi", label: "Tiếng Việt", active: false },
+  { code: "th", label: "ภาษาไทย", active: false },
+  { code: "es", label: "Español", active: false },
+  { code: "fr", label: "Français", active: false },
+  { code: "de", label: "Deutsch", active: false },
+  { code: "ru", label: "Русский", active: false },
+  { code: "id", label: "Bahasa Indonesia", active: false },
 ];
 const restaurants = [
   {
@@ -1630,7 +1630,35 @@ function App() {
                   <input type="password" placeholder="At least 8 characters" value={password} onChange={(e) => setPassword(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); finishProfile(); } }} />
                 </label>
                 {authMode === "signup" ? (
-                  <AllergyEditor profile={profile} onToggle={toggleAllergy} />
+                  <>
+                    <div style={{margin:"16px 0"}}>
+                      <p style={{fontSize:"11px",color:"#627168",marginBottom:"8px"}}>Preferred language</p>
+                      <div style={{display:"flex",flexWrap:"wrap",gap:"6px"}}>
+                        {supportedLanguages.map(({ code, label, active }) => (
+                          <button
+                            key={code}
+                            type="button"
+                            onClick={() => { if (active) setLanguage(code); }}
+                            disabled={!active}
+                            style={{
+                              padding:"7px 10px",
+                              borderRadius:"18px",
+                              border: language === code ? "2px solid #2f6b43" : "1px solid #dce4d8",
+                              background: !active ? "#f0f0ee" : language === code ? "#e8f5e3" : "#fffefa",
+                              color: !active ? "#aaa" : language === code ? "#2f6b43" : "#5f6863",
+                              fontSize:"11px",
+                              fontWeight: language === code ? 700 : 400,
+                              cursor: active ? "pointer" : "default",
+                              opacity: active ? 1 : 0.6,
+                            }}
+                          >
+                            {label}{!active && " ⏳"}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    <AllergyEditor profile={profile} onToggle={toggleAllergy} />
+                  </>
                 ) : (
                   <div className="sign-in-profile">
                     <span>✓</span>
@@ -1715,23 +1743,29 @@ function App() {
                 <p>Your map and recommendations update as soon as you save.</p>
                 <label className="language-select">
                   Display language
-                  <select
-                    value={language}
-                    onChange={(event) => {
-                      setLanguage(event.target.value);
-                      setToast(
-                        event.target.value === "en"
-                          ? "Display language set to English."
-                          : "Korean is selected. More languages are coming soon.",
-                      );
-                    }}
-                  >
-                    <option value="en">English</option>
-                    <option value="ko">한국어 (coming soon)</option>
-                    <option disabled>日本語 (coming soon)</option>
-                    <option disabled>中文 (coming soon)</option>
-                    <option disabled>Español (coming soon)</option>
-                  </select>
+                  <div style={{display:"flex",flexWrap:"wrap",gap:"6px",marginTop:"8px"}}>
+                    {supportedLanguages.map(({ code, label, active }) => (
+                      <button
+                        key={code}
+                        type="button"
+                        onClick={() => { if (active) setLanguage(code); }}
+                        disabled={!active}
+                        style={{
+                          padding:"8px 12px",
+                          borderRadius:"20px",
+                          border: language === code ? "2px solid #2f6b43" : "1px solid #dce4d8",
+                          background: !active ? "#f0f0ee" : language === code ? "#e8f5e3" : "#fffefa",
+                          color: !active ? "#aaa" : language === code ? "#2f6b43" : "#5f6863",
+                          fontSize:"12px",
+                          fontWeight: language === code ? 700 : 400,
+                          cursor: active ? "pointer" : "default",
+                          opacity: active ? 1 : 0.6,
+                        }}
+                      >
+                        {label}{!active && " (coming soon)"}
+                      </button>
+                    ))}
+                  </div>
                 </label>
                 <AllergyEditor profile={profile} onToggle={toggleAllergy} />
                 <button

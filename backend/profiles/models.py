@@ -22,6 +22,7 @@ class AllergenChoice(models.TextChoices):
 
 
 class LanguageChoice(models.TextChoices):
+    KOREAN = 'ko', 'Korean'
     ENGLISH = 'en', 'English'
     CHINESE = 'zh', 'Chinese'
     JAPANESE = 'ja', 'Japanese'
