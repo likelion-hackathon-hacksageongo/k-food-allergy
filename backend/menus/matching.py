@@ -54,6 +54,14 @@ def evaluate_menu_item(menu_item: MenuItem, user_allergens: set[str]) -> dict:
 
     Returns: {"status": Verdict.*, "label": str, "reasons": [str, ...]}
     """
+    # 알레르겐 없으면 무조건 safe
+    if not user_allergens:
+        return {
+            'status': Verdict.SAFE,
+            'label': Verdict.LABELS[Verdict.SAFE],
+            'reasons': [],
+        }
+
     allergens = list(menu_item.allergens.all())
     matched = [a for a in allergens if a.allergen_key in user_allergens]
 
@@ -66,6 +74,13 @@ def evaluate_menu_item(menu_item: MenuItem, user_allergens: set[str]) -> dict:
         }
 
     if menu_item.info_level == MenuItem.InfoLevel.INSUFFICIENT:
+        # 정보 부족이지만 매칭된 알레르겐이 없으면 safe
+        if not matched:
+            return {
+                'status': Verdict.SAFE,
+                'label': Verdict.LABELS[Verdict.SAFE],
+                'reasons': [],
+            }
         return {
             'status': Verdict.UNCONFIRMED,
             'label': Verdict.LABELS[Verdict.UNCONFIRMED],
@@ -73,14 +88,26 @@ def evaluate_menu_item(menu_item: MenuItem, user_allergens: set[str]) -> dict:
         }
 
     low_risk = [a for a in matched if a.likelihood in (MenuAllergen.Likelihood.LIKELY, MenuAllergen.Likelihood.POSSIBLE)]
-    if low_risk or menu_item.info_level == MenuItem.InfoLevel.PATTERN:
-        reasons = [_reason(a) for a in low_risk] or [
-            '공식 확인 정보가 아닌 일반적인 조리 패턴을 기준으로 한 분석입니다. 현장 확인을 권장합니다.'
-        ]
+    if low_risk:
         return {
             'status': Verdict.WARNING,
             'label': Verdict.LABELS[Verdict.WARNING],
-            'reasons': reasons,
+            'reasons': [_reason(a) for a in low_risk],
+        }
+
+    # pattern이지만 매칭된 알레르겐이 없으면 safe
+    if menu_item.info_level == MenuItem.InfoLevel.PATTERN and not matched:
+        return {
+            'status': Verdict.SAFE,
+            'label': Verdict.LABELS[Verdict.SAFE],
+            'reasons': [],
+        }
+
+    if menu_item.info_level == MenuItem.InfoLevel.PATTERN:
+        return {
+            'status': Verdict.WARNING,
+            'label': Verdict.LABELS[Verdict.WARNING],
+            'reasons': ['공식 확인 정보가 아닌 일반적인 조리 패턴을 기준으로 한 분석입니다. 현장 확인을 권장합니다.'],
         }
 
     return {
