@@ -747,6 +747,7 @@ function App() {
       <FeedbackPage
         onNavigate={setView}
         onProfile={() => setModal("profile")}
+        language={language}
       />
     );
   return (
@@ -1517,7 +1518,7 @@ function App() {
   );
 }
 
-function FeedbackPage({ onNavigate, onProfile }) {
+function FeedbackPage({ onNavigate, onProfile, language }) {
   const onBack = () => onNavigate("recommendations");
   const [restaurants, setRestaurants] = useState([]);
   const [feedbacks, setFeedbacks] = useState([]);
@@ -1687,7 +1688,12 @@ function FeedbackPage({ onNavigate, onProfile }) {
             {feedbacks.length ? (
               feedbacks.map((feedback) => (
                 <article key={feedback.id}>
-                  <b>Restaurant #{feedback.restaurant}</b>
+                  <b>{(() => {
+                    const r = restaurants.find((r) => r.id === feedback.restaurant);
+                    if (!r) return `Restaurant #${feedback.restaurant}`;
+                    if (language === "ko") return r.name_ko || r.name;
+                    return r.name_ko ? `${r.name_ko} (${r.name})` : r.name;
+                  })()}</b>
                   <p>
                     Staff information:{" "}
                     {feedback.staff_provided_info || "Not recorded"}
