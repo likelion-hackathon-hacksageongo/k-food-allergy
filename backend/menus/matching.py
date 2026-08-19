@@ -65,7 +65,18 @@ def evaluate_menu_item(menu_item: MenuItem, user_allergens: set[str]) -> dict:
     allergens = list(menu_item.allergens.all())
     matched = [a for a in allergens if a.allergen_key in user_allergens]
 
-    high_risk = [a for a in matched if a.likelihood == MenuAllergen.Likelihood.CONFIRMED]
+    # 3축 안전 모델: 출처가 pattern(추정)이면 likelihood 상한 적용
+    # confirmed도 likely로 cap — 추정 정보로는 "확인됨" 경고를 줄 수 없음
+    is_pattern = menu_item.info_level == MenuItem.InfoLevel.PATTERN
+    is_insufficient = menu_item.info_level == MenuItem.InfoLevel.INSUFFICIENT
+
+    def effective_likelihood(a):
+        """출처 신뢰도에 따라 likelihood를 cap"""
+        if is_pattern and a.likelihood == MenuAllergen.Likelihood.CONFIRMED:
+            return MenuAllergen.Likelihood.LIKELY
+        return a.likelihood
+
+    high_risk = [a for a in matched if effective_likelihood(a) == MenuAllergen.Likelihood.CONFIRMED]
     if high_risk:
         return {
             'status': Verdict.DANGER,
@@ -73,7 +84,7 @@ def evaluate_menu_item(menu_item: MenuItem, user_allergens: set[str]) -> dict:
             'reasons': [_reason(a) for a in high_risk],
         }
 
-    if menu_item.info_level == MenuItem.InfoLevel.INSUFFICIENT:
+    if is_insufficient:
         # 정보 부족이지만 매칭된 알레르겐이 없으면 safe
         if not matched:
             return {
@@ -87,7 +98,7 @@ def evaluate_menu_item(menu_item: MenuItem, user_allergens: set[str]) -> dict:
             'reasons': ['이 메뉴는 아직 확인된 재료 정보가 부족합니다. 현장 문의를 권장합니다.'],
         }
 
-    low_risk = [a for a in matched if a.likelihood in (MenuAllergen.Likelihood.LIKELY, MenuAllergen.Likelihood.POSSIBLE)]
+    low_risk = [a for a in matched if effective_likelihood(a) in (MenuAllergen.Likelihood.LIKELY, MenuAllergen.Likelihood.POSSIBLE)]
     if low_risk:
         return {
             'status': Verdict.WARNING,
@@ -96,7 +107,7 @@ def evaluate_menu_item(menu_item: MenuItem, user_allergens: set[str]) -> dict:
         }
 
     # pattern이지만 매칭된 알레르겐이 없으면 safe
-    if menu_item.info_level == MenuItem.InfoLevel.PATTERN and not matched:
+    if is_pattern and not matched:
         return {
             'status': Verdict.SAFE,
             'label': Verdict.LABELS[Verdict.SAFE],
