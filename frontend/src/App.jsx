@@ -350,6 +350,8 @@ function App() {
   const [mapSelectedId, setMapSelectedId] = useState(null);
   const [mapFilter, setMapFilter] = useState("all"); // "all" | "great" | "neutral"
   const [aiMenuIdeas, setAiMenuIdeas] = useState(null);
+  const [aiAnalysis, setAiAnalysis] = useState(null);
+  const [aiAnalysisLoading, setAiAnalysisLoading] = useState(false);
   const [restaurantVersion, setRestaurantVersion] = useState(0);
   const [profileVersion, setProfileVersion] = useState(0);
   const profileSnapshot = useRef(null);
@@ -549,6 +551,31 @@ function App() {
       if (description) description.textContent = presentation.description;
     });
   }, [profile, selected, view, restaurantVersion]);
+
+  // AI 심층 분석 호출 (식당 상세 진입 시)
+  useEffect(() => {
+    if (view !== "detail" || !selected?.id) return;
+    if (!profile.length) { setAiAnalysis(null); return; }
+    const token = localStorage.getItem("kfood-access-token");
+    if (!token) return;
+
+    let active = true;
+    setAiAnalysisLoading(true);
+    setAiAnalysis(null);
+
+    fetch("/api/analysis/restaurant/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+      body: JSON.stringify({ restaurant_id: Number(selected.id) }),
+    })
+      .then((res) => res.ok ? res.json() : null)
+      .then((data) => { if (active) setAiAnalysis(data); })
+      .catch(() => { if (active) setAiAnalysis(null); })
+      .finally(() => { if (active) setAiAnalysisLoading(false); });
+
+    return () => { active = false; };
+  }, [view, selected?.id, profile]);
+
   useEffect(() => {
     if (!toast) return undefined;
     const timer = setTimeout(() => setToast(""), 2600);
@@ -1283,20 +1310,102 @@ function App() {
               })()}
             </div>
             <div className="insight">
-              <p className="overline">K-food ingredient insight</p>
-              <p>
-                {selectedAllergyNames.length
-                  ? `Menu tokens are filtered for your profile: ${selectedAllergyNames.join(", ")}.`
-                  : "Add allergies to your profile to see personalized menu tokens."}
-              </p>
+              <p className="overline">AI-powered analysis</p>
+              {aiAnalysisLoading && (
+                <p style={{color:"#666",fontSize:"13px"}}>
+                  <span style={{display:"inline-block",width:"14px",height:"14px",border:"2px solid #e5e7eb",borderTop:"2px solid #2f6b43",borderRadius:"50%",animation:"spin 1s linear infinite",verticalAlign:"middle",marginRight:"6px"}}></span>
+                  Analyzing with AI...
+                </p>
+              )}
+              {aiAnalysis && (
+                <div style={{fontSize:"13px",lineHeight:"1.7"}}>
+                  {aiAnalysis.risk_summary && (
+                    <p style={{color:"#555",margin:"0 0 10px"}}>{aiAnalysis.risk_summary}</p>
+                  )}
+                  {aiAnalysis.cross_contamination_notes && (
+                    <p style={{color:"#6b7370",margin:"0 0 10px",fontSize:"12px"}}>⚠ {aiAnalysis.cross_contamination_notes}</p>
+                  )}
+                  {aiAnalysis.menu_results?.length > 0 && (
+                    <details style={{marginTop:"10px"}}>
+                      <summary style={{cursor:"pointer",color:"#2f6b43",fontSize:"12px",fontWeight:600}}>View AI menu details ({aiAnalysis.menu_results.length} items)</summary>
+                      <div style={{marginTop:"8px"}}>
+                        {aiAnalysis.menu_results.map((m) => (
+                          <div key={m.menu_id} style={{padding:"8px 0",borderBottom:"1px solid #eee"}}>
+                            <strong style={{fontSize:"12px"}}>{m.menu_name}</strong>
+                            <small style={{display:"block",color:"#666",marginTop:"2px"}}>{m.summary}</small>
+                            {m.check_items?.length > 0 && (
+                              <ul style={{margin:"4px 0 0",paddingLeft:"16px"}}>
+                                {m.check_items.map((item, i) => <li key={i} style={{fontSize:"11px",color:"#6b7370"}}>{item}</li>)}
+                              </ul>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </details>
+                  )}
+                </div>
+              )}
+              {!aiAnalysis && !aiAnalysisLoading && (
+                <p style={{color:"#666",fontSize:"13px"}}>
+                  {profile.length ? "AI analysis unavailable. Please try again later." : "Add allergies to your profile to see AI analysis."}
+                </p>
+              )}
+              <hr style={{border:"none",borderTop:"1px solid #eee",margin:"14px 0"}} />
               <button onClick={() => setShowQuestion(!showQuestion)}>
-                {showQuestion ? "Hide Korean question" : "Show Korean question"}{" "}
+                {showQuestion ? "Hide staff questions" : "Show staff questions"}{" "}
                 <span>→</span>
               </button>
               {showQuestion && (
-                <div className="korean-question">
-                  <b>Show this to staff</b>
-                  <br />{staffQuestion}
+                <div style={{marginTop:"10px"}}>
+                  {profile.length > 0 && (
+                    <div className="korean-question" style={{marginBottom:"10px"}}>
+                      <b>🗣️ Show this first (intro)</b>
+                      <p style={{margin:"6px 0",fontSize:"14px"}}>
+                        저는 {profile.map((a) => koreanAllergens[a] || a).join(", ")}에 심한 알레르기가 있습니다.
+                      </p>
+                      <small style={{color:"#6b7370"}}>
+                        "I have a severe allergy to {profile.join(", ")}."
+                      </small>
+                    </div>
+                  )}
+                  {(selected.menuDetails || [])
+                    .filter((menu) => {
+                      const lp = likelihoodForProfile(menu.allergens, profile);
+                      return lp && lp.tone !== "none";
+                    })
+                    .slice(0, 3)
+                    .map((menu) => {
+                      const matchedAllergens = (menu.allergens || [])
+                        .filter((a) => profile.map((p) => apiAllergenKeys[p]).includes(a.allergen_key))
+                        .map((a) => koreanAllergens[Object.entries(apiAllergenKeys).find(([,v]) => v === a.allergen_key)?.[0]] || a.allergen_key);
+                      const koNames = [...new Set(matchedAllergens)].join(", ");
+                      const menuName = menu.name_ko || menu.name;
+                      return (
+                        <div className="korean-question" key={menu.id || menu.name} style={{marginBottom:"8px"}}>
+                          <b>📋 {menu.name}</b>
+                          <p style={{margin:"6px 0",fontSize:"14px"}}>
+                            이 {menuName}에 {koNames}이/가 들어가나요?
+                          </p>
+                          <small style={{color:"#6b7370"}}>
+                            "Does this {menu.name} contain {[...new Set((menu.allergens || []).filter((a) => profile.map((p) => apiAllergenKeys[p]).includes(a.allergen_key)).map((a) => Object.entries(apiAllergenKeys).find(([,v]) => v === a.allergen_key)?.[0] || a.allergen_key))].join(", ")}?"
+                          </small>
+                        </div>
+                      );
+                    })}
+                  {profile.length > 0 && (
+                    <div className="korean-question" style={{marginBottom:"8px"}}>
+                      <b>🍲 Broth / Sauce</b>
+                      <p style={{margin:"6px 0",fontSize:"14px"}}>
+                        육수나 양념에 {profile.map((a) => koreanAllergens[a] || a).join(", ")}이/가 들어가나요?
+                      </p>
+                      <small style={{color:"#6b7370"}}>
+                        "Does the broth or sauce contain {profile.join(", ")}?"
+                      </small>
+                    </div>
+                  )}
+                  <div style={{marginTop:"10px",padding:"8px",background:"#f7f8f7",borderRadius:"6px",fontSize:"11px",color:"#6b7370"}}>
+                    💡 Staff answers: look for 네 (yes) or 아니요 (no)
+                  </div>
                 </div>
               )}
             </div>
