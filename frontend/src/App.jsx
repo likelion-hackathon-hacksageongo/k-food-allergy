@@ -150,6 +150,142 @@ const supportedLanguages = [
   { code: "ru", label: "Русский", active: false },
   { code: "id", label: "Bahasa Indonesia", active: false },
 ];
+const i18n = {
+  en: {
+    forYou: "For you",
+    exploreMap: "Explore map",
+    restaurants: "Restaurants",
+    feedback: "Feedback",
+    myProfile: "My profile",
+    saferToVisit: "Safer to visit",
+    checkFirst: "Check first",
+    infoUnavailable: "Check first",
+    noKnownRisk: "No known risk",
+    getDirections: "Get directions",
+    viewDetails: "View details",
+    back: "← Back",
+    showStaffQuestions: "Show staff questions",
+    hideStaffQuestions: "Hide staff questions",
+    seeList: "See restaurants in a list →",
+    scanMenu: "Scan a menu photo",
+    scanSubtitle: "Translate a menu and check ingredients",
+    analyzing: "Analyzing with AI...",
+    aiUnavailable: "AI analysis unavailable. Please try again later.",
+    addAllergies: "Add allergies to your profile to see AI analysis.",
+    staffTip: "Staff answers: look for 네 (yes) or 아니요 (no)",
+    saferToEat: "Safer to eat",
+    savedPlaces: "Saved places",
+    heroTitle: "Korean food,",
+    heroTitleEm: "made safer for you.",
+    heroDesc: "Add your allergies and dietary needs to discover Korean restaurants and menus that fit the way you eat.",
+    mobileTip: "Mobile: Opens Kakao Map app (free download required)",
+    all: "All",
+    saferFilter: "● Safer to eat",
+    checkFilter: "● Check first",
+    // Section headers & descriptions
+    personalMap: "Your personal Korean food map",
+    recommendTitle: "Korean food ideas for you",
+    recommendSub: "K-Food top 10 · personalized for you",
+    nearbyRestaurants: "Korean restaurants nearby",
+    pickedForYou: "Picked for you",
+    basedOnProfile: "Based on your profile",
+    addAllergyInfo: "Add allergy information",
+    restaurantRec: "Restaurant recommendations",
+    recDesc: "We recommend nearby restaurants that match your dietary needs.",
+    changeArea: "Change search area →",
+    aiAnalysis: "AI-powered analysis",
+    menuIdeas: "Menu ideas for you",
+    savedKeep: "Keep your safe picks close",
+    noSavedYet: "No saved places yet. Open a restaurant and tap the heart to save it here.",
+    saveRestaurant: "Save restaurant",
+    saved: "Saved",
+    disclaimer: "Please confirm allergen information with staff on site.",
+    exploreFooter: "Explore Korean food for your needs.",
+    // Additional
+    savedList: "SAVED LIST",
+    greenLabel: "Green: Safer to eat",
+    grayLabel: "Gray: Check first",
+    youAreHere: "You are here",
+    addAllergiesBtn: "+ Add allergies or dietary needs",
+    restaurantDetail: "Restaurant and menu details",
+    menuIdeasForYou: "MENU IDEAS FOR YOU",
+    analyzingAI: "Analyzing with AI...",
+    showStaffQ: "Show staff questions",
+    hideStaffQ: "Hide staff questions",
+    exploreMapBtn: "Explore map →",
+    likelihoodGuideConfirmed: "Contains this allergen (90%+ confidence).",
+    likelihoodGuideLikely: "Likely contains this allergen (70–80% confidence).",
+    likelihoodGuidePossible: "May contain this allergen (20–30% confidence).",
+    likelihoodGuideNone: "Unlikely to contain this allergen.",
+  },
+  ko: {
+    forYou: "추천",
+    exploreMap: "지도 탐색",
+    restaurants: "식당 목록",
+    feedback: "피드백",
+    myProfile: "내 프로필",
+    saferToVisit: "방문 가능",
+    checkFirst: "확인 필요",
+    infoUnavailable: "확인 필요",
+    noKnownRisk: "위험 없음",
+    getDirections: "길찾기",
+    viewDetails: "상세 보기",
+    back: "← 뒤로",
+    showStaffQuestions: "직원 문의 문장 보기",
+    hideStaffQuestions: "직원 문의 문장 숨기기",
+    seeList: "식당 목록 보기 →",
+    scanMenu: "메뉴판 스캔",
+    scanSubtitle: "메뉴 번역 및 재료 확인",
+    analyzing: "AI 분석 중...",
+    aiUnavailable: "AI 분석을 사용할 수 없습니다. 나중에 다시 시도해주세요.",
+    addAllergies: "알레르기 프로필을 등록하면 AI 분석을 볼 수 있습니다.",
+    staffTip: "직원 답변: 네 (yes) 또는 아니요 (no)를 확인하세요",
+    saferToEat: "먹을 수 있음",
+    savedPlaces: "저장한 식당",
+    heroTitle: "한식,",
+    heroTitleEm: "당신에게 안전하게.",
+    heroDesc: "알레르기와 식이 제한을 등록하면 맞춤형 한식당과 메뉴를 추천받을 수 있습니다.",
+    mobileTip: "모바일: 카카오맵 앱 필요 (무료 다운로드)",
+    all: "전체",
+    saferFilter: "● 방문 가능",
+    checkFilter: "● 확인 필요",
+    // Section headers & descriptions
+    personalMap: "나만의 한식 알레르기 지도",
+    recommendTitle: "나에게 맞는 한식 메뉴",
+    recommendSub: "K-Food 추천 · 내 프로필 기반",
+    nearbyRestaurants: "근처 한식당",
+    pickedForYou: "맞춤 추천",
+    basedOnProfile: "내 프로필 기준",
+    addAllergyInfo: "알레르기 정보 추가",
+    restaurantRec: "식당 추천",
+    recDesc: "내 식이 조건에 맞는 식당을 추천합니다.",
+    changeArea: "지역 변경 →",
+    aiAnalysis: "AI 분석",
+    menuIdeas: "추천 메뉴",
+    savedKeep: "저장한 식당 모아보기",
+    noSavedYet: "아직 저장한 식당이 없습니다. 식당을 열어 하트를 눌러 저장하세요.",
+    saveRestaurant: "식당 저장",
+    saved: "저장됨",
+    disclaimer: "알레르기 정보는 반드시 현장에서 직원에게 확인하세요.",
+    exploreFooter: "나에게 맞는 한식을 찾아보세요.",
+    // Additional
+    savedList: "저장 목록",
+    greenLabel: "초록: 방문 가능",
+    grayLabel: "회색: 확인 필요",
+    youAreHere: "현재 위치",
+    addAllergiesBtn: "+ 알레르기 및 식이 제한 추가",
+    restaurantDetail: "식당 및 메뉴 상세",
+    menuIdeasForYou: "추천 메뉴",
+    analyzingAI: "AI 분석 중...",
+    showStaffQ: "직원 문의 문장 보기",
+    hideStaffQ: "직원 문의 문장 숨기기",
+    exploreMapBtn: "지도 탐색 →",
+    likelihoodGuideConfirmed: "이 알레르겐이 포함되어 있습니다 (90% 이상).",
+    likelihoodGuideLikely: "이 알레르겐이 포함되었을 가능성이 높습니다 (70-80%).",
+    likelihoodGuidePossible: "이 알레르겐이 포함되었을 수 있습니다 (20-30%).",
+    likelihoodGuideNone: "이 알레르겐이 포함되지 않을 가능성이 높습니다.",
+  },
+};
 const restaurants = [
   {
     id: "gyeong",
@@ -362,6 +498,7 @@ function App() {
   const markersRef = useRef([]);
   latestProfile.current = profile;
   latestLanguage.current = language;
+  const t = (key) => (i18n[language] || i18n.en)[key] || i18n.en[key] || key;
   const selected = useMemo(
     () => restaurants.find((item) => item.id === selectedId),
     [selectedId],
@@ -376,8 +513,8 @@ function App() {
     restaurant.status = getMapStatus(restaurant);
     restaurant.label =
       restaurant.status === "great"
-        ? "Safer to visit"
-        : "Information unavailable";
+        ? t("saferToVisit")
+        : t("checkFirst");
   });
   const recommendedMenus = useMemo(() => {
     const personalizedMenus = restaurants.flatMap((restaurant) =>
@@ -616,7 +753,7 @@ function App() {
           // "You are here" 마커 (홍대입구역 고정)
           new kakao.maps.CustomOverlay({
             position: defaultCenter,
-            content: '<div style="padding:5px 10px;background:#2f6b43;color:#fff;border-radius:14px;font-size:11px;font-weight:600;box-shadow:0 2px 6px rgba(0,0,0,.2)">📍 You are here</div>',
+            content: `<div style="padding:5px 10px;background:#2f6b43;color:#fff;border-radius:14px;font-size:11px;font-weight:600;box-shadow:0 2px 6px rgba(0,0,0,.2)">📍 ${language === "ko" ? "현재 위치" : "You are here"}</div>`,
             map: map,
             yAnchor: 2.5,
           });
@@ -875,27 +1012,27 @@ function App() {
             className={view === "recommendations" ? "active" : ""}
             onClick={() => setView("recommendations")}
           >
-            🍽️ For you
+            🍽️ {t("forYou")}
           </button>
           <button
             className={view === "map" ? "active" : ""}
             onClick={() => setView("map")}
           >
-            🗺️ Explore map
+            🗺️ {t("exploreMap")}
           </button>
           <button
             className={view === "list" ? "active" : ""}
             onClick={() => setView("list")}
           >
-            🍴 Restaurants
+            🍴 {t("restaurants")}
           </button>
           <button
             className={view === "feedback" ? "active" : ""}
             onClick={() => setView("feedback")}
           >
-            Feedback
+            {t("feedback")}
           </button>
-          <button onClick={() => setModal("profile")}>My profile</button>
+          <button onClick={() => setModal("profile")}>{t("myProfile")}</button>
         </div>
         <button className="avatar" onClick={() => setModal("profile")}>
           {name ? name[0].toUpperCase() : "Me"}
@@ -905,16 +1042,15 @@ function App() {
       {view === "recommendations" && (
         <section className="hero-section" id="top">
           <div className="eyebrow">
-            <span></span> Your personal Korean food map
+            <span></span> {t("personalMap")}
           </div>
           <h1>
-            Korean food,
+            {t("heroTitle")}
             <br />
-            <em>made safer for you.</em>
+            <em>{t("heroTitleEm")}</em>
           </h1>
           <p>
-            Add your allergies and dietary needs to discover Korean restaurants
-            and menus that fit the way you eat.
+            {t("heroDesc")}
           </p>
           <button
             className="scan-cta"
@@ -925,8 +1061,8 @@ function App() {
           >
             <span>⌑</span>
             <span>
-              <b>Scan a menu photo</b>
-              <small>Translate a menu and check ingredients</small>
+              <b>{t("scanMenu")}</b>
+              <small>{t("scanSubtitle")}</small>
             </span>
             <i>→</i>
           </button>
@@ -940,16 +1076,16 @@ function App() {
         <aside className="side-panel">
           <div className="panel-heading">
             <div>
-              <p className="overline">Map</p>
-              <h2>Restaurant recommendations</h2>
+              <p className="overline">{t("exploreMap")}</p>
+              <h2>{t("restaurantRec")}</h2>
             </div>
           </div>
           <p className="panel-copy">
-            We recommend nearby restaurants that match your dietary needs.
+            {t("recDesc")}
           </p>
           <div className="map-location">
             <strong>{area}</strong>
-            <button onClick={() => setModal("area")}>Change search area →</button>
+            <button onClick={() => setModal("area")}>{t("changeArea")}</button>
           </div>
           <div className="filter-list">
             {profile.length ? (
@@ -960,23 +1096,23 @@ function App() {
                   onClick={() => toggleMapAllergy(item)}
                 >
                   <span>◌</span>
-                  {item}
+                  {language === "ko" ? (koreanAllergens[item] || item) : item}
                   <b>×</b>
                 </button>
               ))
             ) : (
-              <p className="empty-profile">No dietary information added yet.</p>
+              <p className="empty-profile">{language === "ko" ? "식이 정보가 아직 없습니다." : "No dietary information added yet."}</p>
             )}
           </div>
           <button
             className="add-preference"
             onClick={() => setModal("profile")}
           >
-            + Add allergies or dietary needs
+            {t("addAllergiesBtn")}
           </button>
           <div className="map-guide" aria-label="Map guide">
-            <p className="map-guide-green">● Green: Safer to eat</p>
-            <p className="map-guide-gray">● Gray: Unknown</p>
+            <p className="map-guide-green" style={{color:"var(--green)",fontWeight:700,fontSize:"13px"}}>● {t("greenLabel")}</p>
+            <p className="map-guide-gray" style={{color:"#68716d",fontWeight:700,fontSize:"13px"}}>● {t("grayLabel")}</p>
           </div>
           <div className="legend">
             <p className="overline">Map guide</p>
@@ -1013,9 +1149,9 @@ function App() {
             </button>
           </div>
           <div className="map-filters" style={{position:"absolute",zIndex:5,top:"60px",left:"22px",display:"flex",gap:"6px"}}>
-            <button onClick={() => setMapFilter("all")} style={{padding:"7px 12px",borderRadius:"20px",border: mapFilter === "all" ? "2px solid #2f6b43" : "1px solid #dce4d7",background: mapFilter === "all" ? "#e8f5e3" : "#fffefa",fontSize:"12px",fontWeight:600,color: mapFilter === "all" ? "#2f6b43" : "#5f6863"}}>All</button>
-            <button onClick={() => setMapFilter("great")} style={{padding:"7px 12px",borderRadius:"20px",border: mapFilter === "great" ? "2px solid #2f6b43" : "1px solid #dce4d7",background: mapFilter === "great" ? "#e8f5e3" : "#fffefa",fontSize:"12px",fontWeight:600,color: mapFilter === "great" ? "#2f6b43" : "#5f6863"}}>● Safer to eat</button>
-            <button onClick={() => setMapFilter("neutral")} style={{padding:"7px 12px",borderRadius:"20px",border: mapFilter === "neutral" ? "2px solid #8b938e" : "1px solid #dce4d7",background: mapFilter === "neutral" ? "#f0f1ef" : "#fffefa",fontSize:"12px",fontWeight:600,color: mapFilter === "neutral" ? "#5f6863" : "#5f6863"}}>● Check first</button>
+            <button onClick={() => setMapFilter("all")} style={{padding:"7px 12px",borderRadius:"20px",border: mapFilter === "all" ? "2px solid #2f6b43" : "1px solid #dce4d7",background: mapFilter === "all" ? "#e8f5e3" : "#fffefa",fontSize:"12px",fontWeight:600,color: mapFilter === "all" ? "#2f6b43" : "#5f6863"}}>{t("all")}</button>
+            <button onClick={() => setMapFilter("great")} style={{padding:"7px 12px",borderRadius:"20px",border: mapFilter === "great" ? "2px solid #2f6b43" : "1px solid #dce4d7",background: mapFilter === "great" ? "#e8f5e3" : "#fffefa",fontSize:"12px",fontWeight:600,color: mapFilter === "great" ? "#2f6b43" : "#5f6863"}}>{t("saferFilter")}</button>
+            <button onClick={() => setMapFilter("neutral")} style={{padding:"7px 12px",borderRadius:"20px",border: mapFilter === "neutral" ? "2px solid #8b938e" : "1px solid #dce4d7",background: mapFilter === "neutral" ? "#f0f1ef" : "#fffefa",fontSize:"12px",fontWeight:600,color: mapFilter === "neutral" ? "#5f6863" : "#5f6863"}}>{t("checkFilter")}</button>
           </div>
           <div id="kakao-map" ref={mapRef} style={{width:"100%",height:"100%",minHeight:"500px",borderRadius:"12px",background:"#e9efe4"}}>
           </div>
@@ -1037,7 +1173,7 @@ function App() {
                     <small style={{color:"#666"}}>{r.type}</small>
                   </div>
                   <span style={{marginLeft:"auto",padding:"3px 8px",borderRadius:"10px",fontSize:"11px",fontWeight:600,background: r.status === "great" ? "#e3efe0" : "#f3f4ef",color: r.status === "great" ? "#35684d" : "#5f6863"}}>
-                    {r.status === "great" ? "✓ Safer to visit" : "Check first"}
+                    {r.status === "great" ? `✓ ${t("saferToVisit")}` : t("checkFirst")}
                   </span>
                 </div>
                 <p style={{fontSize:"13px",color:"#555",margin:"6px 0"}}>{r.address}</p>
@@ -1047,7 +1183,7 @@ function App() {
                   ))}
                 </div>
                 <div style={{display:"flex",gap:"8px",marginTop:"12px"}}>
-                  <button onClick={() => openRestaurant(r.id)} style={{flex:1,padding:"9px",background:"#2f6b43",color:"#fff",border:"none",borderRadius:"8px",fontWeight:600,cursor:"pointer"}}>View details</button>
+                  <button onClick={() => openRestaurant(r.id)} style={{flex:1,padding:"9px",background:"#2f6b43",color:"#fff",border:"none",borderRadius:"8px",fontWeight:600,cursor:"pointer"}}>{t("viewDetails")}</button>
                   <button onClick={() => {
                     const destLat = r.lat; const destLng = r.lng;
                     const destName = r.name_ko || r.name;
@@ -1061,7 +1197,7 @@ function App() {
           })()}
           {!mapSelectedId && (
             <button className="next-step" onClick={() => setView("list")}>
-              See restaurants in a list →
+              {t("seeList")}
             </button>
           )}
         </div>
@@ -1074,17 +1210,17 @@ function App() {
           <div>
             <p className="overline">
               {view === "recommendations"
-                ? "K-Food top 10 · personalized for you"
-                : "Korean restaurants nearby"}
+                ? t("recommendSub")
+                : t("nearbyRestaurants")}
             </p>
             <h2>
               {view === "recommendations"
-                ? "Korean food ideas for you"
-                : "Picked for you"}
+                ? t("recommendTitle")
+                : t("pickedForYou")}
             </h2>
             {view === "recommendations" && (
               <div className="applied-profile">
-                <span>Based on your profile</span>
+                <span>{t("basedOnProfile")}</span>
                 {profile.length ? (
                   profile.map((item) => <b key={item}>◌ {item}</b>)
                 ) : (
@@ -1097,7 +1233,7 @@ function App() {
           </div>
           {view === "list" && (
             <button className="see-all" onClick={() => setView("map")}>
-              Explore map <span>→</span>
+              {t("exploreMapBtn")} <span></span>
             </button>
           )}
         </div>
@@ -1146,7 +1282,7 @@ function App() {
                   </div>
                   <div className="restaurant-main">
                     <div className="restaurant-title">
-                      <h3>{item.name}</h3>
+                      <h3>{language === "ko" ? (item.name_ko || item.name) : item.name}</h3>
                       <span className={`status-pill ${item.status}`}>
                         {item.label}
                       </span>
@@ -1166,8 +1302,8 @@ function App() {
           <section className="home-saved">
             <div className="saved-heading">
               <div>
-                <p className="overline">Saved list</p>
-                <h2>Keep your safe picks close</h2>
+                <p className="overline">{t("savedList")}</p>
+                <h2>{t("savedKeep")}</h2>
               </div>
             </div>
             {saved.length ? (
@@ -1192,8 +1328,7 @@ function App() {
               </div>
             ) : (
               <div className="saved-home-empty">
-                No saved places yet. Open a restaurant and tap the heart to save
-                it here.
+                {t("noSavedYet")}
               </div>
             )}
           </section>
@@ -1206,10 +1341,10 @@ function App() {
       >
         <div className="detail-intro">
           <button className="back-button" onClick={() => setView(previousView || "list")}>
-            ← Back
+            {t("back")}
           </button>
-          <p className="overline">Restaurant and menu details</p>
-          <h2>{selected.name}</h2>
+          <p className="overline">{t("restaurantDetail")}</p>
+          <h2>{language === "ko" ? (selected.name_ko || selected.name) : selected.name}</h2>
           <p>{selected.type}</p>
           <p className="address">⌖ {selected.address}</p>
           <button
@@ -1234,10 +1369,10 @@ function App() {
               }
             }}
           >
-            🗺️ Get directions
+            🗺️ {t("getDirections")}
           </button>
           <small style={{display:"block",fontSize:"11px",color:"#888",marginBottom:"8px"}}>
-            📱 Mobile: Opens Kakao Map app (free download required)
+            📱 {t("mobileTip")}
           </small>
           <button
             className={`heart-button ${saved.includes(selected.id) ? "saved" : ""}`}
@@ -1250,7 +1385,7 @@ function App() {
           >
             {saved.includes(selected.id) ? "♥" : "♡"}
             <span>
-              {saved.includes(selected.id) ? "Saved" : "Save restaurant"}
+              {saved.includes(selected.id) ? t("saved") : t("saveRestaurant")}
             </span>
           </button>
         </div>
@@ -1268,12 +1403,12 @@ function App() {
           </div>
           <div className="detail-content">
             <div>
-              <p className="overline">Menu ideas for you</p>
+              <p className="overline">{t("menuIdeasForYou")}</p>
               <div className="likelihood-guide" aria-label="Allergen token guide">
-                <p><b>confirmed</b> Contains this allergen (90%+ confidence).</p>
-                <p><b>likely</b> Likely contains this allergen (70–80% confidence).</p>
-                <p><b>possible</b> May contain this allergen (20–30% confidence).</p>
-                <p><b>none</b> Unlikely to contain this allergen.</p>
+                <p><b>confirmed</b> {t("likelihoodGuideConfirmed")}</p>
+                <p><b>likely</b> {t("likelihoodGuideLikely")}</p>
+                <p><b>possible</b> {t("likelihoodGuidePossible")}</p>
+                <p><b>none</b> {t("likelihoodGuideNone")}</p>
               </div>
               {(() => {
                 const menuDetails = selected.menuDetails || [];
@@ -1288,8 +1423,8 @@ function App() {
                   <>
                     {profile.length > 0 && (
                       <div style={{padding:"10px 12px",background:"#f0faf2",borderRadius:"6px",marginBottom:"12px",fontSize:"12px",lineHeight:"1.8"}}>
-                        {safeCount > 0 && <span style={{color:"#2f6b43",fontWeight:600}}>● Safer to eat: {safeCount}</span>}
-                        {checkCount > 0 && <span style={{color:"#6b7370",marginLeft:safeCount ? "12px" : "0",fontWeight:600}}>● Check first: {checkCount}</span>}
+                        {safeCount > 0 && <span style={{color:"#2f6b43",fontWeight:600}}>● {t("saferToEat")}: {safeCount}</span>}
+                        {checkCount > 0 && <span style={{color:"#6b7370",marginLeft:safeCount ? "12px" : "0",fontWeight:600}}>● {t("checkFirst")}: {checkCount}</span>}
                       </div>
                     )}
                     {scored.map((menu) => (
@@ -1301,7 +1436,7 @@ function App() {
                         <div>
                           <strong>{menu.name}</strong>
                           {menu.lp && <small style={{display:"block",marginTop:"2px",color:"#6b7370"}}>{menu.lp.label} — {menu.lp.description}</small>}
-                          {!menu.lp && profile.length > 0 && <small style={{display:"block",marginTop:"2px",color:"#2f6b43"}}>Safer to eat</small>}
+                          {!menu.lp && profile.length > 0 && <small style={{display:"block",marginTop:"2px",color:"#2f6b43"}}>{t("saferToEat")}</small>}
                         </div>
                       </div>
                     ))}
@@ -1310,7 +1445,7 @@ function App() {
               })()}
             </div>
             <div className="insight">
-              <p className="overline">AI-powered analysis</p>
+              <p className="overline">{t("aiAnalysis")}</p>
               {aiAnalysisLoading && (
                 <p style={{color:"#666",fontSize:"13px"}}>
                   <span style={{display:"inline-block",width:"14px",height:"14px",border:"2px solid #e5e7eb",borderTop:"2px solid #2f6b43",borderRadius:"50%",animation:"spin 1s linear infinite",verticalAlign:"middle",marginRight:"6px"}}></span>
@@ -1417,7 +1552,7 @@ function App() {
           <span className="brand-mark">K</span>
           <span>K-Food Map</span>
         </div>
-        <p>Explore Korean food for your needs.</p>
+        <p>{t("exploreFooter")}</p>
       </footer>
       <nav className="mobile-nav" aria-label="Mobile navigation">
         <button
@@ -1427,7 +1562,7 @@ function App() {
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
         >
-          <span>✦</span>For you
+          <span>✦</span>{t("forYou")}
         </button>
         <button
           className={view === "map" ? "active" : ""}
@@ -1436,7 +1571,7 @@ function App() {
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
         >
-          <span>⌖</span>Map
+          <span>⌖</span>{t("exploreMap")}
         </button>
         <button
           className={view === "list" ? "active" : ""}
@@ -1445,13 +1580,13 @@ function App() {
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
         >
-          <span>☷</span>Places
+          <span>☷</span>{t("restaurants")}
         </button>
         <button
           className={view === "feedback" ? "active" : ""}
           onClick={() => setView("feedback")}
         >
-          <span>✎</span>Feedback
+          <span>✎</span>{t("feedback")}
         </button>
       </nav>
       {toast && <div className="toast">✓ {toast}</div>}
@@ -1830,6 +1965,7 @@ function App() {
 }
 
 function FeedbackPage({ onNavigate, onProfile, language }) {
+  const t = (key) => (i18n[language] || i18n.en)[key] || i18n.en[key] || key;
   const onBack = () => onNavigate("recommendations");
   const [restaurants, setRestaurants] = useState([]);
   const [feedbacks, setFeedbacks] = useState([]);
@@ -1892,28 +2028,29 @@ function FeedbackPage({ onNavigate, onProfile, language }) {
           <span>K-Food Map</span>
         </a>
         <div className="nav-links">
-          <button onClick={() => onNavigate("recommendations")}>🍽️ For you</button>
-          <button onClick={() => onNavigate("map")}>🗺️ Explore map</button>
-          <button onClick={() => onNavigate("list")}>🍴 Restaurants</button>
-          <button className="active">Feedback</button>
-          <button onClick={onProfile}>My profile</button>
+          <button onClick={() => onNavigate("recommendations")}>🍽️ {t("forYou")}</button>
+          <button onClick={() => onNavigate("map")}>🗺️ {t("exploreMap")}</button>
+          <button onClick={() => onNavigate("list")}>🍴 {t("restaurants")}</button>
+          <button className="active">{t("feedback")}</button>
+          <button onClick={onProfile}>{t("myProfile")}</button>
         </div>
         <button className="avatar" onClick={onProfile}>Me</button>
       </nav>
       <section className="feedback-content">
         <div>
-          <p className="overline">MY VISIT RECORDS</p>
-          <h1>Share what you learned.</h1>
+          <p className="overline">{language === "ko" ? "나의 방문 기록" : "MY VISIT RECORDS"}</p>
+          <h1>{language === "ko" ? "경험을 공유해주세요." : "Share what you learned."}</h1>
           <p>
-            Your feedback helps build practical information so people with
-            similar dietary needs can choose and ask with more confidence.
+            {language === "ko"
+              ? "당신의 피드백은 비슷한 식이 조건을 가진 사람들이 더 안심하고 선택할 수 있도록 돕습니다."
+              : "Your feedback helps build practical information so people with similar dietary needs can choose and ask with more confidence."}
           </p>
         </div>
         <div className="feedback-layout">
           <form className="feedback-form" onSubmit={submit}>
-            <h2>Add a visit</h2>
+            <h2>{language === "ko" ? "방문 기록 추가" : "Add a visit"}</h2>
             <label>
-              Restaurant
+              {language === "ko" ? "식당" : "Restaurant"}
               <select
                 value={restaurantId}
                 onChange={(event) => {
@@ -1921,53 +2058,53 @@ function FeedbackPage({ onNavigate, onProfile, language }) {
                   setMenuName("");
                 }}
               >
-                <option value="">Choose a restaurant</option>
+                <option value="">{language === "ko" ? "식당을 선택하세요" : "Choose a restaurant"}</option>
                 {restaurants.map((restaurant) => (
                   <option key={restaurant.id} value={restaurant.id}>
-                    {restaurant.name}
+                    {language === "ko" ? (restaurant.name_ko || restaurant.name) : restaurant.name}
                   </option>
                 ))}
               </select>
             </label>
             <label>
-              Menu (optional)
+              {language === "ko" ? "메뉴 (선택)" : "Menu (optional)"}
               <input
                 value={menuName}
                 onChange={(event) => setMenuName(event.target.value)}
-                placeholder="e.g. Bibimbap"
+                placeholder={language === "ko" ? "예: 비빔밥" : "e.g. Bibimbap"}
               />
             </label>
             <label>
-              Did staff provide ingredient information?
+              {language === "ko" ? "직원이 재료 정보를 제공했나요?" : "Did staff provide ingredient information?"}
               <select
                 value={staffInfo}
                 onChange={(event) => setStaffInfo(event.target.value)}
               >
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-                <option value="unsure">Not sure</option>
+                <option value="yes">{language === "ko" ? "네" : "Yes"}</option>
+                <option value="no">{language === "ko" ? "아니요" : "No"}</option>
+                <option value="unsure">{language === "ko" ? "잘 모르겠음" : "Not sure"}</option>
               </select>
             </label>
             <label>
-              Was a modification offered?
+              {language === "ko" ? "재료 변경이 가능했나요?" : "Was a modification offered?"}
               <select
                 value={modification}
                 onChange={(event) => setModification(event.target.value)}
               >
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-                <option value="unsure">Not sure</option>
+                <option value="yes">{language === "ko" ? "네" : "Yes"}</option>
+                <option value="no">{language === "ko" ? "아니요" : "No"}</option>
+                <option value="unsure">{language === "ko" ? "잘 모르겠음" : "Not sure"}</option>
               </select>
             </label>
             <label>
-              Did the information match your visit?
+              {language === "ko" ? "제공된 정보가 실제와 일치했나요?" : "Did the information match your visit?"}
               <select
                 value={matched}
                 onChange={(event) => setMatched(event.target.value)}
               >
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-                <option value="unsure">Not sure</option>
+                <option value="yes">{language === "ko" ? "네" : "Yes"}</option>
+                <option value="no">{language === "ko" ? "아니요" : "No"}</option>
+                <option value="unsure">{language === "ko" ? "잘 모르겠음" : "Not sure"}</option>
               </select>
             </label>
             <label className="reaction-check">
@@ -1976,11 +2113,11 @@ function FeedbackPage({ onNavigate, onProfile, language }) {
                 checked={hadReaction}
                 onChange={(event) => setHadReaction(event.target.checked)}
               />{" "}
-              I had an allergic reaction
+              {language === "ko" ? "알레르기 반응이 있었습니다" : "I had an allergic reaction"}
             </label>
             {hadReaction && (
               <label>
-                What happened?
+                {language === "ko" ? "어떤 증상이 있었나요?" : "What happened?"}
                 <textarea
                   value={reactionDescription}
                   onChange={(event) =>
@@ -1990,12 +2127,12 @@ function FeedbackPage({ onNavigate, onProfile, language }) {
               </label>
             )}
             <button className="primary-button" type="submit">
-              Save visit feedback
+              {language === "ko" ? "피드백 저장" : "Save visit feedback"}
             </button>
             {message && <p className="feedback-message">{message}</p>}
           </form>
           <section className="feedback-list">
-            <h2>My feedback</h2>
+            <h2>{language === "ko" ? "내 피드백" : "My feedback"}</h2>
             {feedbacks.length ? (
               feedbacks.map((feedback) => (
                 <article key={feedback.id}>
@@ -2006,17 +2143,21 @@ function FeedbackPage({ onNavigate, onProfile, language }) {
                     return r.name_ko ? `${r.name_ko} (${r.name})` : r.name;
                   })()}</b>
                   <p>
-                    Staff information:{" "}
-                    {feedback.staff_provided_info || "Not recorded"}
+                    {language === "ko" ? "직원 정보 제공: " : "Staff information: "}
+                    {language === "ko"
+                      ? (feedback.staff_provided_info === "yes" ? "네" : feedback.staff_provided_info === "no" ? "아니요" : "기록 없음")
+                      : (feedback.staff_provided_info || "Not recorded")}
                   </p>
                   <p>
-                    Modification offered:{" "}
-                    {feedback.staff_offered_modification || "Not recorded"}
+                    {language === "ko" ? "재료 변경 가능: " : "Modification offered: "}
+                    {language === "ko"
+                      ? (feedback.staff_offered_modification === "yes" ? "네" : feedback.staff_offered_modification === "no" ? "아니요" : "기록 없음")
+                      : (feedback.staff_offered_modification || "Not recorded")}
                   </p>
                   <p>
                     {feedback.had_reaction
-                      ? `Reaction reported: ${feedback.reaction_description || "No details"}`
-                      : "No reaction reported"}
+                      ? (language === "ko" ? `반응 보고: ${feedback.reaction_description || "상세 없음"}` : `Reaction reported: ${feedback.reaction_description || "No details"}`)
+                      : (language === "ko" ? "반응 없음" : "No reaction reported")}
                   </p>
                   <small>
                     {new Date(feedback.created_at).toLocaleDateString()}
@@ -2024,7 +2165,7 @@ function FeedbackPage({ onNavigate, onProfile, language }) {
                 </article>
               ))
             ) : (
-              <p className="feedback-empty">No visit feedback yet.</p>
+              <p className="feedback-empty">{language === "ko" ? "아직 방문 피드백이 없습니다." : "No visit feedback yet."}</p>
             )}
           </section>
         </div>
