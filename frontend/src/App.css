@@ -252,3 +252,26 @@ footer { font-size: 13px; }
   .mobile-profile-btn { display: block !important; }
   body { padding-bottom: 75px; }
 }
+
+
+/* Font: Pretendard (body) + Noto Serif KR (headings) — 한/영 동시 지원 */
+body, button, input, select, textarea {
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}
+h1, h2, .modal h2, .panel-heading h2, .results-top h2, .detail-intro h2, .saved-heading h2, .scan-copy h3 {
+  font-family: 'Noto Serif KR', 'Playfair Display', Georgia, serif !important;
+}
+.brand-mark {
+  font-family: 'Noto Serif KR', Georgia, serif !important;
+}
+
+
+/* Bump description/secondary text sizes */
+.panel-copy, .restaurant-card p, .dish-copy p, .insight > p:not(.overline),
+.scan-copy > p, .feedback-form label, .feedback-list article p,
+.modal > p, .sign-in-profile p, .name-input, .hero-section > p,
+.staff-phrase p, .korean-question, .detail-status h3,
+small, .menu-row small { font-size: 14px !important; }
+.menu-row { font-size: 14px !important; }
+.overline, .eyebrow, .modal-kicker { font-size: 12px !important; }
+.filter-chip, .allergy-editor button, .status-pill { font-size: 13px !important; }
