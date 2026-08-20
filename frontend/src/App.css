@@ -204,3 +204,18 @@ footer { font-size: 13px; }
     left: 14px !important;
   }
 }
+
+
+/* Fix: mobile nav 5 items */
+@media (max-width: 760px) {
+  .mobile-nav { grid-template-columns: repeat(5, 1fr) !important; }
+}
+
+
+/* Fix: ensure topbar nav is clickable above hero decoration */
+.topbar { position: relative; z-index: 10; }
+.hero-section:after { pointer-events: none; }
+
+
+/* Fix: modal visible even when parent is visibility:hidden */
+.modal-backdrop { visibility: visible !important; }

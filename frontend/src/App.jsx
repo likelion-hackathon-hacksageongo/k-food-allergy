@@ -993,16 +993,18 @@ function App() {
     }
   };
 
-  if (view === "feedback" && isSignedIn)
-    return (
+  const isFeedbackView = view === "feedback" && isSignedIn;
+  return (
+    <>
+    {isFeedbackView && (
       <FeedbackPage
         onNavigate={setView}
-        onProfile={() => { setView("recommendations"); setTimeout(() => setModal("profile"), 100); }}
+        onProfile={() => setModal("profile")}
         language={language}
       />
-    );
-  return (
-    <main className="app-shell">
+    )}
+    <main className="app-shell" style={isFeedbackView && !modal ? {display:"none"} : isFeedbackView && modal ? {visibility:"hidden",height:0,overflow:"hidden"} : undefined}>
+    {/* modal-backdrop은 position:fixed라 visibility:hidden 무시됨 */}
       <nav className="topbar">
         <a className="brand" href="#top">
           <span className="brand-mark">K</span>
@@ -1031,13 +1033,10 @@ function App() {
             className={view === "feedback" ? "active" : ""}
             onClick={() => setView("feedback")}
           >
-            {t("feedback")}
+            ✎ {t("feedback")}
           </button>
-          <button onClick={() => setModal("profile")}>{t("myProfile")}</button>
+          <button onClick={() => setModal("profile")}>👤 {t("myProfile")}</button>
         </div>
-        <button className="avatar" onClick={() => setModal("profile")}>
-          {name ? name[0].toUpperCase() : "Me"}
-        </button>
       </nav>
 
       {view === "recommendations" && (
@@ -1589,6 +1588,11 @@ function App() {
         >
           <span>✎</span>{t("feedback")}
         </button>
+        <button
+          onClick={() => setModal("profile")}
+        >
+          <span>👤</span>{t("myProfile")}
+        </button>
       </nav>
       {toast && <div className="toast">✓ {toast}</div>}
       {modal === "scan" && (
@@ -1975,6 +1979,8 @@ function App() {
         </div>
       )}
     </main>
+    {toast && <div className="toast">✓ {toast}</div>}
+    </>
   );
 }
 
@@ -2045,10 +2051,9 @@ function FeedbackPage({ onNavigate, onProfile, language }) {
           <button onClick={() => onNavigate("recommendations")}>🍽️ {t("forYou")}</button>
           <button onClick={() => onNavigate("map")}>🗺️ {t("exploreMap")}</button>
           <button onClick={() => onNavigate("list")}>🍴 {t("restaurants")}</button>
-          <button className="active">{t("feedback")}</button>
-          <button onClick={onProfile}>{t("myProfile")}</button>
+          <button className="active">✎ {t("feedback")}</button>
+          <button onClick={onProfile}>👤 {t("myProfile")}</button>
         </div>
-        <button className="avatar" onClick={onProfile}>Me</button>
       </nav>
       <section className="feedback-content">
         <div>
@@ -2196,6 +2201,9 @@ function FeedbackPage({ onNavigate, onProfile, language }) {
         </button>
         <button className="active" onClick={() => onNavigate("feedback")}>
           <span>✎</span>Feedback
+        </button>
+        <button onClick={onProfile}>
+          <span>👤</span>Profile
         </button>
       </nav>
     </main>
