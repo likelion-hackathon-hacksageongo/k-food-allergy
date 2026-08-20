@@ -20,7 +20,7 @@ def _restaurant_payload(restaurant: Restaurant, user_allergens: list = None) -> 
     """
     Build the AI service's expected restaurant shape from our DB.
     Uses MenuAllergen data as ingredient hints when description is empty.
-    Only includes allergens relevant to the user's profile.
+    Sends all allergen data for context but AI prompt restricts output to user's allergens only.
     """
     return {
         'id': restaurant.id,
@@ -33,8 +33,7 @@ def _restaurant_payload(restaurant: Restaurant, user_allergens: list = None) -> 
                 'description': item.description or f"[info_level: {item.info_level}]",
                 'ingredients': (
                     [s.strip() for s in item.description.split(',') if s.strip()]
-                    or [f"{a.allergen_key}({a.likelihood})" for a in item.allergens.all()
-                        if not user_allergens or a.allergen_key in user_allergens]
+                    or [f"{a.allergen_key}({a.likelihood})" for a in item.allergens.all()]
                 ),
             }
             for item in restaurant.menu_items.all()
