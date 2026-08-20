@@ -29,11 +29,10 @@ def _restaurant_payload(restaurant: Restaurant) -> dict:
             {
                 'id': item.id,
                 'name': item.name_ko or item.name,
-                'description': item.description,
+                'description': item.description or f"[info_level: {item.info_level}]",
                 'ingredients': (
                     [s.strip() for s in item.description.split(',') if s.strip()]
-                    or [f"{a.allergen_key}({a.notes})" if a.notes else a.allergen_key
-                        for a in item.allergens.all()]
+                    or [f"{a.allergen_key}({a.likelihood})" for a in item.allergens.all()]
                 ),
             }
             for item in restaurant.menu_items.all()
