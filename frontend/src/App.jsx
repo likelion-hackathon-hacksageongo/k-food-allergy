@@ -1765,7 +1765,7 @@ function App() {
                 {authMode === "signup" ? (
                   <>
                     <div style={{margin:"16px 0"}}>
-                      <p style={{fontSize:"11px",color:"#627168",marginBottom:"8px"}}>Preferred language</p>
+                      <p style={{fontSize:"11px",color:"#627168",marginBottom:"8px"}}>{language === "ko" ? "선호 언어" : "Preferred language"}</p>
                       <div style={{display:"flex",flexWrap:"wrap",gap:"6px"}}>
                         {supportedLanguages.map(({ code, label, active }) => (
                           <button
