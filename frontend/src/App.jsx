@@ -554,11 +554,10 @@ function App() {
     if (personalizedMenus.length) {
       const likelihoodOrder = { none: 0, possible: 1, likely: 2, confirmed: 3 };
       return personalizedMenus
-        .filter((menu) => menu.likelihood?.label !== "confirmed")
         .sort(
           (a, b) =>
-            (likelihoodOrder[a.likelihood?.label] ?? 4) -
-            (likelihoodOrder[b.likelihood?.label] ?? 4),
+            (likelihoodOrder[a.likelihood?.label] ?? -1) -
+            (likelihoodOrder[b.likelihood?.label] ?? -1),
         )
         .slice(0, 5);
     }
@@ -1239,12 +1238,13 @@ function App() {
                     <span>{idea.emoji}</span>
                   </div>
                   <div className="dish-copy">
-                    <h3>{idea.name}</h3>
+                    <h3>{language === "ko" ? idea.name : (idea.nameEn || idea.name)}</h3>
                     <p>
-                      {idea.restaurantName ||
-                        restaurants.find((restaurant) => restaurant.id === idea.restaurantId)
-                          ?.name ||
-                        "Restaurant"}
+                      {(() => {
+                        const r = restaurants.find((restaurant) => restaurant.id === idea.restaurantId);
+                        const rName = language === "ko" ? (r?.name_ko || r?.name) : (r?.name || r?.name_ko);
+                        return `📍 ${rName}`;
+                      })()}
                     </p>
                   </div>
                   <span className="chevron">→</span>
