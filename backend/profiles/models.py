@@ -21,11 +21,32 @@ class AllergenChoice(models.TextChoices):
     TOMATO = 'tomato', 'Tomato'
 
 
+class LanguageChoice(models.TextChoices):
+    KOREAN = 'ko', 'Korean'
+    ENGLISH = 'en', 'English'
+    CHINESE = 'zh', 'Chinese'
+    JAPANESE = 'ja', 'Japanese'
+    VIETNAMESE = 'vi', 'Vietnamese'
+    THAI = 'th', 'Thai'
+    FRENCH = 'fr', 'French'
+    SPANISH = 'es', 'Spanish'
+    GERMAN = 'de', 'German'
+    RUSSIAN = 'ru', 'Russian'
+    INDONESIAN = 'id', 'Indonesian'
+    OTHER = 'other', 'Other'
+
+
 class AllergyProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='allergy_profile')
     allergens = models.JSONField(
         default=list,
         help_text='List of allergen keys from AllergenChoice',
+    )
+    preferred_language = models.CharField(
+        max_length=10,
+        choices=LanguageChoice.choices,
+        default=LanguageChoice.ENGLISH,
+        help_text='Used to generate on-site inquiry phrases in the user\'s language (Step 5 of the plan).',
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

@@ -1,0 +1,66 @@
+{
+  "version": "1.0",
+  "description": "홍대 일대 한식당 데이터 (AI 분석용)",
+  "restaurants": [
+    {
+      "id": 1,
+      "name": "Jokbal Yasijang & Mucheong Gamjatang",
+      "name_ko": "족발야시장&무청감자탕 홍대점",
+      "category": "Korean - Jokbal & Bossam",
+      "address": "서울특별시 마포구 잔다리로 14, 2층 (서교동)",
+      "latitude": 37.551059,
+      "longitude": 126.921647,
+      "menu_items": [
+        {
+          "id": 1,
+          "name": "족발 (중)",
+          "description": "간장에 조린 족발, 마늘소스와 함께",
+          "ingredients": [
+            "garlic",
+            "mayonnaise"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "불족발",
+          "description": "매운 양념을 입힌 족발",
+          "ingredients": [
+            "gochujang",
+            "gochugaru"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "막국수",
+          "description": "메밀면 비빔국수",
+          "ingredients": []
+        },
+        {
+          "id": 4,
+          "name": "무청감자탕",
+          "description": "무청을 넣은 감자탕",
+          "ingredients": []
+        },
+        {
+          "id": 5,
+          "name": "뼈해장국",
+          "description": "감자탕 1인분 형태",
+          "ingredients": [
+            "potato"
+          ]
+        },
+        {
+          "id": 6,
+          "name": "계란찜",
+          "description": "뚝배기 계란찜",
+          "ingredients": [
+            "egg",
+            "green_onion",
+            "anchovy_broth",
+            "salt"
+          ]
+        }
+      ]
+    }
+  ]
+}

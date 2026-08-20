@@ -1,0 +1,417 @@
+key,name_ko,name_en,description,source_status,source_url
+bokkeumbap,볶음밥,Fried Rice,식품안전나라 레시피 14건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+mandu,만두,Dumplings,식품안전나라 레시피 12건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+doenjang_guk,된장국,Soybean Paste Soup,식품안전나라 레시피 10건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+bulgogi,불고기,Bulgogi,식품안전나라 레시피 10건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+suyuk,수육,Boiled Pork Slices,식품안전나라 레시피 8건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+japchae,잡채,Japchae,식품안전나라 레시피 8건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+sujebi,수제비,Hand-torn Noodle Soup,식품안전나라 레시피 6건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+miyeok_guk,미역국,Seaweed Soup,식품안전나라 레시피 6건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+kimchi_jjigae,김치찌개,Kimchi Stew,식품안전나라 레시피 5건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+tteokbokki,떡볶이,Tteokbokki,식품안전나라 레시피 5건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+haejang_guk,해장국,Hangover Soup,식품안전나라 레시피 4건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+doenjang_jjigae,된장찌개,Soybean Paste Stew,식품안전나라 레시피 4건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+budae_jjigae,부대찌개,Army Base Stew,식품안전나라 레시피 4건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+sundubu_jjigae,순두부찌개,Soft Tofu Stew,식품안전나라 레시피 4건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+bossam,보쌈,Bossam,식품안전나라 레시피 3건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+deulkkae_tang,들깨탕,Perilla Seed Soup,식품안전나라 레시피 3건 통계 집계,public_recipe,https://openapi.foodsafetykorea.go.kr/
+samgyetang,삼계탕,Ginseng Chicken Soup,식품안전나라 레시피 2건 통계 집계 (표본 부족 — 검토 필요),public_recipe,https://openapi.foodsafetykorea.go.kr/
+dakgalbi,닭갈비,Spicy Stir-fried Chicken,식품안전나라 레시피 2건 통계 집계 (표본 부족 — 검토 필요),public_recipe,https://openapi.foodsafetykorea.go.kr/
+jeongol,전골,Hot Pot,식품안전나라 레시피 2건 통계 집계 (표본 부족 — 검토 필요),public_recipe,https://openapi.foodsafetykorea.go.kr/
+mu_guk,무국,Radish Soup,식품안전나라 레시피 2건 통계 집계 (표본 부족 — 검토 필요),public_recipe,https://openapi.foodsafetykorea.go.kr/
+yukgaejang,육개장,Spicy Beef Soup,식품안전나라 레시피 2건 통계 집계 (표본 부족 — 검토 필요),public_recipe,https://openapi.foodsafetykorea.go.kr/
+kalguksu,칼국수,Hand-cut Noodle Soup,식품안전나라 레시피 2건 통계 집계 (표본 부족 — 검토 필요),public_recipe,https://openapi.foodsafetykorea.go.kr/
+white_rice,흰밥,Steamed White Rice,한식진흥원 정밀레시피 기준 (1종 원재료),public_recipe,https://www.hansik.or.kr/
+nurungji,누룽지,Scorched Rice,한식진흥원 정밀레시피 기준 (1종 원재료),public_recipe,https://www.hansik.or.kr/
+jumeokbap,주먹밥,Rice Balls,한식진흥원 정밀레시피 기준 (9종 원재료),public_recipe,https://www.hansik.or.kr/
+bibimbap,비빔밥,Bibimbap,한식진흥원 정밀레시피 기준 (21종 원재료),public_recipe,https://www.hansik.or.kr/
+sanchae_bibimbap,산채비빔밥,Wild Vegetable Bibimbap,한식진흥원 정밀레시피 기준 (16종 원재료),public_recipe,https://www.hansik.or.kr/
+sprout_bibimbap,새싹비빔밥,Sprout Bibimbap,한식진흥원 정밀레시피 기준 (13종 원재료),public_recipe,https://www.hansik.or.kr/
+dolsot_bibimbap,돌솥비빔밥,Hot Stone Pot Bibimbap,한식진흥원 정밀레시피 기준 (33종 원재료),public_recipe,https://www.hansik.or.kr/
+yeongyang_dolsotbap,영양돌솥밥,Nutritious Hot Stone Pot Rice,한식진흥원 정밀레시피 기준 (17종 원재료),public_recipe,https://www.hansik.or.kr/
+bulgogi_rice_bowl,불고기덮밥,Bulgogi Rice Bowl,한식진흥원 정밀레시피 기준 (15종 원재료),public_recipe,https://www.hansik.or.kr/
+dwaeji_gukbap,돼지국밥,Pork and Rice Soup,한식진흥원 정밀레시피 기준 (19종 원재료),public_recipe,https://www.hansik.or.kr/
+sogogi_gukbap,소고기국밥,Beef and Rice Soup,한식진흥원 정밀레시피 기준 (13종 원재료),public_recipe,https://www.hansik.or.kr/
+five_grain_rice,오곡밥,Five-Grain Rice,한식진흥원 정밀레시피 기준 (7종 원재료),public_recipe,https://www.hansik.or.kr/
+sundae_gukbap,순댓국밥,Korean Blood Sausage Soup with Rice,한식진흥원 정밀레시피 기준 (14종 원재료),public_recipe,https://www.hansik.or.kr/
+kongnamul_gukbap,콩나물국밥,Bean Sprout Soup with Rice,한식진흥원 정밀레시피 기준 (11종 원재료),public_recipe,https://www.hansik.or.kr/
+kongnamul_bap,콩나물밥,Bean Sprout Rice,한식진흥원 정밀레시피 기준 (13종 원재료),public_recipe,https://www.hansik.or.kr/
+ugeoji_sagol_gukbap,우거지사골국밥,Napa Cabbage Beef Bone Soup with Rice,한식진흥원 정밀레시피 기준 (18종 원재료),public_recipe,https://www.hansik.or.kr/
+ssambap,쌈밥,Leaf Wraps with Rice,한식진흥원 정밀레시피 기준 (15종 원재료),public_recipe,https://www.hansik.or.kr/
+jeyuk_rice_bowl,제육덮밥,Spicy Pork Rice Bowl,한식진흥원 정밀레시피 기준 (21종 원재료),public_recipe,https://www.hansik.or.kr/
+jeyuk_bibimbap,제육비빔밥,Spicy Pork Bibimbap,한식진흥원 정밀레시피 기준 (18종 원재료),public_recipe,https://www.hansik.or.kr/
+ureong_doenjang_bibimbap,우렁된장비빔밥,River Snail Doenjang Bibimbap,한식진흥원 정밀레시피 기준 (16종 원재료),public_recipe,https://www.hansik.or.kr/
+yukhoe_bibimbap,육회비빔밥,Beef Tartare Bibimbap,한식진흥원 정밀레시피 기준 (23종 원재료),public_recipe,https://www.hansik.or.kr/
+hoedeopbap,회덮밥,Raw Fish Rice Bowl,한식진흥원 정밀레시피 기준 (18종 원재료),public_recipe,https://www.hansik.or.kr/
+multigrain_rice,잡곡밥,Multigrain Rice,한식진흥원 정밀레시피 기준 (4종 원재료),public_recipe,https://www.hansik.or.kr/
+japchae_rice_bowl,잡채덮밥,Japchae Rice Bowl,한식진흥원 정밀레시피 기준 (21종 원재료),public_recipe,https://www.hansik.or.kr/
+barley_rice,보리밥,Barley Rice,한식진흥원 정밀레시피 기준 (2종 원재료),public_recipe,https://www.hansik.or.kr/
+gondre_namul_bap,곤드레나물밥,Gondre Herb Rice,한식진흥원 정밀레시피 기준 (11종 원재료),public_recipe,https://www.hansik.or.kr/
+gimbap,김밥,Gimbap (Seaweed Rice Roll),한식진흥원 정밀레시피 기준 (20종 원재료),public_recipe,https://www.hansik.or.kr/
+squid_rice_bowl,오징어덮밥,Spicy Squid Rice Bowl,한식진흥원 정밀레시피 기준 (21종 원재료),public_recipe,https://www.hansik.or.kr/
+octopus_rice_bowl,낙지덮밥,Spicy Octopus Rice Bowl,한식진흥원 정밀레시피 기준 (19종 원재료),public_recipe,https://www.hansik.or.kr/
+kimchi_fried_rice,김치볶음밥,Kimchi Fried Rice,한식진흥원 정밀레시피 기준 (10종 원재료),public_recipe,https://www.hansik.or.kr/
+jokbal,족발,Braised Pig Trotters,"간장·한약재에 조린 돼지 족발. 마늘소스·새우젓·쌈장을 곁들임 — AI 작성 초안 — 공개 레시피 DB 미수록, 사람 검증 필요",cooking_pattern,
+makguksu,막국수,Buckwheat Noodles,"메밀면에 새콤한 양념장을 비벼 먹는 국수 — AI 작성 초안 — 공개 레시피 DB 미수록, 사람 검증 필요",cooking_pattern,
+namulbibimbap,나물비빔밥,Namulbibimbap,EPIS 레시피 DB 밥 (RECIPE_ID 1) · 재료 16종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+yaksik,약식,Yaksik,EPIS 레시피 DB 떡/한과 (RECIPE_ID 5) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+hobakjuk,호박죽,Hobakjuk,EPIS 레시피 DB 밥 (RECIPE_ID 6) · 재료 4종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+heukimjajuk,흑임자죽,Heukimjajuk,EPIS 레시피 DB 밥 (RECIPE_ID 7) · 재료 4종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gamjasujebi,감자수제비,Gamjasujebi,EPIS 레시피 DB 만두/면류 (RECIPE_ID 10) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+naengmyeon,냉면,Naengmyeon,EPIS 레시피 DB 만두/면류 (RECIPE_ID 11) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dongchimimakguksu,동치미막국수,Dongchimimakguksu,EPIS 레시피 DB 만두/면류 (RECIPE_ID 12) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+yeolmugimchinaengmyeon,열무김치냉면,Yeolmugimchinaengmyeon,EPIS 레시피 DB 만두/면류 (RECIPE_ID 13) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+chaesoguksu,채소국수,Chaesoguksu,EPIS 레시피 DB 만두/면류 (RECIPE_ID 14) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+haemulguksu,해물국수,Haemulguksu,EPIS 레시피 DB 만두/면류 (RECIPE_ID 15) · 재료 14종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+mandutguk,만둣국,Mandutguk,EPIS 레시피 DB 만두/면류 (RECIPE_ID 16) · 재료 14종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dasimanaengguk,다시마냉국,Dasimanaengguk,EPIS 레시피 DB 국 (RECIPE_ID 17) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dubuguk,두부국,Dubuguk,EPIS 레시피 DB 국 (RECIPE_ID 18) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dubujogaetang,두부조개탕,Dubujogaetang,EPIS 레시피 DB 국 (RECIPE_ID 19) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+mumakeunguk,무맑은국,Mumakeunguk,EPIS 레시피 DB 국 (RECIPE_ID 20) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+miyeoknaengguk,미역냉국,Miyeoknaengguk,EPIS 레시피 DB 국 (RECIPE_ID 22) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+saengtaeguk,생태국,Saengtaeguk,EPIS 레시피 DB 국 (RECIPE_ID 23) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+oinaengguk,오이냉국,Oinaengguk,EPIS 레시피 DB 국 (RECIPE_ID 25) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+soegogisanjeok,쇠고기산적,Soegogisanjeok,EPIS 레시피 DB 구이 (RECIPE_ID 29) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+soegogiyangsongibokeum,쇠고기양송이볶음,Soegogiyangsongibokeum,EPIS 레시피 DB 볶음 (RECIPE_ID 30) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+patguksu,팥국수,Patguksu,EPIS 레시피 DB 만두/면류 (RECIPE_ID 31) · 재료 4종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+kongnamulmuchim,콩나물무침,Kongnamulmuchim,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 35) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+ueongjorim,우엉조림,Ueongjorim,EPIS 레시피 DB 조림 (RECIPE_ID 36) · 재료 5종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+myeolchibokeum,멸치볶음,Myeolchibokeum,EPIS 레시피 DB 볶음 (RECIPE_ID 38) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+galchimujorim,갈치무조림,Galchimujorim,EPIS 레시피 DB 조림 (RECIPE_ID 39) · 재료 13종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dakbulgogi,닭불고기,Dakbulgogi,EPIS 레시피 DB 볶음 (RECIPE_ID 40) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dubudasimamali,두부다시마말이,Dubudasimamali,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 41) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+patkalguksu,팥칼국수,Patkalguksu,EPIS 레시피 DB 만두/면류 (RECIPE_ID 42) · 재료 4종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+kongnamuljapchae,콩나물잡채,Kongnamuljapchae,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 43) · 재료 16종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+yangbaechumalijjim,양배추말이찜,Yangbaechumalijjim,EPIS 레시피 DB 찜 (RECIPE_ID 44) · 재료 13종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+maneuljangajji,마늘장아찌,Maneuljangajji,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 45) · 재료 4종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+ojingeobulgogi,오징어불고기,Ojingeobulgogi,EPIS 레시피 DB 볶음 (RECIPE_ID 46) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+galbigui,갈비구이,Galbigui,EPIS 레시피 DB 구이 (RECIPE_ID 48) · 재료 16종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+galbijjim,갈비찜,Galbijjim,EPIS 레시피 DB 찜 (RECIPE_ID 50) · 재료 18종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+jeyukbossam,제육보쌈,Jeyukbossam,EPIS 레시피 DB 찜 (RECIPE_ID 51) · 재료 14종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+honghapkkochigui,홍합꼬치구이,Honghapkkochigui,EPIS 레시피 DB 구이 (RECIPE_ID 52) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+cheonggukjangjjigae,청국장찌개,Cheonggukjangjjigae,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 53) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dongtaejjigae,동태찌개,Dongtaejjigae,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 55) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+kongbijijjigae,콩비지찌개,Kongbijijjigae,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 57) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+bukeoguk,북어국,Bukeoguk,EPIS 레시피 DB 국 (RECIPE_ID 58) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+osaekjumeokbapdosirak,오색주먹밥도시락,Osaekjumeokbapdosirak,EPIS 레시피 DB 도시락/간식 (RECIPE_ID 60) · 재료 17종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+haeparinaengchae,해파리냉채,Haeparinaengchae,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 61) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+tongbaechugimchi,통배추김치,Tongbaechugimchi,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 62) · 재료 13종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+yeolmugimchi,열무김치,Yeolmugimchi,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 63) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+oisobaki,오이소박이,Oisobaki,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 64) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+nabakgimchi,나박김치,Nabakgimchi,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 65) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+chonggakgimchi,총각김치,Chonggakgimchi,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 66) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gulkkakdugi,굴깍두기,Gulkkakdugi,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 67) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dongchimi,동치미,Dongchimi,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 68) · 재료 6종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gatgimchi,갓김치,Gatgimchi,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 69) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+kkotgejjigae,꽃게찌개,Kkotgejjigae,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 70) · 재료 14종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gamjatang,감자탕,Gamjatang,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 71) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+agutang,아구탕,Agutang,EPIS 레시피 DB 국 (RECIPE_ID 72) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+jogimaeuntang,조기매운탕,Jogimaeuntang,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 73) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+altang,알탕,Altang,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 74) · 재료 15종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+ugeojidoenjangjjigae,우거지된장찌개,Ugeojidoenjangjjigae,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 75) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+syabeusyabeu,샤브샤브,Syabeusyabeu,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 76) · 재료 16종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+guksujeongol,국수전골,Guksujeongol,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 77) · 재료 13종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+nakjijeongol,낙지전골,Nakjijeongol,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 78) · 재료 17종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+seonjiguk,선지국,Seonjiguk,EPIS 레시피 DB 국 (RECIPE_ID 79) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gomtang,곰탕,Gomtang,EPIS 레시피 DB 국 (RECIPE_ID 81) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+seolreongtang,설렁탕,Seolreongtang,EPIS 레시피 DB 국 (RECIPE_ID 82) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+doganitang,도가니탕,Doganitang,EPIS 레시피 DB 국 (RECIPE_ID 83) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+kkorigomtang,꼬리곰탕,Kkorigomtang,EPIS 레시피 DB 국 (RECIPE_ID 84) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+galbitang,갈비탕,Galbitang,EPIS 레시피 DB 국 (RECIPE_ID 85) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+buchugimchi,부추김치,Buchugimchi,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 86) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+pagimchi,파김치,Pagimchi,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 87) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+baekgimchi,백김치,Baekgimchi,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 88) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+kkaetipjangajji,깻잎장아찌,Kkaetipjangajji,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 89) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+oijijangajjimuchim,오이지장아찌무침,Oijijangajjimuchim,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 90) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+kongjaban,콩자반,Kongjaban,EPIS 레시피 DB 조림 (RECIPE_ID 91) · 재료 5종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+soegogijangjorim,쇠고기장조림,Soegogijangjorim,EPIS 레시피 DB 조림 (RECIPE_ID 92) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+yeongeunjorim,연근조림,Yeongeunjorim,EPIS 레시피 DB 조림 (RECIPE_ID 93) · 재료 6종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+haemulpajeon,해물파전,Haemulpajeon,EPIS 레시피 DB 부침 (RECIPE_ID 94) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+oinamul,오이나물,Oinamul,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 95) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+naengidoenjangjjigae,냉이된장찌개,Naengidoenjangjjigae,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 96) · 재료 6종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gyeranmali,계란말이,Gyeranmali,EPIS 레시피 DB 부침 (RECIPE_ID 97) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dakgangjeong,닭강정,Dakgangjeong,EPIS 레시피 DB 튀김/커틀릿 (RECIPE_ID 98) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+baechugeotjeoli,배추겉절이,Baechugeotjeoli,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 99) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+deodeokgui,더덕구이,Deodeokgui,EPIS 레시피 DB 구이 (RECIPE_ID 100) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gamjajorim,감자조림,Gamjajorim,EPIS 레시피 DB 조림 (RECIPE_ID 101) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+mareunojingeojorim,마른오징어조림,Mareunojingeojorim,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 102) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+juksunbokeum,죽순볶음,Juksunbokeum,EPIS 레시피 DB 볶음 (RECIPE_ID 103) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+hobakjeon,호박전,Hobakjeon,EPIS 레시피 DB 부침 (RECIPE_ID 104) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+buchujeon,부추전,Buchujeon,EPIS 레시피 DB 부침 (RECIPE_ID 108) · 재료 6종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dwaejigalbigui,돼지갈비구이,Dwaejigalbigui,EPIS 레시피 DB 구이 (RECIPE_ID 109) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+kkongchimujorim,꽁치무조림,Kkongchimujorim,EPIS 레시피 DB 조림 (RECIPE_ID 111) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gimchijeok,김치적,Gimchijeok,EPIS 레시피 DB 부침 (RECIPE_ID 112) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+nakjibokeum,낙지볶음,Nakjibokeum,EPIS 레시피 DB 볶음 (RECIPE_ID 113) · 재료 14종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dubugimchi,두부김치,Dubugimchi,EPIS 레시피 DB 볶음 (RECIPE_ID 114) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dubumiyeoknaengchae,두부미역냉채,Dubumiyeoknaengchae,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 117) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+haejangramyeon,해장라면,Haejangramyeon,EPIS 레시피 DB 만두/면류 (RECIPE_ID 119) · 재료 14종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+kkongchiganjanggui,꽁치간장구이,Kkongchiganjanggui,EPIS 레시피 DB 구이 (RECIPE_ID 121) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gamjagochuchaebokeum,감자고추채볶음,Gamjagochuchaebokeum,EPIS 레시피 DB 볶음 (RECIPE_ID 122) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+ganeunpajapchae,가는파잡채,Ganeunpajapchae,EPIS 레시피 DB 볶음 (RECIPE_ID 123) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+mukgwayangnyeomjang,묵과양념장,Mukgwayangnyeomjang,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 124) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+godeungeosaltwigimgwasoseu,고등어살튀김과소스,Godeungeosaltwigimgwasoseu,EPIS 레시피 DB 튀김/커틀릿 (RECIPE_ID 125) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gajiwamareunsaeumuchim,가지와마른새우무침,Gajiwamareunsaeumuchim,EPIS 레시피 DB 볶음 (RECIPE_ID 126) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+tteokgalbigui,떡갈비구이,Tteokgalbigui,EPIS 레시피 DB 구이 (RECIPE_ID 128) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+golbaengimuchim,골뱅이무침,Golbaengimuchim,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 129) · 재료 14종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dubuyangnyeomjorim,두부양념조림,Dubuyangnyeomjorim,EPIS 레시피 DB 조림 (RECIPE_ID 130) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+yukhoe,육회,Yukhoe,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 131) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+yubugyeranjjim,유부계란찜,Yubugyeranjjim,EPIS 레시피 DB 찜 (RECIPE_ID 135) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+beoseotdeopbap,버섯덮밥,Beoseotdeopbap,EPIS 레시피 DB 밥 (RECIPE_ID 138) · 재료 15종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dakgogisusamsaelreodeu,닭고기수삼샐러드,Dakgogisusamsaelreodeu,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 139) · 재료 14종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gopchangjeongol,곱창전골,Gopchangjeongol,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 146) · 재료 18종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+agwijjim,아귀찜,Agwijjim,EPIS 레시피 DB 찜 (RECIPE_ID 147) · 재료 13종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+samgyeopsalchaesomali,삼겹살채소말이,Samgyeopsalchaesomali,EPIS 레시피 DB 구이 (RECIPE_ID 149) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+baechusokdaetguk,배추속댓국,Baechusokdaetguk,EPIS 레시피 DB 국 (RECIPE_ID 150) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+songpyeon,송편,Songpyeon,EPIS 레시피 DB 떡/한과 (RECIPE_ID 151) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+bindaetteok,빈대떡,Bindaetteok,EPIS 레시피 DB 부침 (RECIPE_ID 152) · 재료 13종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+hwayangjeok,화양적,Hwayangjeok,EPIS 레시피 DB 부침 (RECIPE_ID 153) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+torangomtang,토란곰탕,Torangomtang,EPIS 레시피 DB 국 (RECIPE_ID 154) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+soegogijeongol,쇠고기전골,Soegogijeongol,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 155) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+godeungeomujorim,고등어무조림,Godeungeomujorim,EPIS 레시피 DB 조림 (RECIPE_ID 156) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+ssamjang,쌈장,Ssamjang,EPIS 레시피 DB 양념장 (RECIPE_ID 158) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+ojingeosundae,오징어순대,Ojingeosundae,EPIS 레시피 DB 찜 (RECIPE_ID 161) · 재료 19종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+garaetteokkkochi,가래떡꼬치,Garaetteokkkochi,EPIS 레시피 DB 도시락/간식 (RECIPE_ID 163) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+chanbapjijimi,찬밥지짐이,Chanbapjijimi,EPIS 레시피 DB 부침 (RECIPE_ID 164) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dongjipatjuk,동지팥죽,Dongjipatjuk,EPIS 레시피 DB 밥 (RECIPE_ID 165) · 재료 4종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gogumajulgibokeum,고구마줄기볶음,Gogumajulgibokeum,EPIS 레시피 DB 볶음 (RECIPE_ID 167) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+eomukdakgogijorim,어묵닭고기조림,Eomukdakgogijorim,EPIS 레시피 DB 조림 (RECIPE_ID 168) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+tteokguk,떡국,Tteokguk,EPIS 레시피 DB 국 (RECIPE_ID 169) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+jeolpyeon,절편,Jeolpyeon,EPIS 레시피 DB 떡/한과 (RECIPE_ID 170) · 재료 4종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+sujeonggwa,수정과,Sujeonggwa,EPIS 레시피 DB 음료 (RECIPE_ID 171) · 재료 4종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+patsirutteok,팥시루떡,Patsirutteok,EPIS 레시피 DB 떡/한과 (RECIPE_ID 173) · 재료 5종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+soegogiwanjajjim,쇠고기완자찜,Soegogiwanjajjim,EPIS 레시피 DB 찜 (RECIPE_ID 175) · 재료 13종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+haemuljapchae,해물잡채,Haemuljapchae,EPIS 레시피 DB 만두/면류 (RECIPE_ID 176) · 재료 14종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+makeuntteokguk,맑은떡국,Makeuntteokguk,EPIS 레시피 DB 국 (RECIPE_ID 177) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+chalbap,찰밥,Chalbap,EPIS 레시피 DB 밥 (RECIPE_ID 178) · 재료 5종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+kongnamulmubap,콩나물무밥,Kongnamulmubap,EPIS 레시피 DB 밥 (RECIPE_ID 179) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+modeumssambap,모듬쌈밥,Modeumssambap,EPIS 레시피 DB 밥 (RECIPE_ID 180) · 재료 13종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dalraedoenjangjjigae,달래된장찌개,Dalraedoenjangjjigae,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 181) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+ssukbeoseotbokeum,쑥버섯볶음,Ssukbeoseotbokeum,EPIS 레시피 DB 볶음 (RECIPE_ID 182) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+bomdongbajirakbokeum,봄동바지락볶음,Bomdongbajirakbokeum,EPIS 레시피 DB 볶음 (RECIPE_ID 184) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gimchidonggeurangttaeng,김치동그랑땡,Gimchidonggeurangttaeng,EPIS 레시피 DB 부침 (RECIPE_ID 185) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+chanbapmattang,찬밥맛탕,Chanbapmattang,EPIS 레시피 DB 밥 (RECIPE_ID 186) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+yangbaechutguk,양배춧국,Yangbaechutguk,EPIS 레시피 DB 국 (RECIPE_ID 187) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+ojingeojjigae,오징어찌개,Ojingeojjigae,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 188) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+sigeumchidoenjangguk,시금치된장국,Sigeumchidoenjangguk,EPIS 레시피 DB 국 (RECIPE_ID 191) · 재료 4종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gimchichaesossam,김치채소쌈,Gimchichaesossam,EPIS 레시피 DB 밥 (RECIPE_ID 192) · 재료 13종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+chalbapjumeokbap,찰밥주먹밥,Chalbapjumeokbap,EPIS 레시피 DB 밥 (RECIPE_ID 193) · 재료 6종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gyeranmalijumeokbap,계란말이주먹밥,Gyeranmalijumeokbap,EPIS 레시피 DB 밥 (RECIPE_ID 194) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+eomukguk,어묵국,Eomukguk,EPIS 레시피 DB 국 (RECIPE_ID 195) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+jogaemakeunguk,조개맑은국,Jogaemakeunguk,EPIS 레시피 DB 국 (RECIPE_ID 196) · 재료 5종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+jatjuk,잣죽,Jatjuk,EPIS 레시피 DB 밥 (RECIPE_ID 199) · 재료 4종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gochujangajji,고추장아찌,Gochujangajji,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 200) · 재료 5종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+soegogimuguk,쇠고기무국,Soegogimuguk,EPIS 레시피 DB 국 (RECIPE_ID 202) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+myeongranjeotjjigae,명란젓찌개,Myeongranjeotjjigae,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 203) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+haemuljeongol,해물전골,Haemuljeongol,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 206) · 재료 15종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+chogyotang,초교탕,Chogyotang,EPIS 레시피 DB 국 (RECIPE_ID 208) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+samgyeopsalkkaetipjeon,삼겹살깻잎전,Samgyeopsalkkaetipjeon,EPIS 레시피 DB 부침 (RECIPE_ID 209) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dakkkochigui,닭꼬치구이,Dakkkochigui,EPIS 레시피 DB 구이 (RECIPE_ID 211) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+nokchasujebi,녹차수제비,Nokchasujebi,EPIS 레시피 DB 만두/면류 (RECIPE_ID 212) · 재료 13종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+galbitteokboki,갈비떡볶이,Galbitteokboki,EPIS 레시피 DB 도시락/간식 (RECIPE_ID 214) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+ojingeosanjeok,오징어산적,Ojingeosanjeok,EPIS 레시피 DB 구이 (RECIPE_ID 215) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+sagoltang,사골탕,Sagoltang,EPIS 레시피 DB 국 (RECIPE_ID 218) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gamjaguksu,감자국수,Gamjaguksu,EPIS 레시피 DB 만두/면류 (RECIPE_ID 219) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gimchisujebi,김치수제비,Gimchisujebi,EPIS 레시피 DB 만두/면류 (RECIPE_ID 220) · 재료 16종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+ogokbapssambapjeongsik,오곡밥쌈밥정식,Ogokbapssambapjeongsik,EPIS 레시피 DB 밥 (RECIPE_ID 221) · 재료 13종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+ojingeosukhoe,오징어숙회,Ojingeosukhoe,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 222) · 재료 5종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+kodarijjim,코다리찜,Kodarijjim,EPIS 레시피 DB 찜 (RECIPE_ID 225) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+beoseotmandujeongol,버섯만두전골,Beoseotmandujeongol,EPIS 레시피 DB 만두/면류 (RECIPE_ID 227) · 재료 14종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+haemulbapjeon,해물밥전,Haemulbapjeon,EPIS 레시피 DB 밥 (RECIPE_ID 228) · 재료 15종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+hongchagyeranjangjorim,홍차계란장조림,Hongchagyeranjangjorim,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 231) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gajidoenjangjjim,가지된장찜,Gajidoenjangjjim,EPIS 레시피 DB 찜 (RECIPE_ID 232) · 재료 14종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+saengtaemaeuntang,생태매운탕,Saengtaemaeuntang,EPIS 레시피 DB 국 (RECIPE_ID 235) · 재료 17종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dubuguljjigae,두부굴찌개,Dubuguljjigae,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 236) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+beoseotdubujjigae,버섯두부찌개,Beoseotdubujjigae,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 237) · 재료 13종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gimchijumeokbap,김치주먹밥,Gimchijumeokbap,EPIS 레시피 DB 밥 (RECIPE_ID 238) · 재료 15종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+honghaptang,홍합탕,Honghaptang,EPIS 레시피 DB 국 (RECIPE_ID 239) · 재료 5종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dwaejigalbijjim,돼지갈비찜,Dwaejigalbijjim,EPIS 레시피 DB 찜 (RECIPE_ID 240) · 재료 18종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+jeyukbulgogi,제육불고기,Jeyukbulgogi,EPIS 레시피 DB 구이 (RECIPE_ID 242) · 재료 14종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+baechubamgimchi,배추밤김치,Baechubamgimchi,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 243) · 재료 13종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+bossamgimchi,보쌈김치,Bossamgimchi,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 244) · 재료 18종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+sagolugeojitang,사골우거지탕,Sagolugeojitang,EPIS 레시피 DB 국 (RECIPE_ID 245) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+chanbapjeon,찬밥전,Chanbapjeon,EPIS 레시피 DB 부침 (RECIPE_ID 246) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+danpatjuk,단팥죽,Danpatjuk,EPIS 레시피 DB 밥 (RECIPE_ID 247) · 재료 4종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+bulgoginakjijeongol,불고기낙지전골,Bulgoginakjijeongol,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 248) · 재료 14종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+janmyeolchidoenjangbokeum,잔멸치된장볶음,Janmyeolchidoenjangbokeum,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 249) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+byeolmibap,별미밥,Byeolmibap,EPIS 레시피 DB 밥 (RECIPE_ID 250) · 재료 13종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+chaesobibimsomyeon,채소비빔소면,Chaesobibimsomyeon,EPIS 레시피 DB 만두/면류 (RECIPE_ID 252) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+kongnamulbeoseotdeopbap,콩나물버섯덮밥,Kongnamulbeoseotdeopbap,EPIS 레시피 DB 밥 (RECIPE_ID 254) · 재료 15종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+eomukkkochi,어묵꼬치,Eomukkkochi,EPIS 레시피 DB 국 (RECIPE_ID 255) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+yeongyangchaesobap,영양채소밥,Yeongyangchaesobap,EPIS 레시피 DB 밥 (RECIPE_ID 257) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+sasaeknamul,사색나물,Sasaeknamul,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 258) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+tteokjapchae,떡잡채,Tteokjapchae,EPIS 레시피 DB 볶음 (RECIPE_ID 259) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dubuchaesonaengchae,두부채소냉채,Dubuchaesonaengchae,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 260) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+yakgwa,약과,Yakgwa,EPIS 레시피 DB 떡/한과 (RECIPE_ID 261) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+chamchijumeokbap,참치주먹밥,Chamchijumeokbap,EPIS 레시피 DB 도시락/간식 (RECIPE_ID 262) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+yubumiyeokdoenjangguk,유부미역된장국,Yubumiyeokdoenjangguk,EPIS 레시피 DB 국 (RECIPE_ID 263) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+samsaeksujebi,삼색수제비,Samsaeksujebi,EPIS 레시피 DB 만두/면류 (RECIPE_ID 264) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+godeulppaegigimchi,고들빼기김치,Godeulppaegigimchi,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 265) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dalraegulpajeon,달래굴파전,Dalraegulpajeon,EPIS 레시피 DB 부침 (RECIPE_ID 266) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dalraejanggimchi,달래장김치,Dalraejanggimchi,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 267) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dureupdoenjangmuchim,두릅된장무침,Dureupdoenjangmuchim,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 268) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+sukjuminarimuchim,숙주미나리무침,Sukjuminarimuchim,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 269) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+chamnamulgochujangmuchim,참나물고추장무침,Chamnamulgochujangmuchim,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 270) · 재료 6종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+ojingeotonggui,오징어통구이,Ojingeotonggui,EPIS 레시피 DB 구이 (RECIPE_ID 271) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dakgogikongnamuldeopbap,닭고기콩나물덮밥,Dakgogikongnamuldeopbap,EPIS 레시피 DB 밥 (RECIPE_ID 272) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gimchidubussam,김치두부쌈,Gimchidubussam,EPIS 레시피 DB 찜 (RECIPE_ID 273) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+hobakdubujjigae,호박두부찌개,Hobakdubujjigae,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 274) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+haeparihaemulnaengchae,해파리해물냉채,Haeparihaemulnaengchae,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 275) · 재료 15종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+ojingeoputmaneulsanjeok,오징어풋마늘산적,Ojingeoputmaneulsanjeok,EPIS 레시피 DB 부침 (RECIPE_ID 280) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+sangchugeotjeolibibimbap,상추겉절이비빔밥,Sangchugeotjeolibibimbap,EPIS 레시피 DB 밥 (RECIPE_ID 281) · 재료 14종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dubualjjim,두부알찜,Dubualjjim,EPIS 레시피 DB 찜 (RECIPE_ID 282) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gimchikkongchijorim,김치꽁치조림,Gimchikkongchijorim,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 287) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+ganjangtteokboki,간장떡볶이,Ganjangtteokboki,EPIS 레시피 DB 볶음 (RECIPE_ID 289) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gimchissambap,김치쌈밥,Gimchissambap,EPIS 레시피 DB 밥 (RECIPE_ID 291) · 재료 6종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+janchiguksu,잔치국수,Janchiguksu,EPIS 레시피 DB 만두/면류 (RECIPE_ID 292) · 재료 14종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+kodarijorim,코다리조림,Kodarijorim,EPIS 레시피 DB 조림 (RECIPE_ID 294) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+sundaebokeum,순대볶음,Sundaebokeum,EPIS 레시피 DB 볶음 (RECIPE_ID 296) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+yeolmubibimbap,열무비빔밥,Yeolmubibimbap,EPIS 레시피 DB 밥 (RECIPE_ID 299) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dasimabokeum,다시마볶음,Dasimabokeum,EPIS 레시피 DB 볶음 (RECIPE_ID 300) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+doenjangkkaetipjangajji,된장깻잎장아찌,Doenjangkkaetipjangajji,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 303) · 재료 3종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+bibimssalguksu,비빔쌀국수,Bibimssalguksu,EPIS 레시피 DB 만두/면류 (RECIPE_ID 304) · 재료 13종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+aukguk,아욱국,Aukguk,EPIS 레시피 DB 국 (RECIPE_ID 305) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+raboki,라볶이,Raboki,EPIS 레시피 DB 볶음 (RECIPE_ID 306) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+godeungeogimchijorim,고등어김치조림,Godeungeogimchijorim,EPIS 레시피 DB 조림 (RECIPE_ID 307) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+bajirakbokeum,바지락볶음,Bajirakbokeum,EPIS 레시피 DB 볶음 (RECIPE_ID 309) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gajisoegogibokeum,가지쇠고기볶음,Gajisoegogibokeum,EPIS 레시피 DB 볶음 (RECIPE_ID 310) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+beoseotcheonggukjangjjigae,버섯청국장찌개,Beoseotcheonggukjangjjigae,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 311) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+buchubuchimgae,부추부침개,Buchubuchimgae,EPIS 레시피 DB 부침 (RECIPE_ID 312) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+saesongisanjeok,새송이산적,Saesongisanjeok,EPIS 레시피 DB 구이 (RECIPE_ID 315) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dakgaejang,닭개장,Dakgaejang,EPIS 레시피 DB 국 (RECIPE_ID 319) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+ojingeochaebokeum,오징어채볶음,Ojingeochaebokeum,EPIS 레시피 DB 볶음 (RECIPE_ID 321) · 재료 6종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+bajirakkalguksu,바지락칼국수,Bajirakkalguksu,EPIS 레시피 DB 만두/면류 (RECIPE_ID 322) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+ojingeodorajisaengchae,오징어도라지생채,Ojingeodorajisaengchae,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 323) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+aehobakmuchim,애호박무침,Aehobakmuchim,EPIS 레시피 DB 볶음 (RECIPE_ID 324) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+yangsongibeoseotjuk,양송이버섯죽,Yangsongibeoseotjuk,EPIS 레시피 DB 밥 (RECIPE_ID 325) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+honghapmiyeokguk,홍합미역국,Honghapmiyeokguk,EPIS 레시피 DB 국 (RECIPE_ID 326) · 재료 6종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+daegutang,대구탕,Daegutang,EPIS 레시피 DB 국 (RECIPE_ID 329) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+bulgogichapssalgui,불고기찹쌀구이,Bulgogichapssalgui,EPIS 레시피 DB 구이 (RECIPE_ID 330) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gochubugak,고추부각,Gochubugak,EPIS 레시피 DB 튀김/커틀릿 (RECIPE_ID 331) · 재료 5종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+chungmugimbap,충무김밥,Chungmugimbap,EPIS 레시피 DB 밥 (RECIPE_ID 332) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gyeranjjim,계란찜,Gyeranjjim,EPIS 레시피 DB 찜 (RECIPE_ID 337) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+kongnamulbibimbap,콩나물비빔밥,Kongnamulbibimbap,EPIS 레시피 DB 밥 (RECIPE_ID 338) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+injeolmi,인절미,Injeolmi,EPIS 레시피 DB 떡/한과 (RECIPE_ID 339) · 재료 3종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+sangchuchaesomuchim,상추채소무침,Sangchuchaesomuchim,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 340) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+hobakyangpaguk,호박양파국,Hobakyangpaguk,EPIS 레시피 DB 국 (RECIPE_ID 341) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+kkongchigui,꽁치구이,Kkongchigui,EPIS 레시피 DB 구이 (RECIPE_ID 342) · 재료 4종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+ojingeojeotgal,오징어젓갈,Ojingeojeotgal,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 343) · 재료 6종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+musaengchae,무생채,Musaengchae,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 344) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+haemulguksi,해물국시,Haemulguksi,EPIS 레시피 DB 만두/면류 (RECIPE_ID 345) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+paraemuchim,파래무침,Paraemuchim,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 347) · 재료 6종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+danhobaktwigim,단호박튀김,Danhobaktwigim,EPIS 레시피 DB 튀김/커틀릿 (RECIPE_ID 348) · 재료 4종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+munamul,무나물,Munamul,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 351) · 재료 5종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+godeungeodoenjangjorim,고등어된장조림,Godeungeodoenjangjorim,EPIS 레시피 DB 조림 (RECIPE_ID 352) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dubuduruchigi,두부두루치기,Dubuduruchigi,EPIS 레시피 DB 볶음 (RECIPE_ID 353) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+sigeumchidoenjangjuk,시금치된장죽,Sigeumchidoenjangjuk,EPIS 레시피 DB 밥 (RECIPE_ID 355) · 재료 6종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+jeyukgyeojassam,제육겨자쌈,Jeyukgyeojassam,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 356) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+ogokjumeokbap,오곡주먹밥,Ogokjumeokbap,EPIS 레시피 DB 밥 (RECIPE_ID 360) · 재료 13종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+muchogimchi,무초김치,Muchogimchi,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 361) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+hwajeon,화전,Hwajeon,EPIS 레시피 DB 떡/한과 (RECIPE_ID 362) · 재료 6종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+kongnamulminarimuchim,콩나물미나리무침,Kongnamulminarimuchim,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 364) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+kkotgehaemultang,꽃게해물탕,Kkotgehaemultang,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 373) · 재료 16종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+modeumjeon,모듬전,Modeumjeon,EPIS 레시피 DB 부침 (RECIPE_ID 375) · 재료 16종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+ojingeosamgyeopsalbokeum,오징어삼겹살볶음,Ojingeosamgyeopsalbokeum,EPIS 레시피 DB 볶음 (RECIPE_ID 381) · 재료 13종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+chaesoyeongyangbap,채소영양밥,Chaesoyeongyangbap,EPIS 레시피 DB 밥 (RECIPE_ID 382) · 재료 6종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+umuknaengchae,우묵냉채,Umuknaengchae,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 385) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+beoseotmaeuntang,버섯매운탕,Beoseotmaeuntang,EPIS 레시피 DB 만두/면류 (RECIPE_ID 386) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dongraepajeon,동래파전,Dongraepajeon,EPIS 레시피 DB 부침 (RECIPE_ID 387) · 재료 17종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+jogijjim,조기찜,Jogijjim,EPIS 레시피 DB 찜 (RECIPE_ID 388) · 재료 14종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gimchihonghapguk,김치홍합국,Gimchihonghapguk,EPIS 레시피 DB 국 (RECIPE_ID 391) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gajitwigim,가지튀김,Gajitwigim,EPIS 레시피 DB 튀김/커틀릿 (RECIPE_ID 392) · 재료 14종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+golbaengibokeum,골뱅이볶음,Golbaengibokeum,EPIS 레시피 DB 볶음 (RECIPE_ID 393) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dakgaseumsalhaeparisaelreodeu,닭가슴살해파리샐러드,Dakgaseumsalhaeparisaelreodeu,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 394) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+eomukbokeum,어묵볶음,Eomukbokeum,EPIS 레시피 DB 볶음 (RECIPE_ID 395) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+ojingeoseokeojjigae,오징어섞어찌개,Ojingeoseokeojjigae,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 396) · 재료 17종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+tteokkkochi,떡꼬치,Tteokkkochi,EPIS 레시피 DB 구이 (RECIPE_ID 397) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+chamchigimchijjigae,참치김치찌개,Chamchigimchijjigae,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 399) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+ojingeobokeumgwasomyeon,오징어볶음과소면,Ojingeobokeumgwasomyeon,EPIS 레시피 DB 볶음 (RECIPE_ID 400) · 재료 14종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+buchujapchae,부추잡채,Buchujapchae,EPIS 레시피 DB 볶음 (RECIPE_ID 401) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+jaengbanramyeon,쟁반라면,Jaengbanramyeon,EPIS 레시피 DB 만두/면류 (RECIPE_ID 402) · 재료 15종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+ganjanggejang,간장게장,Ganjanggejang,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 405) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+nokdujuk,녹두죽,Nokdujuk,EPIS 레시피 DB 밥 (RECIPE_ID 406) · 재료 4종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dwaejibulgogi,돼지불고기,Dwaejibulgogi,EPIS 레시피 DB 볶음 (RECIPE_ID 407) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+danhobakgui,단호박구이,Danhobakgui,EPIS 레시피 DB 구이 (RECIPE_ID 408) · 재료 5종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+miyeoksujebi,미역수제비,Miyeoksujebi,EPIS 레시피 DB 만두/면류 (RECIPE_ID 411) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+makeundaegutang,맑은대구탕,Makeundaegutang,EPIS 레시피 DB 국 (RECIPE_ID 412) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+soegogideopbap,쇠고기덮밥,Soegogideopbap,EPIS 레시피 DB 밥 (RECIPE_ID 414) · 재료 13종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+godeungeotwigimkecheopjorim,고등어튀김케첩조림,Godeungeotwigimkecheopjorim,EPIS 레시피 DB 조림 (RECIPE_ID 415) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+saenggulchaesomuchim,생굴채소무침,Saenggulchaesomuchim,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 416) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+saengseonjeon,생선전,Saengseonjeon,EPIS 레시피 DB 부침 (RECIPE_ID 417) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+tongmaneuljangajji,통마늘장아찌,Tongmaneuljangajji,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 418) · 재료 5종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+bukeohaejanggukbap,북어해장국밥,Bukeohaejanggukbap,EPIS 레시피 DB 밥 (RECIPE_ID 419) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+bomdonggeotjeoli,봄동겉절이,Bomdonggeotjeoli,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 420) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+yangpajeon,양파전,Yangpajeon,EPIS 레시피 DB 부침 (RECIPE_ID 421) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+kkotsangchussam,꽃상추쌈,Kkotsangchussam,EPIS 레시피 DB 밥 (RECIPE_ID 422) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dwaejigogiueongmalijorim,돼지고기우엉말이조림,Dwaejigogiueongmalijorim,EPIS 레시피 DB 조림 (RECIPE_ID 423) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dasimachaesomali,다시마채소말이,Dasimachaesomali,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 424) · 재료 5종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+mumalraengimuchim,무말랭이무침,Mumalraengimuchim,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 425) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+nakjibulgogi,낙지불고기,Nakjibulgogi,EPIS 레시피 DB 볶음 (RECIPE_ID 426) · 재료 18종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+godeungeoyangnyeomgui,고등어양념구이,Godeungeoyangnyeomgui,EPIS 레시피 DB 구이 (RECIPE_ID 428) · 재료 13종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+godeungeojorim,고등어조림,Godeungeojorim,EPIS 레시피 DB 조림 (RECIPE_ID 429) · 재료 19종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+galchigui,갈치구이,Galchigui,EPIS 레시피 DB 구이 (RECIPE_ID 430) · 재료 5종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+galchijorim,갈치조림,Galchijorim,EPIS 레시피 DB 조림 (RECIPE_ID 431) · 재료 18종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+saeugyeojachae,새우겨자채,Saeugyeojachae,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 432) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+kkaetipjorim,깻잎조림,Kkaetipjorim,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 438) · 재료 6종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+eolgaliyeolmumulgimchi,얼갈이열무물김치,Eolgaliyeolmumulgimchi,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 439) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+ganjang,간장,Ganjang,EPIS 레시피 DB 양념장 (RECIPE_ID 440) · 재료 3종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gochujang,고추장,Gochujang,EPIS 레시피 DB 양념장 (RECIPE_ID 442) · 재료 5종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+geundaedoenjangguk,근대된장국,Geundaedoenjangguk,EPIS 레시피 DB 국 (RECIPE_ID 444) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+kkaetipmaligimchi,깻잎말이김치,Kkaetipmaligimchi,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 446) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+bukeungatdongchimi,붉은갓동치미,Bukeungatdongchimi,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 447) · 재료 5종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+sigeumchigyeranmali,시금치계란말이,Sigeumchigyeranmali,EPIS 레시피 DB 부침 (RECIPE_ID 450) · 재료 5종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+nakjiyeonpotang,낙지연포탕,Nakjiyeonpotang,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 451) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+saeujuk,새우죽,Saeujuk,EPIS 레시피 DB 밥 (RECIPE_ID 452) · 재료 4종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+jeonbokjuk,전복죽,Jeonbokjuk,EPIS 레시피 DB 밥 (RECIPE_ID 453) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+juksunhoewaminariganghoe,죽순회와미나리강회,Juksunhoewaminariganghoe,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 454) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+sigeumchinamul,시금치나물,Sigeumchinamul,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 455) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+nokchakongguksu,녹차콩국수,Nokchakongguksu,EPIS 레시피 DB 만두/면류 (RECIPE_ID 456) · 재료 4종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+umukongnaengguk,우무콩냉국,Umukongnaengguk,EPIS 레시피 DB 국 (RECIPE_ID 457) · 재료 5종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+seoritaekongguksu,서리태콩국수,Seoritaekongguksu,EPIS 레시피 DB 만두/면류 (RECIPE_ID 459) · 재료 5종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+daedaerodakkalguksu,대대로닭칼국수,Daedaerodakkalguksu,EPIS 레시피 DB 만두/면류 (RECIPE_ID 460) · 재료 6종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+jeoneohoemuchim,전어회무침,Jeoneohoemuchim,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 461) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+sokkorijjim,소꼬리찜,Sokkorijjim,EPIS 레시피 DB 찜 (RECIPE_ID 463) · 재료 6종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+torandakgogijjim,토란닭고기찜,Torandakgogijjim,EPIS 레시피 DB 찜 (RECIPE_ID 465) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+nokdugomulhobaktteokkeikeu,녹두고물호박떡케이크,Nokdugomulhobaktteokkeikeu,EPIS 레시피 DB 떡/한과 (RECIPE_ID 466) · 재료 4종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gajigimchi,가지김치,Gajigimchi,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 469) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+beoseotjapchae,버섯잡채,Beoseotjapchae,EPIS 레시피 DB 볶음 (RECIPE_ID 470) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+mussammali,무쌈말이,Mussammali,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 473) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+doenjangchaesosujebi,된장채소수제비,Doenjangchaesosujebi,EPIS 레시피 DB 만두/면류 (RECIPE_ID 475) · 재료 14종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+chamchijuk,참치죽,Chamchijuk,EPIS 레시피 DB 밥 (RECIPE_ID 477) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dubupapeurikajeon,두부파프리카전,Dubupapeurikajeon,EPIS 레시피 DB 부침 (RECIPE_ID 478) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+haemuljjigae,해물찌개,Haemuljjigae,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 480) · 재료 19종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dwaejigogigimchijjigae,돼지고기김치찌개,Dwaejigogigimchijjigae,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 481) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dubujorim,두부조림,Dubujorim,EPIS 레시피 DB 조림 (RECIPE_ID 482) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+haemulbokeumbap,해물볶음밥,Haemulbokeumbap,EPIS 레시피 DB 밥 (RECIPE_ID 484) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+saesongissamjanggui,새송이쌈장구이,Saesongissamjanggui,EPIS 레시피 DB 구이 (RECIPE_ID 485) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+haemulmaeuntang,해물매운탕,Haemulmaeuntang,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 486) · 재료 20종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+haemulsundubujjigae,해물순두부찌개,Haemulsundubujjigae,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 487) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+jjolmyeon,쫄면,Jjolmyeon,EPIS 레시피 DB 만두/면류 (RECIPE_ID 489) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+tteokmanduguk,떡만두국,Tteokmanduguk,EPIS 레시피 DB 만두/면류 (RECIPE_ID 492) · 재료 13종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+kkongchigimchijjigae,꽁치김치찌개,Kkongchigimchijjigae,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 493) · 재료 6종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+bibimnaengmyeon,비빔냉면,Bibimnaengmyeon,EPIS 레시피 DB 만두/면류 (RECIPE_ID 495) · 재료 13종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+megimaeuntang,메기매운탕,Megimaeuntang,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 496) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+ingeojjim,잉어찜,Ingeojjim,EPIS 레시피 DB 찜 (RECIPE_ID 497) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+songeosaelreodeu,송어샐러드,Songeosaelreodeu,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 498) · 재료 6종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+sigeumchibaemieumjuk,시금치배미음죽,Sigeumchibaemieumjuk,EPIS 레시피 DB 밥 (RECIPE_ID 516) · 재료 4종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+sigeumchipyogodoenjangmureunbap,시금치표고된장무른밥,Sigeumchipyogodoenjangmureunbap,EPIS 레시피 DB 밥 (RECIPE_ID 531) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+hanutomatoseutyu,한우토마토스튜,Hanutomatoseutyu,EPIS 레시피 DB 찌개/전골/스튜 (RECIPE_ID 5836) · 재료 10종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+heukimjasamgyejuk,흑임자삼계죽,Heukimjasamgyejuk,EPIS 레시피 DB 밥 (RECIPE_ID 39665) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+siraegidwaejigalbijjim,시래기돼지갈비찜,Siraegidwaejigalbijjim,EPIS 레시피 DB 찜 (RECIPE_ID 39692) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+bossamgimchi_62330,보쌈김치,Bossamgimchi,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 62330) · 재료 14종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gamdongjeotmugimchi,감동젓무김치,Gamdongjeotmugimchi,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 73679) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+sigeumchideulkkaesujebi,시금치들깨수제비,Sigeumchideulkkaesujebi,EPIS 레시피 DB 만두/면류 (RECIPE_ID 73712) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+dotnamul_buchu_oimuchim,돛나물 부추 오이무침,Dotnamul Buchu Oimuchim,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 90834) · 재료 7종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+oidongchimi,오이동치미,Oidongchimi,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 90846) · 재료 8종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+tomatominisaesongibokeum,토마토미니새송이볶음,Tomatominisaesongibokeum,EPIS 레시피 DB 볶음 (RECIPE_ID 90868) · 재료 6종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gogumaipmuchim,고구마잎무침,Gogumaipmuchim,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 90894) · 재료 5종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+maeungajibokeum,매운가지볶음,Maeungajibokeum,EPIS 레시피 DB 볶음 (RECIPE_ID 90904) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+sangchu_chikeori_ojingeo_chochimmu,상추 치커리 오징어 초침무,Sangchu Chikeori Ojingeo Chochimmu,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 90941) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gajimuchimgwa_hobakipssambap,가지무침과 호박잎쌈밥,Gajimuchimgwa Hobakipssambap,EPIS 레시피 DB 밥 (RECIPE_ID 90960) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+hobakmuchim,호박무침,Hobakmuchim,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 90980) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+gochujangajji_91023,고추장아찌,Gochujangajji,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 91023) · 재료 4종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+kkaetipjangajji_120344,깻잎장아찌,Kkaetipjangajji,EPIS 레시피 DB 밑반찬/김치 (RECIPE_ID 120344) · 재료 9종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+aehobak_gui,애호박 구이,Aehobak Gui,EPIS 레시피 DB 나물/생채/샐러드 (RECIPE_ID 120401) · 재료 11종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+danhobak_godeungeojorim,단호박 고등어조림,Danhobak Godeungeojorim,EPIS 레시피 DB 조림 (RECIPE_ID 120441) · 재료 14종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+danggeunip_gamjajeon,당근잎 감자전,Danggeunip Gamjajeon,EPIS 레시피 DB 부침 (RECIPE_ID 120463) · 재료 4종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+baechumandu,배추만두,Baechumandu,EPIS 레시피 DB 찜 (RECIPE_ID 120476) · 재료 15종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do
+kongbijidonggeurangttaeng,콩비지동그랑땡,Kongbijidonggeurangttaeng,EPIS 레시피 DB 부침 (RECIPE_ID 195453) · 재료 12종,public_recipe,https://www.data.go.kr/data/15058981/openapi.do

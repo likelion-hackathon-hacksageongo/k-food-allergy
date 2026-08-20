@@ -5,6 +5,8 @@ from .views import RegisterView
 
 urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
+    # Stock TokenObtainPairView: login with `username` (the ID chosen at
+    # registration) + `password`, not email.
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]

@@ -33,13 +33,26 @@ backend/media/
 backend/staticfiles/
 backend/.env
 
+# ----- Data -----
+# 원본 공공데이터 덤프는 커밋하지 않습니다 (용량 + 재다운로드 가능)
+data/raw/*
+!data/raw/.gitkeep
+data/**/__pycache__/
+# API 키
+data/.env
+# 식당 후보 목록은 filter_localdata.py 로 언제든 다시 뽑습니다.
+# LOCALDATA 가 매일 갱신되므로 커밋본은 받는 즉시 낡습니다.
+data/review/candidates.csv
+
 # ----- AI -----
 AI/.venv/
+AI/.env
 AI/__pycache__/
 AI/**/__pycache__/
 AI/**/*.pyc
 AI/models/
 AI/data/raw/
+AI/data/scores/
 AI/*.h5
 AI/*.pt
 AI/*.pkl

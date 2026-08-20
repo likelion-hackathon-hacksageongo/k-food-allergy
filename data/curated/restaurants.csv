@@ -1,0 +1,11 @@
+key,name,name_ko,address,latitude,longitude,category,description,source_status,source_url,collected_at,collected_by,is_active
+dongkyo_gimbap,Dongkyo Gimbap,동교김밥,"서울특별시 마포구 신촌로 24, 2,3층 (동교동)",37.557747,126.928812,Korean - Gimbap & Snacks,,public_data,https://www.localdata.go.kr/,2026-08-17,hanjoon,true
+nokwon_ssambap,Nokwon Ssambap,녹원쌈밥,"서울특별시 마포구 동교로27길 102, 1층 (연남동)",37.561962,126.91967,Korean - Ssambap,,public_data,https://www.localdata.go.kr/,2026-08-17,hanjoon,true
+gamnamujip_gisa_sikdang,Gamnamujip Gisa Sikdang,감나무집기사식당,"서울특별시 마포구 연남로 23, 1층 (연남동)",37.561733,126.922075,Korean - Home cooking,,public_data,https://www.localdata.go.kr/,2026-08-17,hanjoon,true
+jangin_dakgalbi,Jangin Dakgalbi (Hongdae),장인닭갈비홍대,"서울특별시 마포구 어울마당로 111-1, 1층 (동교동)",37.554915,126.922828,Korean - Dakgalbi,,public_data,https://www.localdata.go.kr/,2026-08-17,hanjoon,true
+yukjeon_gukbap_hongdae,Yukjeon Gukbap (Hongdae),육전국밥 홍대점,"서울특별시 마포구 어울마당로 140, 1층 (서교동)",37.556119,126.925613,Korean - Soup & Rice,,public_data,https://www.localdata.go.kr/,2026-08-17,hanjoon,true
+jeju_eunhuine_haejangguk,Jeju Eunhuine Haejangguk (Hongdae),제주은희네해장국홍대점,"서울특별시 마포구 월드컵북로 43, 1층 (서교동)",37.558053,126.917836,Korean - Haejangguk,제주식 선지해장국 전문점 — 24시간 인근 관광객 이용 많음,public_data,https://www.localdata.go.kr/,2026-08-18,hanjoon,true
+hongdae_budae_jjigae,Hongdae Budae Jjigae,홍대 부대찌개,"서울특별시 마포구 홍익로5안길 34, 1층 전체호 (서교동)",37.553365,126.921039,Korean - Stew,파주식 부대찌개 — 홍대 클럽거리 인근,public_data,https://www.localdata.go.kr/,2026-08-18,hanjoon,true
+wonhalmeoni_bossam_hongdae,Won Halmeoni Bossam (Hongdae Station),원할머니보쌈홍대역점,"서울특별시 마포구 양화로 186, LC TOWER 지1층 B104호 (동교동)",37.557671,126.925904,Korean - Bossam,홍대입구역 직결 보쌈·족발 프랜차이즈,public_data,https://www.localdata.go.kr/,2026-08-18,hanjoon,true
+baeknyeon_samgyetang,Baeknyeon Tojong Samgyetang,백년토종삼계탕,"서울특별시 마포구 양화로 118, 1층동 (서교동)",37.553825,126.920217,Korean - Samgyetang,미쉐린 가이드 서울 등재 삼계탕 전문점 (인허가 상호 백년백세),public_data,https://www.localdata.go.kr/,2026-08-18,hanjoon,true
+idaejo_ppyeodagwi,Idaejo Ppyeodagwi,이대조 뼈다귀,"서울특별시 마포구 동교로 196, 1층 (동교동)",37.557486,126.922963,Korean - Gamjatang,홍대입구역 2번출구 앞 감자탕·뼈해장국 노포,public_data,https://www.localdata.go.kr/,2026-08-18,hanjoon,true

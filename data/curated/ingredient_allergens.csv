@@ -1,0 +1,135 @@
+ingredient_key,allergen_key,likelihood,source_status,notes
+soy_sauce,soy,confirmed,public_data,
+soy_sauce,wheat,likely,public_data,양조간장은 대부분 밀을 포함
+doenjang,soy,confirmed,public_data,
+doenjang,wheat,possible,cooking_pattern,제품에 따라 밀 함유
+gochujang,soy,confirmed,public_data,
+gochujang,wheat,likely,public_data,밀가루 또는 밀엿기름 사용
+ssamjang,soy,confirmed,public_data,된장·고추장 베이스
+ssamjang,wheat,likely,public_data,
+ssamjang,peanut,possible,cooking_pattern,땅콩 첨가 제품 존재
+ssamjang,nuts,possible,cooking_pattern,견과 첨가 제품 존재
+chunjang,soy,confirmed,public_data,
+chunjang,wheat,confirmed,public_data,
+anchovy_sauce,fish,confirmed,public_data,
+saeujeot,shellfish,confirmed,public_data,
+oyster_sauce,mollusk,confirmed,public_data,
+oyster_sauce,soy,likely,public_data,
+oyster_sauce,wheat,possible,public_data,
+vinegar,sulfites,possible,public_data,
+cooking_wine,sulfites,possible,public_data,
+mayonnaise,egg,confirmed,public_data,
+mayonnaise,soy,likely,public_data,대두유 기반
+ketchup,tomato,confirmed,public_data,
+mustard_sauce,sulfites,possible,cooking_pattern,
+anchovy_broth,fish,confirmed,cooking_pattern,멸치 우린 국물
+beef_bone_broth,beef,confirmed,cooking_pattern,
+chicken_broth,chicken,confirmed,cooking_pattern,
+pork_broth,pork,confirmed,cooking_pattern,
+clam_broth,mollusk,confirmed,cooking_pattern,
+dried_pollock_broth,fish,confirmed,cooking_pattern,
+tofu,soy,confirmed,public_data,
+sundubu,soy,confirmed,public_data,
+soybean_sprout,soy,confirmed,public_data,
+shrimp,shellfish,confirmed,public_data,
+crab,shellfish,confirmed,public_data,
+squid,mollusk,confirmed,public_data,
+clam,mollusk,confirmed,public_data,
+mussel,mollusk,confirmed,public_data,
+oyster,mollusk,confirmed,public_data,
+abalone,mollusk,confirmed,public_data,
+octopus,mollusk,confirmed,public_data,
+webfoot_octopus,mollusk,confirmed,public_data,
+mackerel,fish,confirmed,public_data,
+anchovy,fish,confirmed,public_data,
+pollock,fish,confirmed,public_data,
+fish_cake,fish,confirmed,public_data,
+fish_cake,wheat,likely,public_data,밀 전분 결착제
+fish_cake,egg,possible,public_data,
+egg,egg,confirmed,public_data,
+milk,dairy,confirmed,public_data,
+cheese,dairy,confirmed,public_data,
+butter,dairy,confirmed,public_data,
+wheat_flour,wheat,confirmed,public_data,
+wheat_noodles,wheat,confirmed,public_data,
+buckwheat_noodles,buckwheat,confirmed,public_data,
+buckwheat_noodles,wheat,likely,cooking_pattern,순메밀면이 아니면 밀이 혼합됨
+ramyeon_noodles,wheat,confirmed,public_data,
+ramyeon_noodles,soy,likely,public_data,
+dumpling,wheat,confirmed,public_data,만두피
+dumpling,pork,likely,cooking_pattern,
+dumpling,soy,likely,cooking_pattern,
+dumpling,egg,possible,cooking_pattern,
+pork,pork,confirmed,public_data,
+beef,beef,confirmed,public_data,
+chicken,chicken,confirmed,public_data,
+kimchi,shellfish,likely,cooking_pattern,새우젓을 넣는 경우가 많음
+kimchi,fish,likely,cooking_pattern,멸치액젓을 넣는 경우가 많음
+white_kimchi,shellfish,possible,cooking_pattern,
+white_kimchi,fish,possible,cooking_pattern,
+pine_nut,nuts,confirmed,public_data,
+walnut,nuts,confirmed,public_data,
+peanut,peanut,confirmed,public_data,
+almond,nuts,confirmed,public_data,
+peach,peach,confirmed,public_data,
+tomato,tomato,confirmed,public_data,
+cooking_oil,soy,possible,cooking_pattern,대두유 혼합유 사용 시
+corn_syrup,wheat,possible,public_data,밀물엿 제품
+barley,wheat,possible,public_data,밀은 아니지만 글루텐 함유 — 글루텐 민감군 주의
+black_bean,soy,confirmed,public_data,대두 품종
+chestnut,nuts,possible,cooking_pattern,견과 교차반응 가능
+ginkgo_nut,nuts,possible,cooking_pattern,견과 교차반응 가능
+pickled_radish,sulfites,possible,public_data,표백 공정
+river_snail,mollusk,confirmed,public_data,
+sundae,pork,confirmed,public_data,
+sundae,wheat,likely,cooking_pattern,밀가루·당면 사용
+sundae,soy,possible,cooking_pattern,
+flatfish,fish,confirmed,public_data,
+salmon,fish,confirmed,public_data,
+fresh_cream,dairy,confirmed,public_data,
+yogurt,dairy,confirmed,public_data,
+breadcrumbs,wheat,confirmed,public_data,
+soy_milk,soy,confirmed,public_data,
+curry_powder,wheat,possible,public_data,밀 전분 포함 제품
+canned_ham,pork,confirmed,public_data,
+canned_ham,soy,possible,public_data,
+sausage,pork,likely,public_data,제품에 따라 소·닭 혼합
+sausage,wheat,possible,public_data,결착제
+bacon,pork,confirmed,public_data,
+fried_tofu,soy,confirmed,public_data,
+soybean_curd,soy,confirmed,public_data,
+soybean_powder,soy,confirmed,public_data,
+bonito_flakes,fish,confirmed,public_data,
+dipori,fish,confirmed,public_data,
+fish_sauce_eo,fish,confirmed,public_data,
+scallop,mollusk,confirmed,public_data,
+king_clam,mollusk,confirmed,public_data,
+hard_clam,mollusk,confirmed,public_data,
+sea_squirt,mollusk,confirmed,public_data,
+pollack_roe,fish,confirmed,public_data,
+croaker,fish,confirmed,public_data,
+flounder,fish,confirmed,public_data,
+codfish,fish,confirmed,public_data,
+cheonggukjang,soy,confirmed,public_data,
+cheonggukjang,wheat,possible,cooking_pattern,
+pork_trotter,pork,confirmed,public_data,
+pork_backbone,pork,confirmed,public_data,
+imitation_crab,fish,confirmed,public_data,명태 연육
+imitation_crab,wheat,likely,public_data,결착제로 밀 전분 사용
+imitation_crab,egg,possible,public_data,
+saury,fish,confirmed,public_data,
+hairtail,fish,confirmed,public_data,
+tuna,fish,confirmed,public_data,
+croaker_jogi,fish,confirmed,public_data,
+soybean,soy,confirmed,public_data,
+beef_tripe,beef,confirmed,public_data,
+jellyfish,mollusk,possible,cooking_pattern,분류상 별개지만 해산물 교차 주의
+seasoning_mix,soy,possible,public_data,
+seasoning_mix,wheat,possible,public_data,
+gopchang,beef,confirmed,public_data,
+cuttlefish,mollusk,confirmed,public_data,
+flying_fish_roe,fish,confirmed,public_data,
+yukjeon,beef,confirmed,official_menu,메뉴판 영문명 Beef Jeon
+yukjeon,egg,likely,cooking_pattern,전 반죽
+yukjeon,wheat,likely,cooking_pattern,전 반죽
+seonji,beef,confirmed,public_data,소의 혈액

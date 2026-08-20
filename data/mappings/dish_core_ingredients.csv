@@ -1,0 +1,32 @@
+# 요리 정의상 반드시 들어가는 재료.
+#
+# 통계 집계는 표본이 편향되면 정의상 당연한 재료도 놓칩니다. 예를 들어
+# 식품안전나라의 김치찌개 레시피 5건은 전부 변형(닭고기·완자·오징어·해물)이라
+# 돼지고기가 한 번도 안 나오고, 만두 레시피는 만두피를 밀가루/만두피/찹쌀가루로
+# 제각각 적어 밀이 30% 미달로 탈락합니다.
+#
+# 알레르기 판정에서 과소경고는 과대경고보다 위험하므로, 요리 이름 자체가
+# 보장하는 재료는 여기에 always 로 못박습니다. 통계 결과보다 이 파일이 우선합니다.
+pattern_key,ingredient_key,role
+mandu,wheat_flour,main
+tteokbokki,rice_cake,main
+tteokbokki,gochujang,sauce
+kalguksu,wheat_noodles,main
+sujebi,wheat_flour,main
+japchae,glass_noodles,main
+kimchi_jjigae,kimchi,main
+doenjang_jjigae,doenjang,sauce
+doenjang_guk,doenjang,sauce
+sundubu_jjigae,sundubu,main
+miyeok_guk,seaweed_miyeok,main
+samgyetang,chicken,main
+dakgalbi,chicken,main
+dakgalbi,gochujang,sauce
+budae_jjigae,canned_ham,main
+suyuk,pork,main
+bossam,pork,main
+yukgaejang,beef,main
+bulgogi,beef,main
+bokkeumbap,rice,main
+mu_guk,radish,main
+deulkkae_tang,perilla_seed,sauce
