@@ -1842,19 +1842,15 @@ function App() {
                   Use your phone or browser location, choose a neighborhood, or
                   add your own destination.
                 </p>
-                <button className="gps-button" onClick={useCurrentLocation}>
-                  ⌖ Use my current location
+                <button className="gps-button" disabled style={{opacity:0.5,cursor:"default"}}>
+                  ⌖ Use my current location <small style={{marginLeft:"6px",color:"#aaa"}}>(coming soon)</small>
                 </button>
-                <div className="custom-area">
+                <div className="custom-area" style={{opacity:0.5,pointerEvents:"none"}}>
                   <input
-                    value={customArea}
-                    onChange={(event) => setCustomArea(event.target.value)}
-                    onKeyDown={(event) => {
-                      if (event.key === "Enter") addCustomArea();
-                    }}
-                    placeholder="Enter a neighborhood or address"
+                    disabled
+                    placeholder="Enter a neighborhood or address (coming soon)"
                   />
-                  <button onClick={addCustomArea} disabled={!customArea.trim()}>
+                  <button disabled>
                     Add
                   </button>
                 </div>
