@@ -219,3 +219,9 @@ footer { font-size: 13px; }
 
 /* Fix: modal visible even when parent is visibility:hidden */
 .modal-backdrop { visibility: visible !important; }
+
+
+/* Hide footer on mobile - bottom nav is sufficient */
+@media (max-width: 760px) {
+  footer { display: none !important; }
+}
