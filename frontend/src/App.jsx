@@ -23,22 +23,39 @@ const allergyOptions = [
   "Tomato",
 ];
 const koreanAllergens = {
-  Shellfish: "갑각류",
-  "Tree nuts": "견과류",
-  Gluten: "글루텐",
-  Soy: "간장·대두",
-  Egg: "계란",
-  Dairy: "유제품",
+  Shellfish: "갑각류(새우·게)",
+  "Tree nuts": "호두·잣 등 견과류",
+  Gluten: "밀",
+  Soy: "대두(콩)",
+  Egg: "난류(달걀)",
+  Dairy: "우유",
   Peanut: "땅콩",
-  Fish: "생선",
-  Mollusk: "연체류",
+  Fish: "어류(고등어·멸치 등)",
+  Mollusk: "오징어·조개류",
   Pork: "돼지고기",
-  Beef: "소고기",
+  Beef: "쇠고기",
   Chicken: "닭고기",
-  Sulfites: "아황산염",
+  Sulfites: "아황산류",
   Buckwheat: "메밀",
   Peach: "복숭아",
   Tomato: "토마토",
+};
+const categoryKo = {
+  "Korean - Samgyetang": "한식 · 삼계탕",
+  "Korean - Gimbap & Snacks": "한식 · 분식",
+  "Korean - Gamjatang": "한식 · 감자탕",
+  "Korean - Dakgalbi": "한식 · 닭갈비",
+  "Korean - Ssambap": "한식 · 쌈밥",
+  "Korean - Jokbal & Bossam": "한식 · 족발/보쌈",
+  "Korean - Bossam": "한식 · 보쌈",
+  "Korean - Haejangguk": "한식 · 해장국",
+  "Korean - Home cooking": "한식 · 가정식",
+  "Korean - Noodles": "한식 · 면류",
+  "Korean - Stew": "한식 · 찌개",
+  "Korean - Soup & Rice": "한식 · 국밥",
+  "Korean - BBQ": "한식 · 고기구이",
+  "Korean - Bibimbap": "한식 · 비빔밥",
+  "Korean - Tteokbokki": "한식 · 떡볶이",
 };
 const apiAllergenKeys = {
   Shellfish: "shellfish",
@@ -102,29 +119,34 @@ const getMapStatus = (restaurant) =>
 const likelihoodPresentation = (allergens = []) => {
   const likelihoods = allergens.map((item) => item.likelihood);
   const matchedNames = [...new Set(allergens.map((item) => profileLabels[item.allergen_key] || item.allergen_key))].join(", ");
+  const matchedNamesKo = [...new Set(allergens.map((item) => koreanAllergens[profileLabels[item.allergen_key]] || item.allergen_key))].join(", ");
   if (likelihoods.includes("confirmed"))
     return {
       tone: "confirmed",
       label: "confirmed",
       description: `Contains ${matchedNames} (90%+ confidence).`,
+      descriptionKo: `${matchedNamesKo} 포함 확인됨 (90% 이상).`,
     };
   if (likelihoods.includes("likely"))
     return {
       tone: "warning",
       label: "likely",
       description: `May contain ${matchedNames} — check with staff.`,
+      descriptionKo: `${matchedNamesKo} 포함 가능성 있음 — 직원에게 확인하세요.`,
     };
   if (likelihoods.includes("possible"))
     return {
       tone: "warning",
       label: "possible",
       description: `May contain ${matchedNames} — check with staff.`,
+      descriptionKo: `${matchedNamesKo} 포함 가능성 있음 — 직원에게 확인하세요.`,
     };
   if (likelihoods.includes("none"))
     return {
       tone: "none",
       label: "none",
       description: `Unlikely to contain ${matchedNames}.`,
+      descriptionKo: `${matchedNamesKo} 포함 가능성 낮음.`,
     };
   return null;
 };
@@ -521,8 +543,9 @@ function App() {
       (restaurant.menuDetails || []).map((menu) => ({
         id: menu.id,
         restaurantId: restaurant.id,
-        name: menu.name,
-        restaurantName: restaurant.name,
+        name: menu.name_ko || menu.name,
+        nameEn: menu.name,
+        restaurantName: restaurant.name_ko || restaurant.name,
         emoji: "🍽️",
         tone: "neutral",
         likelihood: likelihoodForProfile(menu.allergens, profile),
@@ -607,7 +630,7 @@ function App() {
           profileSnapshot.current = null;
           setModal("");
           setProfileVersion((version) => version + 1);
-          setToast("Your food profile has been updated.");
+          setToast(language === "ko" ? "식이 프로필이 업데이트되었습니다." : "Your food profile has been updated.");
         } catch (error) {
           setToast(error.message);
         }
@@ -652,7 +675,7 @@ function App() {
           food: restaurantFoodEmoji(restaurant),
           x: `${16 + (index % 3) * 33}%`,
           y: `${20 + (Math.floor(index / 3) % 4) * 22}%`,
-          menus: restaurant.menus.map((menu) => menu.name),
+          menus: restaurant.menus.map((menu) => menu.name_ko || menu.name),
           menuDetails: restaurant.menus,
           note:
             restaurant.personalized?.reasons?.join(" ") ||
@@ -685,9 +708,9 @@ function App() {
       token.className = `likelihood-token ${presentation.tone}`;
       token.textContent = presentation.label;
       title.append(token);
-      if (description) description.textContent = presentation.description;
+      if (description) description.textContent = language === "ko" ? presentation.descriptionKo : presentation.description;
     });
-  }, [profile, selected, view, restaurantVersion]);
+  }, [profile, selected, view, restaurantVersion, language]);
 
   // AI 심층 분석 호출 (식당 상세 진입 시)
   useEffect(() => {
@@ -703,7 +726,7 @@ function App() {
     fetch("/api/analysis/restaurant/", {
       method: "POST",
       headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-      body: JSON.stringify({ restaurant_id: Number(selected.id) }),
+      body: JSON.stringify({ restaurant_id: Number(selected.id), language: language }),
     })
       .then((res) => res.ok ? res.json() : null)
       .then((data) => { if (active) setAiAnalysis(data); })
@@ -778,7 +801,7 @@ function App() {
 
           const el = document.createElement("div");
           el.style.cssText = `cursor:pointer;padding:6px 10px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap;border:2px solid ${isSafe ? "#2f6b43" : "#8b938e"};background:${isSafe ? "#e8f5e3" : "#f7f8f7"};color:${isSafe ? "#2f6b43" : "#5f6863"};box-shadow:0 2px 8px rgba(0,0,0,.12)`;
-          el.textContent = `${item.food} ${language === "ko" ? (item.name_ko || item.name) : item.name || item.name_ko}`;
+          el.textContent = `${item.food} ${item.name_ko || item.name}`;
           el.onclick = () => setMapSelectedId(item.id);
 
           const overlay = new kakao.maps.CustomOverlay({
@@ -863,8 +886,8 @@ function App() {
     );
     setToast(
       isSaved
-        ? "Removed from saved places."
-        : `${selected.name} has been saved.`,
+        ? (language === "ko" ? "저장 목록에서 제거되었습니다." : "Removed from saved places.")
+        : (language === "ko" ? `${selected.name_ko || selected.name}이(가) 저장되었습니다.` : `${selected.name} has been saved.`),
     );
   };
   const finishProfile = async () => {
@@ -885,13 +908,13 @@ function App() {
     ) {
       setToast(
         authMode === "signup"
-          ? "Enter a username, email, and password."
-          : "Enter your username and password.",
+          ? (language === "ko" ? "아이디, 이메일, 비밀번호를 입력하세요." : "Enter a username, email, and password.")
+          : (language === "ko" ? "아이디와 비밀번호를 입력하세요." : "Enter your username and password."),
       );
       return;
     }
     if (authMode === "signup" && !profile.length) {
-      setToast("Please select at least one allergy or dietary restriction.");
+      setToast(language === "ko" ? "알레르기 또는 식이 제한을 하나 이상 선택하세요." : "Please select at least one allergy or dietary restriction.");
       return;
     }
     try {
@@ -921,8 +944,8 @@ function App() {
       setView("recommendations");
       setToast(
         authMode === "signin"
-          ? "Welcome back. Your food profile has been loaded."
-          : "Your food profile is saved. Here are your recommendations.",
+          ? (language === "ko" ? "다시 오신 것을 환영합니다. 프로필이 불러와졌습니다." : "Welcome back. Your food profile has been loaded.")
+          : (language === "ko" ? "프로필이 저장되었습니다. 맞춤 추천을 확인하세요." : "Your food profile is saved. Here are your recommendations."),
       );
     } catch (error) {
       setToast(error.message);
@@ -987,7 +1010,7 @@ function App() {
     } catch (e) {
       console.error("[Scan Exception]", e);
       setScanResult(null);
-      setToast("Menu scan failed. Please try again or contact us at help@kfoodmap.kr");
+      setToast(language === "ko" ? "메뉴 스캔 실패. 다시 시도하거나 help@kfoodmap.kr로 문의하세요." : "Menu scan failed. Please try again or contact us at help@kfoodmap.kr");
     } finally {
       setScanLoading(false);
     }
@@ -1084,7 +1107,7 @@ function App() {
             {t("recDesc")}
           </p>
           <div className="map-location">
-            <strong>{area}</strong>
+            <strong>{language === "ko" && area === "Hongdae, Seoul" ? "홍대, 서울" : area}</strong>
             <button onClick={() => setModal("area")}>{t("changeArea")}</button>
           </div>
           <div className="filter-list">
@@ -1139,7 +1162,7 @@ function App() {
                 setModal("area");
               }}
             >
-              <span>⌖</span> {area} <b>⌄</b>
+              <span>⌖</span> {language === "ko" && area === "Hongdae, Seoul" ? "홍대, 서울" : area} <b>⌄</b>
             </button>
             <button
               className="map-control"
@@ -1169,7 +1192,7 @@ function App() {
                 <div style={{display:"flex",alignItems:"center",gap:"10px",marginBottom:"8px"}}>
                   <span style={{fontSize:"24px"}}>{r.food}</span>
                   <div>
-                    <h3 style={{margin:0,fontSize:"16px"}}>{language === "ko" ? (r.name_ko || r.name) : r.name || r.name_ko}</h3>
+                    <h3 style={{margin:0,fontSize:"16px"}}>{r.name_ko || r.name}</h3>
                     <small style={{color:"#666"}}>{r.type}</small>
                   </div>
                   <span style={{marginLeft:"auto",padding:"3px 8px",borderRadius:"10px",fontSize:"11px",fontWeight:600,background: r.status === "great" ? "#e3efe0" : "#f3f4ef",color: r.status === "great" ? "#35684d" : "#5f6863"}}>
@@ -1222,10 +1245,10 @@ function App() {
               <div className="applied-profile">
                 <span>{t("basedOnProfile")}</span>
                 {profile.length ? (
-                  profile.map((item) => <b key={item}>◌ {item}</b>)
+                  profile.map((item) => <b key={item}>◌ {language === "ko" ? (koreanAllergens[item] || item) : item}</b>)
                 ) : (
                   <button onClick={() => setModal("profile")}>
-                    Add allergy information
+                    {t("addAllergyInfo")}
                   </button>
                 )}
               </div>
@@ -1282,12 +1305,12 @@ function App() {
                   </div>
                   <div className="restaurant-main">
                     <div className="restaurant-title">
-                      <h3>{language === "ko" ? (item.name_ko || item.name) : item.name}</h3>
+                      <h3>{item.name_ko || item.name}{language !== "ko" && item.name_ko && item.name ? ` (${item.name})` : ""}</h3>
                       <span className={`status-pill ${item.status}`}>
                         {item.label}
                       </span>
                     </div>
-                    <p>{item.type}</p>
+                    <p>{language === "ko" ? (categoryKo[item.type] || item.type) : item.type}</p>
                     <div className="menu-tags">
                       {item.menus.slice(0, 2).map((menu) => (
                         <span key={menu}>{menu}</span>
@@ -1344,8 +1367,8 @@ function App() {
             {t("back")}
           </button>
           <p className="overline">{t("restaurantDetail")}</p>
-          <h2>{language === "ko" ? (selected.name_ko || selected.name) : selected.name}</h2>
-          <p>{selected.type}</p>
+          <h2>{selected.name_ko || selected.name}{language !== "ko" && selected.name_ko && selected.name ? ` (${selected.name})` : ""}</h2>
+          <p>{language === "ko" ? (categoryKo[selected.type] || selected.type) : selected.type}</p>
           <p className="address">⌖ {selected.address}</p>
           <button
             className="directions-button"
@@ -1365,7 +1388,7 @@ function App() {
               window.open(webUrl, "_blank");
               const isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
               if (isMobile) {
-                setToast("Tip: Install Kakao Map app for turn-by-turn navigation.");
+                setToast(language === "ko" ? "팁: 카카오맵 앱을 설치하면 도보 내비게이션을 사용할 수 있습니다." : "Tip: Install Kakao Map app for turn-by-turn navigation.");
               }
             }}
           >
@@ -1434,8 +1457,8 @@ function App() {
                           background: menu.order === 0 ? "#2f6b43" : "#8b938e"
                         }}></span>
                         <div>
-                          <strong>{menu.name}</strong>
-                          {menu.lp && <small style={{display:"block",marginTop:"2px",color:"#6b7370"}}>{menu.lp.label} — {menu.lp.description}</small>}
+                          <strong>{menu.name_ko || menu.name}</strong>
+                          {menu.lp && <small style={{display:"block",marginTop:"2px",color:"#6b7370"}}>{menu.lp.label} — {language === "ko" ? menu.lp.descriptionKo : menu.lp.description}</small>}
                           {!menu.lp && profile.length > 0 && <small style={{display:"block",marginTop:"2px",color:"#2f6b43"}}>{t("saferToEat")}</small>}
                         </div>
                       </div>
@@ -1462,7 +1485,7 @@ function App() {
                   )}
                   {aiAnalysis.menu_results?.length > 0 && (
                     <details style={{marginTop:"10px"}}>
-                      <summary style={{cursor:"pointer",color:"#2f6b43",fontSize:"12px",fontWeight:600}}>View AI menu details ({aiAnalysis.menu_results.length} items)</summary>
+                      <summary style={{cursor:"pointer",color:"#2f6b43",fontSize:"12px",fontWeight:600}}>{language === "ko" ? `AI 메뉴 상세 보기 (${aiAnalysis.menu_results.length}개)` : `View AI menu details (${aiAnalysis.menu_results.length} items)`}</summary>
                       <div style={{marginTop:"8px"}}>
                         {aiAnalysis.menu_results.map((m) => (
                           <div key={m.menu_id} style={{padding:"8px 0",borderBottom:"1px solid #eee"}}>
@@ -1487,19 +1510,19 @@ function App() {
               )}
               <hr style={{border:"none",borderTop:"1px solid #eee",margin:"14px 0"}} />
               <button onClick={() => setShowQuestion(!showQuestion)}>
-                {showQuestion ? "Hide staff questions" : "Show staff questions"}{" "}
+                {showQuestion ? t("hideStaffQuestions") : t("showStaffQuestions")}{" "}
                 <span>→</span>
               </button>
               {showQuestion && (
                 <div style={{marginTop:"10px"}}>
                   {profile.length > 0 && (
                     <div className="korean-question" style={{marginBottom:"10px"}}>
-                      <b>🗣️ Show this first (intro)</b>
+                      <b>🗣️ {language === "ko" ? "직원에게 먼저 보여주세요" : "Show this first (intro)"}</b>
                       <p style={{margin:"6px 0",fontSize:"14px"}}>
                         저는 {profile.map((a) => koreanAllergens[a] || a).join(", ")}에 심한 알레르기가 있습니다.
                       </p>
                       <small style={{color:"#6b7370"}}>
-                        "I have a severe allergy to {profile.join(", ")}."
+                        {language === "ko" ? `영어: "I have a severe allergy to ${profile.join(", ")}."` : `"I have a severe allergy to ${profile.join(", ")}."`}
                       </small>
                     </div>
                   )}
@@ -1517,29 +1540,29 @@ function App() {
                       const menuName = menu.name_ko || menu.name;
                       return (
                         <div className="korean-question" key={menu.id || menu.name} style={{marginBottom:"8px"}}>
-                          <b>📋 {menu.name}</b>
+                          <b>📋 {menu.name_ko || menu.name}</b>
                           <p style={{margin:"6px 0",fontSize:"14px"}}>
                             이 {menuName}에 {koNames}이/가 들어가나요?
                           </p>
                           <small style={{color:"#6b7370"}}>
-                            "Does this {menu.name} contain {[...new Set((menu.allergens || []).filter((a) => profile.map((p) => apiAllergenKeys[p]).includes(a.allergen_key)).map((a) => Object.entries(apiAllergenKeys).find(([,v]) => v === a.allergen_key)?.[0] || a.allergen_key))].join(", ")}?"
+                            {language === "ko" ? `영어: "Does this ${menu.name} contain ${[...new Set((menu.allergens || []).filter((a) => profile.map((p) => apiAllergenKeys[p]).includes(a.allergen_key)).map((a) => Object.entries(apiAllergenKeys).find(([,v]) => v === a.allergen_key)?.[0] || a.allergen_key))].join(", ")}?"` : `"Does this ${menu.name} contain ${[...new Set((menu.allergens || []).filter((a) => profile.map((p) => apiAllergenKeys[p]).includes(a.allergen_key)).map((a) => Object.entries(apiAllergenKeys).find(([,v]) => v === a.allergen_key)?.[0] || a.allergen_key))].join(", ")}?"`}
                           </small>
                         </div>
                       );
                     })}
                   {profile.length > 0 && (
                     <div className="korean-question" style={{marginBottom:"8px"}}>
-                      <b>🍲 Broth / Sauce</b>
+                      <b>🍲 {language === "ko" ? "육수 / 소스" : "Broth / Sauce"}</b>
                       <p style={{margin:"6px 0",fontSize:"14px"}}>
                         육수나 양념에 {profile.map((a) => koreanAllergens[a] || a).join(", ")}이/가 들어가나요?
                       </p>
                       <small style={{color:"#6b7370"}}>
-                        "Does the broth or sauce contain {profile.join(", ")}?"
+                        {language === "ko" ? `영어: "Does the broth or sauce contain ${profile.join(", ")}?"` : `"Does the broth or sauce contain ${profile.join(", ")}?"`}
                       </small>
                     </div>
                   )}
                   <div style={{marginTop:"10px",padding:"8px",background:"#f7f8f7",borderRadius:"6px",fontSize:"11px",color:"#6b7370"}}>
-                    💡 Staff answers: look for 네 (yes) or 아니요 (no)
+                    💡 {language === "ko" ? "직원 답변: 네 (yes) 또는 아니요 (no)를 확인하세요" : "Staff answers: look for 네 (yes) or 아니요 (no)"}
                   </div>
                 </div>
               )}
@@ -1601,11 +1624,9 @@ function App() {
             <button className="modal-close" onClick={() => setModal("")}>
               ×
             </button>
-            <span className="modal-kicker">MENU PHOTO CHECK</span>
+            <span className="modal-kicker">{language === "ko" ? "메뉴판 분석" : "MENU PHOTO CHECK"}</span>
             <h2>
-              Scan, translate,
-              <br />
-              and ask with confidence.
+              {language === "ko" ? (<>메뉴판을 촬영하고<br />안심하고 주문하세요.</>) : (<>Scan, translate,<br />and ask with confidence.</>)}
             </h2>
             {!scanComplete ? (
               <label className="photo-drop">
@@ -1616,7 +1637,7 @@ function App() {
                   onChange={selectMenuPhoto}
                 />
                 <span>⌑</span>
-                <b>Take or choose a menu photo</b>
+                <b>{language === "ko" ? "메뉴판 사진 선택 또는 촬영" : "Take or choose a menu photo"}</b>
                 <small>JPG, PNG, or HEIC</small>
               </label>
             ) : scanLoading ? (
@@ -1624,8 +1645,8 @@ function App() {
                 <img src={menuPhoto} alt="Uploaded menu" />
                 <div className="scan-copy" style={{textAlign:"center",padding:"30px 0"}}>
                   <div style={{width:"40px",height:"40px",margin:"0 auto 16px",border:"3px solid #e5e7eb",borderTop:"3px solid #2f6b43",borderRadius:"50%",animation:"spin 1s linear infinite"}}></div>
-                  <p className="overline">Analyzing menu...</p>
-                  <p style={{color:"#666",fontSize:"14px"}}>Translating and checking allergens.</p>
+                  <p className="overline">{language === "ko" ? "메뉴 분석 중..." : "Analyzing menu..."}</p>
+                  <p style={{color:"#666",fontSize:"14px"}}>{language === "ko" ? "번역 및 알레르겐 확인 중입니다." : "Translating and checking allergens."}</p>
                 </div>
               </div>
             ) : scanResult ? (
@@ -1719,42 +1740,38 @@ function App() {
             </button>
             {modal === "welcome" && (
               <>
-                <span className="modal-kicker">WELCOME TO K-FOOD MAP</span>
+                <span className="modal-kicker">{language === "ko" ? "K-FOOD MAP에 오신 것을 환영합니다" : "WELCOME TO K-FOOD MAP"}</span>
                 <h2>
                   {authMode === "signup" ? (
-                    <>
-                      Create your account
-                      <br />
-                      and food profile.
-                    </>
+                    language === "ko" ? (<>계정을 만들고<br />알레르기 프로필을 등록하세요.</>) : (<>Create your account<br />and food profile.</>)
                   ) : (
-                    <>Welcome back.</>
+                    language === "ko" ? <>다시 오신 것을 환영합니다.</> : <>Welcome back.</>
                   )}
                 </h2>
                 <p>
                   {authMode === "signup"
-                    ? "Start with your account details, then add what you need to avoid."
-                    : "Sign in to continue with your saved allergies, dietary preferences, and places."}
+                    ? (language === "ko" ? "계정 정보를 입력하고, 피해야 할 식품을 선택하세요." : "Start with your account details, then add what you need to avoid.")
+                    : (language === "ko" ? "로그인하면 저장된 알레르기 프로필과 식당 정보를 불러옵니다." : "Sign in to continue with your saved allergies, dietary preferences, and places.")}
                 </p>
                 <div className="auth-tabs">
                   <button
                     className={authMode === "signup" ? "on" : ""}
                     onClick={() => setAuthMode("signup")}
                   >
-                    Sign up
+                    {language === "ko" ? "회원가입" : "Sign up"}
                   </button>
                   <button
                     className={authMode === "signin" ? "on" : ""}
                     onClick={() => setAuthMode("signin")}
                   >
-                    Sign in
+                    {language === "ko" ? "로그인" : "Sign in"}
                   </button>
                 </div>
                 {authMode === "signup" && (
                   <label className="name-input">
-                    Username
+                    {language === "ko" ? "아이디" : "Username"}
                     <input
-                      placeholder="e.g. alice"
+                      placeholder={language === "ko" ? "예: alice" : "e.g. alice"}
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                     />
@@ -1762,22 +1779,22 @@ function App() {
                 )}
                 {authMode === "signup" ? (
                   <label className="name-input">
-                    Email address
-                    <input type="email" placeholder="alice@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    {language === "ko" ? "이메일 주소" : "Email address"}
+                    <input type="email" placeholder={language === "ko" ? "alice@example.com" : "alice@example.com"} value={email} onChange={(e) => setEmail(e.target.value)} />
                   </label>
                 ) : (
                   <label className="name-input">
-                    Username
+                    {language === "ko" ? "아이디" : "Username"}
                     <input
-                      placeholder="Your username"
+                      placeholder={language === "ko" ? "아이디 입력" : "Your username"}
                       value={loginUsername}
                       onChange={(e) => setLoginUsername(e.target.value)}
                     />
                   </label>
                 )}
                 <label className="name-input">
-                  Password
-                  <input type="password" placeholder="At least 8 characters" value={password} onChange={(e) => setPassword(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); finishProfile(); } }} />
+                  {language === "ko" ? "비밀번호" : "Password"}
+                  <input type="password" placeholder={language === "ko" ? "8자 이상" : "At least 8 characters"} value={password} onChange={(e) => setPassword(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); finishProfile(); } }} />
                 </label>
                 {authMode === "signup" ? (
                   <>
@@ -1807,60 +1824,59 @@ function App() {
                         ))}
                       </div>
                     </div>
-                    <AllergyEditor profile={profile} onToggle={toggleAllergy} />
+                    <AllergyEditor profile={profile} onToggle={toggleAllergy} language={language} />
                   </>
                 ) : (
                   <div className="sign-in-profile">
                     <span>✓</span>
                     <div>
-                      <b>Food profile ready</b>
+                      <b>{language === "ko" ? "식이 프로필 준비 완료" : "Food profile ready"}</b>
                       <p>
                         {profile.length
-                          ? `${profile.join(", ")} will be applied after sign in.`
-                          : "Your saved allergies and dietary preferences will be loaded."}
+                          ? (language === "ko" ? `${profile.map(a => koreanAllergens[a] || a).join(", ")} 정보가 로그인 후 적용됩니다.` : `${profile.join(", ")} will be applied after sign in.`)
+                          : (language === "ko" ? "저장된 알레르기 및 식이 설정이 불러와집니다." : "Your saved allergies and dietary preferences will be loaded.")}
                       </p>
                     </div>
                   </div>
                 )}
                 <button className="primary-button" onClick={finishProfile}>
                   {authMode === "signup"
-                    ? "Create account and continue"
-                    : "Sign in and load my profile"}{" "}
+                    ? (language === "ko" ? "계정 만들기" : "Create account and continue")
+                    : (language === "ko" ? "로그인" : "Sign in and load my profile")}{" "}
                   →
                 </button>
               </>
             )}
             {modal === "area" && (
               <>
-                <span className="modal-kicker">CHOOSE AN AREA</span>
+                <span className="modal-kicker">{language === "ko" ? "지역 선택" : "CHOOSE AN AREA"}</span>
                 <h2>
-                  Where would you
-                  <br />
-                  like to eat?
+                  {language === "ko" ? (<>어디서<br />식사하실 건가요?</>) : (<>Where would you<br />like to eat?</>)}
                 </h2>
                 <p>
-                  Use your phone or browser location, choose a neighborhood, or
-                  add your own destination.
+                  {language === "ko"
+                    ? "현재 홍대 지역만 지원됩니다. 더 많은 지역이 곧 추가됩니다."
+                    : "Currently only Hongdae area is supported. More areas coming soon."}
                 </p>
                 <button className="gps-button" disabled style={{opacity:0.5,cursor:"default"}}>
-                  ⌖ Use my current location <small style={{marginLeft:"6px",color:"#aaa"}}>(coming soon)</small>
+                  ⌖ {language === "ko" ? "현재 위치 사용" : "Use my current location"} <small style={{marginLeft:"6px",color:"#aaa"}}>(coming soon)</small>
                 </button>
                 <div className="custom-area" style={{opacity:0.5,pointerEvents:"none"}}>
                   <input
                     disabled
-                    placeholder="Enter a neighborhood or address (coming soon)"
+                    placeholder={language === "ko" ? "주소 또는 동네 이름 입력 (coming soon)" : "Enter a neighborhood or address (coming soon)"}
                   />
                   <button disabled>
-                    Add
+                    {language === "ko" ? "추가" : "Add"}
                   </button>
                 </div>
                 <div className="area-options">
                   {[
-                    { name: "Hongdae, Seoul", active: true },
-                    { name: "Myeongdong, Seoul", active: false },
-                    { name: "Jongno, Seoul", active: false },
-                    { name: "Gangnam, Seoul", active: false },
-                    { name: "Itaewon, Seoul", active: false },
+                    { name: "Hongdae, Seoul", nameKo: "홍대, 서울", active: true },
+                    { name: "Myeongdong, Seoul", nameKo: "명동, 서울", active: false },
+                    { name: "Jongno, Seoul", nameKo: "종로, 서울", active: false },
+                    { name: "Gangnam, Seoul", nameKo: "강남, 서울", active: false },
+                    { name: "Itaewon, Seoul", nameKo: "이태원, 서울", active: false },
                   ].map((item) => (
                     <button
                       className={area === item.name ? "selected" : ""}
@@ -1870,11 +1886,11 @@ function App() {
                         if (!item.active) return;
                         setArea(item.name);
                         setModal("");
-                        setToast(`Area changed to ${item.name}.`);
+                        setToast(`Area changed to ${item.nameKo}.`);
                       }}
                       style={!item.active ? {opacity: 0.5, cursor: "default"} : undefined}
                     >
-                      {item.name} {!item.active && <small style={{color:"#aaa",marginLeft:"4px"}}>(coming soon)</small>}
+                      {language === "ko" ? item.nameKo : item.name} {!item.active && <small style={{color:"#aaa",marginLeft:"4px"}}>(coming soon)</small>}
                       {item.active && <span>→</span>}
                     </button>
                   ))}
@@ -1883,15 +1899,13 @@ function App() {
             )}
             {modal === "profile" && (
               <>
-                <span className="modal-kicker">MY PROFILE</span>
+                <span className="modal-kicker">{language === "ko" ? "내 프로필" : "MY PROFILE"}</span>
                 <h2>
-                  Update your food
-                  <br />
-                  preferences.
+                  {language === "ko" ? (<>식이 설정을<br />변경하세요.</>) : (<>Update your food<br />preferences.</>)}
                 </h2>
-                <p>Your map and recommendations update as soon as you save.</p>
+                <p>{language === "ko" ? "저장하면 지도와 추천이 바로 업데이트됩니다." : "Your map and recommendations update as soon as you save."}</p>
                 <label className="language-select">
-                  Display language
+                  {language === "ko" ? "표시 언어" : "Display language"}
                   <div style={{display:"flex",flexWrap:"wrap",gap:"6px",marginTop:"8px"}}>
                     {supportedLanguages.map(({ code, label, active }) => (
                       <button
@@ -1916,15 +1930,15 @@ function App() {
                     ))}
                   </div>
                 </label>
-                <AllergyEditor profile={profile} onToggle={toggleAllergy} />
+                <AllergyEditor profile={profile} onToggle={toggleAllergy} language={language} />
                 <button
                   className="primary-button"
                   onClick={() => {
                     setModal("");
-                    setToast("Your food profile has been updated.");
+                    setToast(language === "ko" ? "식이 프로필이 업데이트되었습니다." : "Your food profile has been updated.");
                   }}
                 >
-                  Save changes →
+                  {language === "ko" ? "변경사항 저장 →" : "Save changes →"}
                 </button>
               </>
             )}
@@ -2076,7 +2090,7 @@ function FeedbackPage({ onNavigate, onProfile, language }) {
                 <option value="">{language === "ko" ? "식당을 선택하세요" : "Choose a restaurant"}</option>
                 {restaurants.map((restaurant) => (
                   <option key={restaurant.id} value={restaurant.id}>
-                    {language === "ko" ? (restaurant.name_ko || restaurant.name) : restaurant.name}
+                    {restaurant.name_ko || restaurant.name}
                   </option>
                 ))}
               </select>
@@ -2154,8 +2168,7 @@ function FeedbackPage({ onNavigate, onProfile, language }) {
                   <b>{(() => {
                     const r = restaurants.find((r) => r.id === feedback.restaurant);
                     if (!r) return `Restaurant #${feedback.restaurant}`;
-                    if (language === "ko") return r.name_ko || r.name;
-                    return r.name_ko ? `${r.name_ko} (${r.name})` : r.name;
+                    return r.name_ko || r.name;
                   })()}</b>
                   <p>
                     {language === "ko" ? "직원 정보 제공: " : "Staff information: "}
@@ -2206,7 +2219,7 @@ function FeedbackPage({ onNavigate, onProfile, language }) {
   );
 }
 
-function AllergyEditor({ profile, onToggle }) {
+function AllergyEditor({ profile, onToggle, language }) {
   const [customAllergy, setCustomAllergy] = useState("");
   const addCustomAllergy = () => {
     const value = customAllergy.trim();
@@ -2215,7 +2228,7 @@ function AllergyEditor({ profile, onToggle }) {
   };
   return (
     <div className="allergy-editor">
-      <p>Select allergies or dietary restrictions</p>
+      <p>{language === "ko" ? "알레르기 또는 식이 제한 선택" : "Select allergies or dietary restrictions"}</p>
       <div>
         {[
           ...allergyOptions,
@@ -2227,7 +2240,7 @@ function AllergyEditor({ profile, onToggle }) {
             onClick={() => onToggle(item)}
           >
             {profile.includes(item) ? "✓ " : "+ "}
-            {item}
+            {language === "ko" ? (koreanAllergens[item] || item) : item}
           </button>
         ))}
       </div>
@@ -2241,11 +2254,11 @@ function AllergyEditor({ profile, onToggle }) {
               addCustomAllergy();
             }
           }}
-          placeholder="Add your own (e.g. sesame, peach)"
+          placeholder={language === "ko" ? "직접 입력 (예: 참깨, 복숭아)" : "Add your own (e.g. sesame, peach)"}
           aria-label="Add a custom allergy"
         />
         <button onClick={addCustomAllergy} disabled={!customAllergy.trim()}>
-          Add
+          {language === "ko" ? "추가" : "Add"}
         </button>
       </div>
     </div>

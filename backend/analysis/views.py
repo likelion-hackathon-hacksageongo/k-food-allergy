@@ -72,7 +72,7 @@ class AnalyzeRestaurantView(APIView):
             result = analyze_restaurant(
                 allergens=profile.allergens,
                 restaurant=_restaurant_payload(restaurant),
-                language=profile.preferred_language,
+                language=request.data.get('language') or profile.preferred_language,
             )
         except AIServiceError as e:
             return Response({'detail': str(e)}, status=status.HTTP_503_SERVICE_UNAVAILABLE)
