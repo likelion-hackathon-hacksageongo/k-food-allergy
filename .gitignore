@@ -17,6 +17,7 @@ desktop.ini
 .env
 .env.local
 .env.*.local
+.env.production
 
 # ----- Frontend (React + Vite) -----
 frontend/node_modules/
@@ -56,3 +57,7 @@ AI/data/scores/
 AI/*.h5
 AI/*.pt
 AI/*.pkl
+
+# ----- Server -----
+AI/nohup.out
+backend/nohup.out
