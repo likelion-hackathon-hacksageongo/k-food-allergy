@@ -1395,149 +1395,106 @@ function App() {
               {selected.note && <h3>{selected.note}</h3>}
             </div>
           </div>
-          <div className="detail-content">
-            <div>
-              <p className="overline">{t("menuIdeasForYou")}</p>
-              <div className="likelihood-guide" aria-label="Allergen token guide">
-                <p><b>confirmed</b> {t("likelihoodGuideConfirmed")}</p>
-                <p><b>likely</b> {t("likelihoodGuideLikely")}</p>
-                <p><b>possible</b> {t("likelihoodGuidePossible")}</p>
-                <p><b>none</b> {t("likelihoodGuideNone")}</p>
-              </div>
-              {(() => {
-                const menuDetails = selected.menuDetails || [];
-                const scored = menuDetails.map((menu) => {
-                  const lp = likelihoodForProfile(menu.allergens, profile);
-                  const order = lp ? (lp.tone === "confirmed" ? 3 : lp.tone === "warning" ? 2 : 1) : 0;
-                  return { ...menu, lp, order };
-                }).sort((a, b) => a.order - b.order);
-                const safeCount = scored.filter((m) => m.order === 0).length;
-                const checkCount = scored.filter((m) => m.order > 0).length;
-                return (
-                  <>
-                    {profile.length > 0 && (
-                      <div style={{padding:"10px 12px",background:"#f0faf2",borderRadius:"6px",marginBottom:"12px",fontSize:"12px",lineHeight:"1.8"}}>
-                        {safeCount > 0 && <span style={{color:"#2f6b43",fontWeight:600}}>● {t("saferToEat")}: {safeCount}</span>}
-                        {checkCount > 0 && <span style={{color:"#6b7370",marginLeft:safeCount ? "12px" : "0",fontWeight:600}}>● {t("checkFirst")}: {checkCount}</span>}
-                      </div>
-                    )}
-                    {scored.map((menu) => (
-                      <div className="menu-row" key={menu.id || menu.name} style={{gridTemplateColumns:"auto 1fr"}}>
-                        <span style={{
-                          display:"inline-block",width:"8px",height:"8px",borderRadius:"50%",marginTop:"4px",
-                          background: menu.order === 0 ? "#2f6b43" : "#8b938e"
-                        }}></span>
-                        <div>
-                          <strong>{language === "ko" ? (menu.name_ko || menu.name) : ((menu.name_ko || menu.name) + (menu.name && menu.name_ko ? ` (${menu.name})` : ""))}</strong>
-                          {menu.lp && <small style={{display:"block",marginTop:"2px",color:"#6b7370"}}>{menu.lp.label} — {language === "ko" ? menu.lp.descriptionKo : menu.lp.description}</small>}
-                          {!menu.lp && profile.length > 0 && <small style={{display:"block",marginTop:"2px",color:"#2f6b43"}}>{t("saferToEat")}</small>}
-                        </div>
-                      </div>
-                    ))}
-                  </>
-                );
-              })()}
-            </div>
-            <div className="insight">
-              <p className="overline">{t("aiAnalysis")}</p>
-              {aiAnalysisLoading && (
-                <p style={{color:"#666",fontSize:"13px"}}>
-                  <span style={{display:"inline-block",width:"14px",height:"14px",border:"2px solid #e5e7eb",borderTop:"2px solid #2f6b43",borderRadius:"50%",animation:"spin 1s linear infinite",verticalAlign:"middle",marginRight:"6px"}}></span>
-                  Analyzing with AI...
-                </p>
-              )}
-              {aiAnalysis && (
-                <div style={{fontSize:"13px",lineHeight:"1.7"}}>
-                  {aiAnalysis.risk_summary && (
-                    <p style={{color:"#555",margin:"0 0 10px"}}>{aiAnalysis.risk_summary}</p>
+          <div className="detail-content" style={{display:"block",padding:"25px 28px"}}>
+              {aiAnalysisLoading ? (
+                <div style={{textAlign:"center",padding:"30px 0"}}>
+                  <div style={{width:"30px",height:"30px",margin:"0 auto 12px",border:"3px solid #e5e7eb",borderTop:"3px solid #2f6b43",borderRadius:"50%",animation:"spin 1s linear infinite"}}></div>
+                  <p style={{color:"#666",fontSize:"13px"}}>{language === "ko" ? "AI 분석 중..." : "Analyzing with AI..."}</p>
+                </div>
+              ) : (
+                <>
+                  {/* AI 요약 */}
+                  {aiAnalysis && (
+                    <div style={{marginBottom:"16px",padding:"12px",background:"#f7faf3",borderRadius:"8px",fontSize:"13px",lineHeight:"1.7"}}>
+                      {aiAnalysis.risk_summary && <p style={{color:"#3d5145",margin:"0 0 6px"}}>{aiAnalysis.risk_summary}</p>}
+                      {aiAnalysis.cross_contamination_notes && <p style={{color:"#6b7370",margin:0,fontSize:"12px"}}>⚠ {aiAnalysis.cross_contamination_notes}</p>}
+                    </div>
                   )}
-                  {aiAnalysis.cross_contamination_notes && (
-                    <p style={{color:"#6b7370",margin:"0 0 10px",fontSize:"12px"}}>⚠ {aiAnalysis.cross_contamination_notes}</p>
-                  )}
-                  {aiAnalysis.menu_results?.length > 0 && (
-                    <details style={{marginTop:"10px"}}>
-                      <summary style={{cursor:"pointer",color:"#2f6b43",fontSize:"12px",fontWeight:600}}>{language === "ko" ? `AI 메뉴 상세 보기 (${aiAnalysis.menu_results.length}개)` : `View AI menu details (${aiAnalysis.menu_results.length} items)`}</summary>
-                      <div style={{marginTop:"8px"}}>
-                        {aiAnalysis.menu_results.map((m) => (
-                          <div key={m.menu_id} style={{padding:"8px 0",borderBottom:"1px solid #eee"}}>
-                            <strong style={{fontSize:"12px"}}>{m.menu_name}</strong>
-                            <small style={{display:"block",color:"#666",marginTop:"2px"}}>{m.summary}</small>
-                            {m.check_items?.length > 0 && (
-                              <ul style={{margin:"4px 0 0",paddingLeft:"16px"}}>
-                                {m.check_items.map((item, i) => <li key={i} style={{fontSize:"11px",color:"#6b7370"}}>{item}</li>)}
+                  {/* 메뉴 목록 — 통합 */}
+                  {(() => {
+                    const menuDetails = selected.menuDetails || [];
+                    let scored;
+                    if (aiAnalysis?.menu_results?.length) {
+                      scored = aiAnalysis.menu_results.map((aiMenu) => {
+                        const dbMenu = menuDetails.find((m) => m.id === aiMenu.menu_id) || {};
+                        const isSafe = aiMenu.suitability === "safe";
+                        const order = isSafe ? 0 : 1;
+                        const displayName = (dbMenu.name_ko || aiMenu.menu_name) + (dbMenu.name ? ` (${dbMenu.name})` : "");
+                        return { displayName, isSafe, summary: aiMenu.summary, checkItems: aiMenu.check_items || [], order };
+                      }).sort((a, b) => a.order - b.order);
+                    } else {
+                      scored = menuDetails.map((menu) => {
+                        const lp = likelihoodForProfile(menu.allergens, profile);
+                        const isSafe = !lp;
+                        const order = isSafe ? 0 : 1;
+                        const displayName = (menu.name_ko || menu.name) + (menu.name && menu.name_ko ? ` (${menu.name})` : "");
+                        return { displayName, isSafe, summary: lp ? (language === "ko" ? lp.descriptionKo : lp.description) : "", checkItems: [], order };
+                      }).sort((a, b) => a.order - b.order);
+                    }
+                    const safeCount = scored.filter((m) => m.isSafe).length;
+                    const checkCount = scored.filter((m) => !m.isSafe).length;
+                    return (
+                      <>
+                        {profile.length > 0 && (
+                          <div style={{padding:"10px 12px",background:"#f0faf2",borderRadius:"6px",marginBottom:"12px",fontSize:"13px",lineHeight:"1.8"}}>
+                            {safeCount > 0 && <span style={{color:"#2f6b43",fontWeight:600}}>● {t("saferToEat")}: {safeCount}</span>}
+                            {checkCount > 0 && <span style={{color:"#6b7370",marginLeft:safeCount ? "12px" : "0",fontWeight:600}}>● {t("checkFirst")}: {checkCount}</span>}
+                          </div>
+                        )}
+                        {scored.map((menu, i) => (
+                          <div key={i} style={{padding:"10px 0",borderBottom:"1px solid #eee"}}>
+                            <div style={{display:"flex",alignItems:"center",gap:"8px"}}>
+                              <span style={{display:"inline-block",width:"8px",height:"8px",borderRadius:"50%",background: menu.isSafe ? "#2f6b43" : "#8b938e"}}></span>
+                              <strong style={{fontSize:"14px"}}>{menu.displayName}</strong>
+                            </div>
+                            {menu.summary && <p style={{margin:"4px 0 0 16px",fontSize:"13px",color:"#6b7370"}}>{menu.summary}</p>}
+                            {menu.checkItems.length > 0 && (
+                              <ul style={{margin:"4px 0 0 16px",paddingLeft:"14px"}}>
+                                {menu.checkItems.map((item, j) => <li key={j} style={{fontSize:"12px",color:"#6b7370"}}>{item}</li>)}
                               </ul>
                             )}
                           </div>
                         ))}
-                      </div>
-                    </details>
-                  )}
-                </div>
-              )}
-              {!aiAnalysis && !aiAnalysisLoading && (
-                <p style={{color:"#666",fontSize:"13px"}}>
-                  {profile.length ? "AI analysis unavailable. Please try again later." : "Add allergies to your profile to see AI analysis."}
-                </p>
-              )}
-              <hr style={{border:"none",borderTop:"1px solid #eee",margin:"14px 0"}} />
-              <button onClick={() => setShowQuestion(!showQuestion)}>
-                {showQuestion ? t("hideStaffQuestions") : t("showStaffQuestions")}{" "}
-                <span>→</span>
-              </button>
-              {showQuestion && (
-                <div style={{marginTop:"10px"}}>
-                  {profile.length > 0 && (
-                    <div className="korean-question" style={{marginBottom:"10px"}}>
-                      <b>🗣️ {language === "ko" ? "직원에게 먼저 보여주세요" : "Show this first (intro)"}</b>
-                      <p style={{margin:"6px 0",fontSize:"14px"}}>
-                        저는 {profile.map((a) => koreanAllergens[a] || a).join(", ")}에 심한 알레르기가 있습니다.
-                      </p>
-                      <small style={{color:"#6b7370"}}>
-                        {language === "ko" ? `영어: "I have a severe allergy to ${profile.join(", ")}."` : `"I have a severe allergy to ${profile.join(", ")}."`}
-                      </small>
-                    </div>
-                  )}
-                  {(selected.menuDetails || [])
-                    .filter((menu) => {
-                      const lp = likelihoodForProfile(menu.allergens, profile);
-                      return lp && lp.tone !== "none";
-                    })
-                    .slice(0, 3)
-                    .map((menu) => {
-                      const matchedAllergens = (menu.allergens || [])
-                        .filter((a) => profile.map((p) => apiAllergenKeys[p]).includes(a.allergen_key))
-                        .map((a) => koreanAllergens[Object.entries(apiAllergenKeys).find(([,v]) => v === a.allergen_key)?.[0]] || a.allergen_key);
-                      const koNames = [...new Set(matchedAllergens)].join(", ");
-                      const menuName = menu.name_ko || menu.name;
-                      return (
-                        <div className="korean-question" key={menu.id || menu.name} style={{marginBottom:"8px"}}>
-                          <b>📋 {menu.name_ko || menu.name}</b>
+                      </>
+                    );
+                  })()}
+                  {/* 직원 문의 문장 */}
+                  <hr style={{border:"none",borderTop:"1px solid #eee",margin:"14px 0"}} />
+                  <button className="insight" style={{background:"transparent",border:0,padding:"14px 0 0",color:"var(--green)",fontSize:"13px",textDecoration:"underline",cursor:"pointer"}} onClick={() => setShowQuestion(!showQuestion)}>
+                    {showQuestion ? t("hideStaffQuestions") : t("showStaffQuestions")}{" "}
+                    <span>→</span>
+                  </button>
+                  {showQuestion && (
+                    <div style={{marginTop:"10px"}}>
+                      {profile.length > 0 && (
+                        <div className="korean-question" style={{marginBottom:"10px"}}>
+                          <b>🗣️ {language === "ko" ? "직원에게 먼저 보여주세요" : "Show this first (intro)"}</b>
                           <p style={{margin:"6px 0",fontSize:"14px"}}>
-                            이 {menuName}에 {koNames}이/가 들어가나요?
+                            저는 {profile.map((a) => koreanAllergens[a] || a).join(", ")}에 심한 알레르기가 있습니다.
                           </p>
                           <small style={{color:"#6b7370"}}>
-                            {language === "ko" ? `영어: "Does this ${menu.name} contain ${[...new Set((menu.allergens || []).filter((a) => profile.map((p) => apiAllergenKeys[p]).includes(a.allergen_key)).map((a) => Object.entries(apiAllergenKeys).find(([,v]) => v === a.allergen_key)?.[0] || a.allergen_key))].join(", ")}?"` : `"Does this ${menu.name} contain ${[...new Set((menu.allergens || []).filter((a) => profile.map((p) => apiAllergenKeys[p]).includes(a.allergen_key)).map((a) => Object.entries(apiAllergenKeys).find(([,v]) => v === a.allergen_key)?.[0] || a.allergen_key))].join(", ")}?"`}
+                            {language === "ko" ? `영어: "I have a severe allergy to ${profile.join(", ")}."` : `"I have a severe allergy to ${profile.join(", ")}."`}
                           </small>
                         </div>
-                      );
-                    })}
-                  {profile.length > 0 && (
-                    <div className="korean-question" style={{marginBottom:"8px"}}>
-                      <b>🍲 {language === "ko" ? "육수 / 소스" : "Broth / Sauce"}</b>
-                      <p style={{margin:"6px 0",fontSize:"14px"}}>
-                        육수나 양념에 {profile.map((a) => koreanAllergens[a] || a).join(", ")}이/가 들어가나요?
-                      </p>
-                      <small style={{color:"#6b7370"}}>
-                        {language === "ko" ? `영어: "Does the broth or sauce contain ${profile.join(", ")}?"` : `"Does the broth or sauce contain ${profile.join(", ")}?"`}
-                      </small>
+                      )}
+                      {profile.length > 0 && (
+                        <div className="korean-question" style={{marginBottom:"8px"}}>
+                          <b>🍲 {language === "ko" ? "육수 / 소스" : "Broth / Sauce"}</b>
+                          <p style={{margin:"6px 0",fontSize:"14px"}}>
+                            육수나 양념에 {profile.map((a) => koreanAllergens[a] || a).join(", ")}이/가 들어가나요?
+                          </p>
+                          <small style={{color:"#6b7370"}}>
+                            {language === "ko" ? `영어: "Does the broth or sauce contain ${profile.join(", ")}?"` : `"Does the broth or sauce contain ${profile.join(", ")}?"`}
+                          </small>
+                        </div>
+                      )}
+                      <div style={{marginTop:"10px",padding:"8px",background:"#f7f8f7",borderRadius:"6px",fontSize:"11px",color:"#6b7370"}}>
+                        💡 {language === "ko" ? "직원 답변: 네 (yes) 또는 아니요 (no)를 확인하세요" : "Staff answers: look for 네 (yes) or 아니요 (no)"}
+                      </div>
                     </div>
                   )}
-                  <div style={{marginTop:"10px",padding:"8px",background:"#f7f8f7",borderRadius:"6px",fontSize:"11px",color:"#6b7370"}}>
-                    💡 {language === "ko" ? "직원 답변: 네 (yes) 또는 아니요 (no)를 확인하세요" : "Staff answers: look for 네 (yes) or 아니요 (no)"}
-                  </div>
-                </div>
+                </>
               )}
-            </div>
           </div>
         </div>
       </section>

@@ -16,10 +16,11 @@ from .client import analyze_restaurant, generate_query, AIServiceError
 # to end with the real AI server + an OpenAI key.
 
 
-def _restaurant_payload(restaurant: Restaurant) -> dict:
+def _restaurant_payload(restaurant: Restaurant, user_allergens: list = None) -> dict:
     """
     Build the AI service's expected restaurant shape from our DB.
     Uses MenuAllergen data as ingredient hints when description is empty.
+    Only includes allergens relevant to the user's profile.
     """
     return {
         'id': restaurant.id,
@@ -32,7 +33,8 @@ def _restaurant_payload(restaurant: Restaurant) -> dict:
                 'description': item.description or f"[info_level: {item.info_level}]",
                 'ingredients': (
                     [s.strip() for s in item.description.split(',') if s.strip()]
-                    or [f"{a.allergen_key}({a.likelihood})" for a in item.allergens.all()]
+                    or [f"{a.allergen_key}({a.likelihood})" for a in item.allergens.all()
+                        if not user_allergens or a.allergen_key in user_allergens]
                 ),
             }
             for item in restaurant.menu_items.all()
@@ -71,7 +73,7 @@ class AnalyzeRestaurantView(APIView):
         try:
             result = analyze_restaurant(
                 allergens=profile.allergens,
-                restaurant=_restaurant_payload(restaurant),
+                restaurant=_restaurant_payload(restaurant, user_allergens=profile.allergens),
                 language=request.data.get('language') or profile.preferred_language,
             )
         except AIServiceError as e:
