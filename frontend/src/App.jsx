@@ -1846,23 +1846,26 @@ function App() {
                 </div>
                 <div className="area-options">
                   {[
-                    "Hongdae, Seoul",
-                    "Myeongdong, Seoul",
-                    "Jongno, Seoul",
-                    "Gangnam, Seoul",
-                    "Itaewon, Seoul",
+                    { name: "Hongdae, Seoul", active: true },
+                    { name: "Myeongdong, Seoul", active: false },
+                    { name: "Jongno, Seoul", active: false },
+                    { name: "Gangnam, Seoul", active: false },
+                    { name: "Itaewon, Seoul", active: false },
                   ].map((item) => (
                     <button
-                      className={area === item ? "selected" : ""}
-                      key={item}
+                      className={area === item.name ? "selected" : ""}
+                      key={item.name}
+                      disabled={!item.active}
                       onClick={() => {
-                        setArea(item);
+                        if (!item.active) return;
+                        setArea(item.name);
                         setModal("");
-                        setToast(`Area changed to ${item}.`);
+                        setToast(`Area changed to ${item.name}.`);
                       }}
+                      style={!item.active ? {opacity: 0.5, cursor: "default"} : undefined}
                     >
-                      {item}
-                      <span>→</span>
+                      {item.name} {!item.active && <small style={{color:"#aaa",marginLeft:"4px"}}>(coming soon)</small>}
+                      {item.active && <span>→</span>}
                     </button>
                   ))}
                 </div>
