@@ -1552,6 +1552,7 @@ function App() {
               {language === "ko" ? (<>메뉴판을 촬영하고<br />안심하고 주문하세요.</>) : (<>Scan, translate,<br />and ask with confidence.</>)}
             </h2>
             {!scanComplete ? (
+              <>
               <label className="photo-drop">
                 <input
                   type="file"
@@ -1563,6 +1564,19 @@ function App() {
                 <b>{language === "ko" ? "메뉴판 사진 선택 또는 촬영" : "Take or choose a menu photo"}</b>
                 <small>JPG, PNG, or HEIC</small>
               </label>
+              <button
+                style={{marginTop:"12px",width:"100%",padding:"12px",border:"1px dashed #a9c5aa",borderRadius:"8px",background:"#f7faf3",color:"#35684d",fontSize:"13px",cursor:"pointer"}}
+                onClick={async () => {
+                  const res = await fetch("/demo/menu-sample.png");
+                  const blob = await res.blob();
+                  const file = new File([blob], "menu-sample.png", { type: "image/png" });
+                  const event = { target: { files: [file] } };
+                  selectMenuPhoto(event);
+                }}
+              >
+                📸 {language === "ko" ? "데모 이미지로 테스트" : "Try with demo image"}
+              </button>
+              </>
             ) : scanLoading ? (
               <div className="scan-result">
                 <img src={menuPhoto} alt="Uploaded menu" />
