@@ -167,7 +167,7 @@ def full_scan_menu(
         try:
             response = client.chat.completions.create(
                 model=OPENAI_MODEL,
-                temperature=0.3,
+                temperature=0,
                 messages=[
                     {"role": "system", "content": _SYSTEM_PROMPT},
                     {

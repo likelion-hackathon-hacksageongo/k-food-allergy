@@ -19,7 +19,7 @@ PROMPTS_DIR = BASE_DIR / "prompts"
 
 # 분석 설정
 MAX_MENU_ITEMS_PER_REQUEST = 30  # 한 번의 API 호출에 포함할 최대 메뉴 수
-TEMPERATURE_ANALYZER = 0.2       # 분석은 일관성 중요 → 낮은 temperature
+TEMPERATURE_ANALYZER = 0         # 분석은 일관성 최우선 → temperature 0
 TEMPERATURE_QUERY_GEN = 0.7      # 문장 생성은 자연스러움 중요 → 약간 높은 temperature
 
 # Rate limit 대응
