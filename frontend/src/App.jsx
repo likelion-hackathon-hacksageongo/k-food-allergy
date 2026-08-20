@@ -1635,18 +1635,18 @@ function App() {
                       <p style={{margin:"6px 0",fontSize:"15px"}}>{scanResult.intro_text}</p>
                     </div>
                   )}
-                  {scanResult.menu_items.map((item, i) => (
-                    <div key={i} style={{margin:"12px 0",padding:"10px",borderRadius:"8px",background: item.safety_level === "danger" ? "#fef2f2" : item.safety_level === "caution" ? "#fefce8" : "#f0fdf4"}}>
+                  {[...scanResult.menu_items].sort((a, b) => (a.safety_level === "safe" ? 0 : 1) - (b.safety_level === "safe" ? 0 : 1)).map((item, i) => (
+                    <div key={i} style={{margin:"12px 0",padding:"10px",borderRadius:"8px",background: item.safety_level === "safe" ? "#f0faf2" : "#f7f8f7"}}>
                       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
                         <strong>{item.translated_name}</strong>
-                        <span style={{fontSize:"11px",padding:"2px 6px",borderRadius:"4px",background: item.safety_level === "danger" ? "#fca5a5" : item.safety_level === "caution" ? "#fde047" : "#86efac"}}>
-                          {item.safety_level === "danger" ? "⚠ Danger" : item.safety_level === "caution" ? "? Check" : "✓ Safe"}
+                        <span style={{fontSize:"11px",padding:"2px 6px",borderRadius:"4px",background: item.safety_level === "safe" ? "#e3efe0" : "#e8eae8",color: item.safety_level === "safe" ? "#35684d" : "#5f6863"}}>
+                          {item.safety_level === "safe" ? "● Safer to eat" : "● Check first"}
                         </span>
                       </div>
                       <small style={{color:"#666"}}>{item.original_text} {item.price && `· ${item.price}`}</small>
                       {item.description && <p style={{margin:"4px 0",fontSize:"13px"}}>{item.description}</p>}
                       {item.allergen_warnings.map((w, j) => (
-                        <p key={j} style={{margin:"2px 0",fontSize:"12px",color:"#b91c1c"}}>⚠ {w}</p>
+                        <p key={j} style={{margin:"2px 0",fontSize:"12px",color:"#6b7370"}}>⚠ {w}</p>
                       ))}
                       {item.staff_query && (
                         <div style={{marginTop:"6px",padding:"6px 8px",background:"#fff",borderRadius:"4px",border:"1px solid #e5e7eb"}}>
