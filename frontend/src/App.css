@@ -282,3 +282,8 @@ small, .menu-row small { font-size: 14px !important; }
   .modal-backdrop { align-items: flex-start !important; overflow-y: auto; padding: 20px 0 !important; }
   .modal { max-height: none !important; margin: auto 0; border-radius: 12px !important; }
 }
+
+
+/* Sticky footer: always at bottom */
+.app-shell { min-height: 100vh; display: flex; flex-direction: column; }
+.app-shell > section, .app-shell > .map-layout { flex: 1; }
