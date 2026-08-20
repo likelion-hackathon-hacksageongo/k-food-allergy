@@ -38,7 +38,6 @@ _SYSTEM_PROMPT = """한국어 메뉴판 이미지 분석 + 현장 문의 문장 
 - 모든 음식 메뉴 추출 (카테고리 제목 제외)
 - 의미 번역: 된장찌개 → Soybean Paste Stew
 - 고유명사: 비빔밥 → Bibimbap (Mixed Rice Bowl)
-- 가격 원문 포함
 
 # 알레르겐 판정 — 안전 우선 원칙
 불확실하면 반드시 caution 이상으로 판정. "safe"는 확실히 포함되지 않는 경우에만.
@@ -112,7 +111,7 @@ _RESPONSE_SCHEMA = {
                             "query_explanation": {"type": "string"},
                         },
                         "required": [
-                            "original_text", "translated_name", "description", "price",
+                            "original_text", "translated_name", "description",
                             "allergen_warnings", "allergen_keys", "safety_level",
                             "staff_query", "query_explanation",
                         ],

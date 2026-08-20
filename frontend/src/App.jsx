@@ -1643,7 +1643,7 @@ function App() {
                           {item.safety_level === "safe" ? "● Safer to eat" : "● Check first"}
                         </span>
                       </div>
-                      <small style={{color:"#666"}}>{item.original_text} {item.price && `· ${item.price}`}</small>
+                      <small style={{color:"#666"}}>{item.original_text}</small>
                       {item.description && <p style={{margin:"4px 0",fontSize:"13px"}}>{item.description}</p>}
                       {item.allergen_warnings.map((w, j) => (
                         <p key={j} style={{margin:"2px 0",fontSize:"12px",color:"#6b7370"}}>⚠ {w}</p>
