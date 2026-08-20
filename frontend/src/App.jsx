@@ -692,25 +692,6 @@ function App() {
       active = false;
     };
   }, [profile, profileVersion]);
-  useEffect(() => {
-    if (view !== "detail" || !selected?.menuDetails) return;
-    document
-      .querySelectorAll(".likelihood-token")
-      .forEach((token) => token.remove());
-    selected.menuDetails.forEach((menu, index) => {
-      const presentation = likelihoodForProfile(menu.allergens, profile);
-      if (!presentation) return;
-      const row = document.querySelectorAll(".menu-row")[index];
-      const title = row?.querySelector("strong");
-      const description = row?.querySelector("small");
-      if (!title) return;
-      const token = document.createElement("span");
-      token.className = `likelihood-token ${presentation.tone}`;
-      token.textContent = presentation.label;
-      title.append(token);
-      if (description) description.textContent = language === "ko" ? presentation.descriptionKo : presentation.description;
-    });
-  }, [profile, selected, view, restaurantVersion, language]);
 
   // AI 심층 분석 호출 (식당 상세 진입 시)
   useEffect(() => {
