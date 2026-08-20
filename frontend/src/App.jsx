@@ -630,7 +630,7 @@ function App() {
           profileSnapshot.current = null;
           setModal("");
           setProfileVersion((version) => version + 1);
-          setToast(language === "ko" ? "식이 프로필이 업데이트되었습니다." : "Your food profile has been updated.");
+          setToast(latestLanguage.current === "ko" ? "식이 프로필이 업데이트되었습니다." : "Your food profile has been updated.");
         } catch (error) {
           setToast(error.message);
         }
