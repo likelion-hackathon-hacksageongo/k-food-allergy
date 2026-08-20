@@ -238,3 +238,17 @@ footer { font-size: 13px; }
 @media (max-width: 760px) {
   .mobile-profile-btn { display: block !important; }
 }
+
+
+/* Fix: nav links always single line */
+.nav-links { white-space: nowrap; flex-wrap: nowrap; }
+.nav-links button { white-space: nowrap; }
+@media (max-width: 960px) and (min-width: 761px) {
+  .nav-links { display: none !important; }
+  .mobile-nav { position: fixed; z-index: 15; display: grid !important; grid-template-columns: repeat(4, 1fr); align-items: center; bottom: 0; left: 0; right: 0; height: 70px; background: rgba(255,254,250,.97); backdrop-filter: blur(12px); border-top: 1px solid #e3e7df; padding: 5px 8px; }
+  .mobile-nav button { border: 0; background: transparent; color: #87928a; font-size: 10px; display: grid; gap: 3px; place-items: center; }
+  .mobile-nav button span { font-size: 19px; }
+  .mobile-nav button.active { color: #35684d; font-weight: 700; }
+  .mobile-profile-btn { display: block !important; }
+  body { padding-bottom: 75px; }
+}
