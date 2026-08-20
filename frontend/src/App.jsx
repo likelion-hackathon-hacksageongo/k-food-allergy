@@ -562,7 +562,7 @@ function App() {
         )
         .slice(0, 5);
     }
-    return topKFood.slice(0, 5);
+    return [];
   }, [aiMenuIdeas, profile, restaurantVersion]);
   useEffect(() => {
     if (view !== "recommendations") return;
@@ -1154,24 +1154,7 @@ function App() {
           </div>
         </aside>
         <div className="map-area">
-          <div className="map-toolbar">
-            <button
-              className="area-button"
-              onClick={() => {
-                setPendingArea(area);
-                setModal("area");
-              }}
-            >
-              <span>⌖</span> {language === "ko" && area === "Hongdae, Seoul" ? "홍대, 서울" : area} <b>⌄</b>
-            </button>
-            <button
-              className="map-control"
-              onClick={() => setToast(`Your location is set to ${area}.`)}
-            >
-              ◎
-            </button>
-          </div>
-          <div className="map-filters" style={{position:"absolute",zIndex:5,top:"60px",left:"22px",display:"flex",gap:"6px"}}>
+          <div className="map-filters" style={{position:"absolute",zIndex:5,top:"16px",left:"16px",display:"flex",gap:"6px"}}>
             <button onClick={() => setMapFilter("all")} style={{padding:"7px 12px",borderRadius:"20px",border: mapFilter === "all" ? "2px solid #2f6b43" : "1px solid #dce4d7",background: mapFilter === "all" ? "#e8f5e3" : "#fffefa",fontSize:"12px",fontWeight:600,color: mapFilter === "all" ? "#2f6b43" : "#5f6863"}}>{t("all")}</button>
             <button onClick={() => setMapFilter("great")} style={{padding:"7px 12px",borderRadius:"20px",border: mapFilter === "great" ? "2px solid #2f6b43" : "1px solid #dce4d7",background: mapFilter === "great" ? "#e8f5e3" : "#fffefa",fontSize:"12px",fontWeight:600,color: mapFilter === "great" ? "#2f6b43" : "#5f6863"}}>{t("saferFilter")}</button>
             <button onClick={() => setMapFilter("neutral")} style={{padding:"7px 12px",borderRadius:"20px",border: mapFilter === "neutral" ? "2px solid #8b938e" : "1px solid #dce4d7",background: mapFilter === "neutral" ? "#f0f1ef" : "#fffefa",fontSize:"12px",fontWeight:600,color: mapFilter === "neutral" ? "#5f6863" : "#5f6863"}}>{t("checkFilter")}</button>
@@ -1285,11 +1268,17 @@ function App() {
                   <span className="chevron">→</span>
                 </button>
               )) : (
-                <p className="menu-idea-empty">
-                  No lower-risk menu ideas are available for your current profile.
-                </p>
+                <div style={{textAlign:"center",padding:"40px 20px"}}>
+                  <div style={{width:"30px",height:"30px",margin:"0 auto 12px",border:"3px solid #e5e7eb",borderTop:"3px solid #2f6b43",borderRadius:"50%",animation:"spin 1s linear infinite"}}></div>
+                  <p style={{color:"#666",fontSize:"13px"}}>{language === "ko" ? "메뉴를 불러오는 중..." : "Loading menu recommendations..."}</p>
+                </div>
               )
-            : [...restaurants]
+            : restaurantVersion === 0 ? (
+                <div style={{textAlign:"center",padding:"40px 20px"}}>
+                  <div style={{width:"30px",height:"30px",margin:"0 auto 12px",border:"3px solid #e5e7eb",borderTop:"3px solid #2f6b43",borderRadius:"50%",animation:"spin 1s linear infinite"}}></div>
+                  <p style={{color:"#666",fontSize:"13px"}}>{language === "ko" ? "식당 목록을 불러오는 중..." : "Loading restaurants..."}</p>
+                </div>
+              ) : [...restaurants]
                 .sort(
                   (a, b) =>
                     Number(b.status === "great") - Number(a.status === "great"),
