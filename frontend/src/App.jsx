@@ -961,6 +961,7 @@ function App() {
     const file = event.target.files?.[0];
     if (!file) return;
     setMenuPhoto(URL.createObjectURL(file));
+    setScanComplete(true);
     setScanLoading(true);
     setScanResult(null);
 
@@ -986,10 +987,9 @@ function App() {
     } catch (e) {
       console.error("[Scan Exception]", e);
       setScanResult(null);
-      setToast("Menu scan failed. Check console for details.");
+      setToast("Menu scan failed. Please try again or contact us at help@kfoodmap.kr");
     } finally {
       setScanLoading(false);
-      setScanComplete(true);
     }
   };
 
@@ -1621,7 +1621,7 @@ function App() {
                 <div className="scan-copy" style={{textAlign:"center",padding:"30px 0"}}>
                   <div style={{width:"40px",height:"40px",margin:"0 auto 16px",border:"3px solid #e5e7eb",borderTop:"3px solid #2f6b43",borderRadius:"50%",animation:"spin 1s linear infinite"}}></div>
                   <p className="overline">Analyzing menu...</p>
-                  <p style={{color:"#666",fontSize:"14px"}}>Translating and checking allergens.<br/>This may take 5-10 seconds.</p>
+                  <p style={{color:"#666",fontSize:"14px"}}>Translating and checking allergens.</p>
                 </div>
               </div>
             ) : scanResult ? (
@@ -1666,6 +1666,7 @@ function App() {
                 <div className="scan-copy">
                   <p className="overline">Scan failed</p>
                   <p>Could not analyze the menu. Please try again with a clearer photo.</p>
+                  <p style={{fontSize:"12px",color:"#666",marginTop:"8px"}}>If the problem persists, contact us at <a href="team.naro.ai@gmail.com" style={{color:"#35684d"}}>help@kfoodmap.kr</a></p>
                 </div>
               </div>
             )}
