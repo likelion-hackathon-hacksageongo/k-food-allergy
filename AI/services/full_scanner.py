@@ -40,9 +40,28 @@ _SYSTEM_PROMPT = """한국어 메뉴판 이미지 분석 + 현장 문의 문장 
 - 고유명사: 비빔밥 → Bibimbap (Mixed Rice Bowl)
 - 가격 원문 포함
 
-# 알레르겐 판정
-- 숨은 재료 고려: 김치=새우젓(shellfish)+액젓(fish), 장류=soy+wheat, 전=wheat+egg, 육수=fish
-- danger: 알레르겐 확실 포함 / caution: 확인 필요 / safe: 무관 / unknown: 판단 불가
+# 알레르겐 판정 — 안전 우선 원칙
+불확실하면 반드시 caution 이상으로 판정. "safe"는 확실히 포함되지 않는 경우에만.
+
+## 한식 숨은 재료 (반드시 고려)
+- 모든 찌개/국: 멸치육수(fish) 또는 조개육수(shellfish) 사용 가능
+- 순두부찌개: 달걀 토핑(egg), 해산물(shellfish), 멸치육수(fish), 대두(soy) 포함 가능
+- 김치찌개/부대찌개: 돼지고기(pork), 새우젓(shellfish), 멸치액젓(fish)
+- 된장찌개: 대두(soy), 멸치육수(fish), 조개(shellfish)
+- 김밥/비빔밥: 달걀(egg), 참기름, 간장(soy), 게맛살(wheat+fish)
+- 전/부침개: 밀가루(wheat), 달걀(egg)
+- 불고기/갈비: 간장(soy), 배, 설탕
+- 떡볶이: 고추장(soy+wheat), 어묵(wheat+fish)
+- 삼겹살/목살: 쌈장(soy), 된장(soy)
+- 냉면: 메밀(buckwheat), 달걀(egg), 소고기(beef)
+- 삼계탕: 닭(chicken), 찹쌀, 잣(nuts)
+- 국밥류: 돼지(pork) 또는 소(beef) 사골 육수
+
+## 판정 기준
+- danger: 사용자 알레르겐이 주재료로 확실 포함
+- caution: 포함 가능성 있음 (육수, 양념, 토핑 등)
+- safe: 사용자 알레르겐과 관련된 재료가 전혀 없을 가능성이 높음
+- unknown: 메뉴명만으로 판단 불가
 
 # 문의 문장 (staff_query)
 - danger/caution 메뉴에만 생성 (safe/unknown은 빈 문자열)
