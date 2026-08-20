@@ -970,7 +970,8 @@ function App() {
       formData.append("allergens", profile.map((item) => apiAllergenKeys[item]).filter(Boolean).join(","));
       formData.append("language", language || "en");
 
-      const res = await fetch("http://localhost:8100/scan/full", {
+      const scanUrl = import.meta.env.DEV ? "http://localhost:8100/scan/full" : "/scan/full";
+      const res = await fetch(scanUrl, {
         method: "POST",
         body: formData,
       });
@@ -996,7 +997,7 @@ function App() {
     return (
       <FeedbackPage
         onNavigate={setView}
-        onProfile={() => setModal("profile")}
+        onProfile={() => { setView("recommendations"); setTimeout(() => setModal("profile"), 100); }}
         language={language}
       />
     );
