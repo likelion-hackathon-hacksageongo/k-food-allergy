@@ -1302,8 +1302,8 @@ function App() {
                     </div>
                     <p>{language === "ko" ? (categoryKo[item.type] || item.type) : item.type}</p>
                     <div className="menu-tags">
-                      {item.menus.slice(0, 2).map((menu) => (
-                        <span key={menu}>{menu}</span>
+                      {(item.menuDetails || []).slice(0, 2).map((menu) => (
+                        <span key={menu.id || menu.name}>{language === "ko" ? (menu.name_ko || menu.name) : (menu.name || menu.name_ko)}</span>
                       ))}
                     </div>
                   </div>
@@ -1447,7 +1447,7 @@ function App() {
                           background: menu.order === 0 ? "#2f6b43" : "#8b938e"
                         }}></span>
                         <div>
-                          <strong>{menu.name_ko || menu.name}</strong>
+                          <strong>{language === "ko" ? (menu.name_ko || menu.name) : ((menu.name_ko || menu.name) + (menu.name && menu.name_ko ? ` (${menu.name})` : ""))}</strong>
                           {menu.lp && <small style={{display:"block",marginTop:"2px",color:"#6b7370"}}>{menu.lp.label} — {language === "ko" ? menu.lp.descriptionKo : menu.lp.description}</small>}
                           {!menu.lp && profile.length > 0 && <small style={{display:"block",marginTop:"2px",color:"#2f6b43"}}>{t("saferToEat")}</small>}
                         </div>
