@@ -275,3 +275,10 @@ small, .menu-row small { font-size: 14px !important; }
 .menu-row { font-size: 14px !important; }
 .overline, .eyebrow, .modal-kicker { font-size: 12px !important; }
 .filter-chip, .allergy-editor button, .status-pill { font-size: 13px !important; }
+
+
+/* Fix: modal scrollable on mobile when keyboard opens */
+@media (max-width: 760px) {
+  .modal-backdrop { align-items: flex-start !important; overflow-y: auto; padding: 20px 0 !important; }
+  .modal { max-height: none !important; margin: auto 0; border-radius: 12px !important; }
+}
