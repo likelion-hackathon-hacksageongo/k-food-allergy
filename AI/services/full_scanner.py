@@ -62,6 +62,10 @@ _SYSTEM_PROMPT = """한국어 메뉴판 이미지 분석 + 현장 문의 문장 
 - safe: 사용자 알레르겐과 관련된 재료가 전혀 없을 가능성이 높음
 - unknown: 메뉴명만으로 판단 불가
 
+## 무시할 항목
+- 원산지 정보 (예: "원산지 - 김치: 국내산, 돼지고기: 국내산") → 메뉴가 아님, description에도 포함하지 않음
+- 가격 정보 → 무시
+
 # 문의 문장 (staff_query)
 - danger/caution 메뉴에만 생성 (safe/unknown은 빈 문자열)
 - 정중한 존댓말, 40자 이내, 구체적
@@ -103,7 +107,6 @@ _RESPONSE_SCHEMA = {
                             "original_text": {"type": "string"},
                             "translated_name": {"type": "string"},
                             "description": {"type": "string"},
-                            "price": {"type": "string"},
                             "allergen_warnings": {"type": "array", "items": {"type": "string"}},
                             "allergen_keys": {"type": "array", "items": {"type": "string"}},
                             "safety_level": {"type": "string", "enum": ["safe", "caution", "danger", "unknown"]},

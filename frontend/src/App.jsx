@@ -1645,15 +1645,24 @@ function App() {
                       </div>
                       <small style={{color:"#666"}}>{item.original_text}</small>
                       {item.description && <p style={{margin:"4px 0",fontSize:"13px"}}>{item.description}</p>}
-                      {item.allergen_warnings.map((w, j) => (
+                      {item.allergen_warnings
+                        .filter((w, j) => {
+                          const key = item.allergen_keys?.[j];
+                          if (!key) return true;
+                          const userKeys = profile.map((p) => apiAllergenKeys[p]).filter(Boolean);
+                          return userKeys.includes(key);
+                        })
+                        .map((w, j) => (
                         <p key={j} style={{margin:"2px 0",fontSize:"12px",color:"#6b7370"}}>⚠ {w}</p>
                       ))}
                       {item.staff_query && (
-                        <div style={{marginTop:"6px",padding:"6px 8px",background:"#fff",borderRadius:"4px",border:"1px solid #e5e7eb"}}>
-                          <small style={{color:"#888"}}>Show to staff:</small>
-                          <p style={{margin:"2px 0",fontSize:"14px",fontWeight:"500"}}>{item.staff_query}</p>
-                          <small style={{color:"#666"}}>{item.query_explanation}</small>
-                        </div>
+                        <details style={{marginTop:"6px"}}>
+                          <summary style={{cursor:"pointer",fontSize:"12px",color:"#35684d",fontWeight:600}}>Show to staff →</summary>
+                          <div style={{marginTop:"4px",padding:"6px 8px",background:"#fff",borderRadius:"4px",border:"1px solid #e5e7eb"}}>
+                            <p style={{margin:"2px 0",fontSize:"14px",fontWeight:"500"}}>{item.staff_query}</p>
+                            <small style={{color:"#666"}}>{item.query_explanation}</small>
+                          </div>
+                        </details>
                       )}
                     </div>
                   ))}
