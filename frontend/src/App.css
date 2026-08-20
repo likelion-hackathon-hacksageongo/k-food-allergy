@@ -225,3 +225,16 @@ footer { font-size: 13px; }
 @media (max-width: 760px) {
   footer { display: none !important; }
 }
+
+
+/* Mobile nav: 4 items + profile as top-right avatar */
+@media (max-width: 760px) {
+  .mobile-nav { grid-template-columns: repeat(4, 1fr) !important; }
+}
+
+
+/* Mobile: show profile avatar button in topbar */
+.mobile-profile-btn { border: 0; width: 36px; height: 36px; border-radius: 50%; background: #e0ecdb; color: #87928a; font-size: 17px; cursor: pointer; }
+@media (max-width: 760px) {
+  .mobile-profile-btn { display: block !important; }
+}

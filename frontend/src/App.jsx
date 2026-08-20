@@ -1060,6 +1060,7 @@ function App() {
           </button>
           <button onClick={() => setModal("profile")}>👤 {t("myProfile")}</button>
         </div>
+        <button className="mobile-profile-btn" onClick={() => setModal("profile")} style={{display:"none"}}>👤</button>
       </nav>
 
       {view === "recommendations" && (
@@ -1574,7 +1575,7 @@ function App() {
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
         >
-          <span>✦</span>{t("forYou")}
+          <span>🍽️</span>{t("forYou")}
         </button>
         <button
           className={view === "map" ? "active" : ""}
@@ -1583,7 +1584,7 @@ function App() {
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
         >
-          <span>⌖</span>{t("exploreMap")}
+          <span>🗺️</span>{t("exploreMap")}
         </button>
         <button
           className={view === "list" ? "active" : ""}
@@ -1592,18 +1593,13 @@ function App() {
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
         >
-          <span>☷</span>{t("restaurants")}
+          <span>🍴</span>{t("restaurants")}
         </button>
         <button
           className={view === "feedback" ? "active" : ""}
           onClick={() => setView("feedback")}
         >
           <span>✎</span>{t("feedback")}
-        </button>
-        <button
-          onClick={() => setModal("profile")}
-        >
-          <span>👤</span>{t("myProfile")}
         </button>
       </nav>
       {toast && <div className="toast">✓ {toast}</div>}
@@ -1928,6 +1924,21 @@ function App() {
                   }}
                 >
                   {language === "ko" ? "변경사항 저장 →" : "Save changes →"}
+                </button>
+                <button
+                  style={{width:"100%",marginTop:"12px",padding:"12px",border:"1px solid #dce4d8",borderRadius:"6px",background:"transparent",color:"#6b7370",fontSize:"13px",cursor:"pointer"}}
+                  onClick={() => {
+                    localStorage.removeItem("kfood-access-token");
+                    localStorage.removeItem("kfood-refresh-token");
+                    localStorage.removeItem("kfood-user-email");
+                    setIsSignedIn(false);
+                    setProfile([]);
+                    setModal("welcome");
+                    setView("recommendations");
+                    setToast(language === "ko" ? "로그아웃되었습니다." : "You have been signed out.");
+                  }}
+                >
+                  {language === "ko" ? "로그아웃" : "Sign out"}
                 </button>
               </>
             )}
